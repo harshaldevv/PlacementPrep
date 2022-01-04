@@ -40,7 +40,7 @@ public:
             if(nums[i] == numb1){
                 c1++;
             }
-            if(nums[i] == numb2){
+            else if(nums[i] == numb2){
                 c2++;
             }
         }
