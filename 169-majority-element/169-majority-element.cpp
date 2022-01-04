@@ -2,34 +2,41 @@ class Solution {
 public:
     int majorityElement(vector<int>& nums) {
         
-        unordered_map <int, int> mp;
+        int count = 0;
+        int numb = 0;
         
-        int freq = -1;
-        int numb = INT_MIN;
-        
-        for(int i = 0 ; i < nums.size();i++ ){
-            mp[nums[i]]++;
-            
-            int internal_freq = mp[nums[i]];
-            if(internal_freq > freq){
-                freq = internal_freq;
+        for(int i = 0 ; i< nums.size(); i++){
+            if(count == 0){
                 numb = nums[i];
+            }
+            
+            if(numb == nums[i]){
+                count++;
+            }
+            else{
+                count--;
             }
         }
         
         return numb;
         
+//         unordered_map <int, int> mp;
         
-        // for (auto& it: mp) {
-        //     // Do stuff
-        //     // cout << it.first;
-        //     if(it.second > freq){
-        //         freq = it.second;
-        //         numb = it.first;
-        //     }
-        // }
+//         int freq = -1;
+//         int numb = INT_MIN;
         
-        return numb;
+//         for(int i = 0 ; i < nums.size();i++ ){
+//             mp[nums[i]]++;
+            
+//             int internal_freq = mp[nums[i]];
+//             if(internal_freq > freq){
+//                 freq = internal_freq;
+//                 numb = nums[i];
+//             }
+//         }
+        
+//         return numb;
+        
         
     }
 };
