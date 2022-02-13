@@ -9,13 +9,15 @@ class Solution
 {
     int knapSackHelper(int wt[], int val[], int W, int n, vector<vector<int>>& t){
         
-        if( n == 0|| W == 0){. //base case
+        if( n == 0|| W == 0){ //base case
             return 0;
         }
         
-        if(t[n][W] !=-1){
+        if(t[n][W] !=-1){ // checking if we've already calcuated the desired input
             return t[n][W];
         }
+        
+        // decision diagram
         
         if(wt[n-1] <= W){
             int op1 = val[n-1] + knapSackHelper(wt, val, W-wt[n-1], n-1, t);
@@ -28,20 +30,51 @@ class Solution
             return t[n][W];
         }
     }
+    
     public:
     //Function to return max value that can be put in knapsack of capacity W.
     int knapSack(int W, int wt[], int val[], int n) 
     { 
+        // taulation --> bottom down --> SOlution 3
+        int t[n+1][W+1];
         
-        // SOlution 2 --> Memoization
-        if( n == 0|| W == 0){
-            return 0;
+        for(int i = 0 ; i < n+1 ; i++){
+            t[i][0] = 0;
         }
         
-        vector<vector<int> > t(n+1, vector<int>(W+1, -1));        
-        int ans = knapSackHelper(wt, val, W, n , t);
+        for(int j = 0 ; j < W+1 ; j++){
+            t[0][j] = 0;
+        }
         
-        return ans;
+        // now doing the work
+        // change n --> i, W---> j
+        
+        for(int i = 1; i < n+1 ; i++){
+            for(int j = 1 ; j < W+1 ; j++){
+                if(wt[i-1] <= j){
+                    t[i][j] = max(val[i-1] + t[i-1][j-wt[i-1]] , t[i-1][j]);
+                }
+                else{
+                    t[i][j] = t[i-1][j];
+                }
+            }
+        }
+        
+        return t[n][W];
+        
+        
+        
+        // // SOlution 2 --> Memoization. --> top down
+        // if( n == 0|| W == 0){
+        //     return 0;
+        // }
+        
+        // vector<vector<int> > t(n+1, vector<int>(W+1, -1));        
+        // int ans = knapSackHelper(wt, val, W, n , t);
+        
+        // return ans;
+        // // solution 2 ends
+        
         // Solution 1 --> recursion
     //   // Your code here
     //   if(n == 0 || W == 0){
