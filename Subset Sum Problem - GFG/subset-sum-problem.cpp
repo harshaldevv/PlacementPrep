@@ -30,19 +30,61 @@ class Solution{
 public:
     bool isSubsetSum(int N, int arr[], int sum){
         // code here 
+        
+        // solution 3 --> Tabulization
         if(N == 0 || sum == 0){
             return false;
+            // return 0 --> this also works
+        } 
+        
+        bool t[N+1][sum +1 ];
+        
+        //doing initialization
+        for(int i = 0 ; i  < N+1; i++){
+            t[i][0] = true;
         }
         
-        vector<vector<int> > t(N+1, vector<int>(sum+1, -1));
-        int maxS = helper(arr, N, sum, t);
+        for(int j = 0 ;  j < sum +1 ; j++){
+            t[0][j] = false;
+        }
         
-        if(maxS == sum){
-            return true;
+        t[0][0] = true;
+        
+        for(int i = 1 ; i < N+1 ; i++){
+            for(int j = 1 ; j < sum +1 ; j++){
+                if(arr[i-1] <= j){
+                    t[i][j] = t[i-1][j-arr[i-1]] || t[i-1][j];
+                }
+                else{
+                    t[i][j] = t[i-1][j];
+                }
+                // if(arr[i-1] <= j){
+                //     t[i][j] = max(arr[i-1] + t[i-1][j- arr[i-1]] , t[i-1][j]);
+                // }
+                // else{
+                //     t[i][j] = t[i-1][j]; 
+                // }
+            }
         }
-        else{
-            return false;
-        }
+        
+        return t[N][sum];
+        
+        
+        
+        // solution 2 -- > memoization
+        // if(N == 0 || sum == 0){
+        //     return false;
+        // }
+        
+        // vector<vector<int> > t(N+1, vector<int>(sum+1, -1));
+        // int maxS = helper(arr, N, sum, t);
+        
+        // if(maxS == sum){
+        //     return true;
+        // }
+        // else{
+        //     return false;
+        // }
     }
 };
 
