@@ -17,22 +17,30 @@ class Solution{
 	    for(int i = 0 ; i < n ; i++){
 	        sum+=arr[i];
 	    }
+// 	    5
+// 20 19 18 20 16
+
+	    int rows = n+1;
+	    int cols = floor(sum/2) +1;
+	    bool t[rows][cols];
 	    
-	    bool t[n+1][sum+1];
+	    // initlaization
 	    
-	    for(int i = 0 ; i < n+1 ; i++){
-	        t[i][0] = true;
+	    for(int i = 0 ; i < rows; i++){
+	        t[i][0] = true; 
 	    }
-	    for(int j = 0 ; j < sum+1; j++){
+	    
+	    for(int j = 0 ;  j < cols ; j++){
 	        t[0][j] = false;
 	    }
 	    
 	    t[0][0] = true;
 	    
-	    for(int i = 1 ; i < n+1 ; i++){
-	        for(int j = 1 ; j < sum +1 ; j++){
+	    for(int i = 1 ; i < rows ; i++){
+	        for(int j = 1 ; j< cols ; j++){
 	            if(arr[i-1] <= j){
-                    t[i][j] = t[i-1][j-arr[i-1]] || t[i-1][j];
+	                // include/ exclude
+	                t[i][j] = t[i-1][j] || t[i-1][j- arr[i-1]];
 	            }
 	            else{
 	                t[i][j] = t[i-1][j];
@@ -40,17 +48,60 @@ class Solution{
 	        }
 	    }
 	    
-	    //get the last row of the matrix;
+	    // get the last row of the matrix
 	    
-	    vector<int> v;
+	   // cout << "cols = " << cols << endl;
 	    
-	    for(int j = 0 ; j< sum+1 ; j++){
-	        if(t[n][j] == true){
-	            v.push_back(j);
+	    for(int i = cols -1; i>=0 ; i--){
+	        if(t[n][i] == true){
+	           // cout << t[n][i] << " ";
+	            return abs(sum - 2*i); //t[n][i];
+	           // return max(t[n][i], t[n][i-1]);
 	        }
 	    }
 	    
-	    return abs(sum - 2*v[v.size()/2]);
+	    return 69;
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	   // bool t[n+1][sum+1];
+	    
+	   // for(int i = 0 ; i < n+1 ; i++){
+	   //     t[i][0] = true;
+	   // }
+	   // for(int j = 0 ; j < sum+1; j++){
+	   //     t[0][j] = false;
+	   // }
+	    
+	   // t[0][0] = true;
+	    
+	   // for(int i = 1 ; i < n+1 ; i++){
+	   //     for(int j = 1 ; j < sum +1 ; j++){
+	   //         if(arr[i-1] <= j){
+    //                 t[i][j] = t[i-1][j-arr[i-1]] || t[i-1][j];
+	   //         }
+	   //         else{
+	   //             t[i][j] = t[i-1][j];
+	   //         }
+	   //     }
+	   // }
+	    
+	   // //get the last row of the matrix with cells that have true
+	   // vector<int> v;
+	    
+	   // for(int j = 0 ; j< sum+1 ; j++){
+	   //     if(t[n][j] == true){
+	   //         v.push_back(j);
+	   //     }
+	   // }
+	    
+	   // return abs(sum - 2*v[v.size()/2]);
 	} 
 };
 
