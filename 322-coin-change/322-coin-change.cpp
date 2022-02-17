@@ -29,6 +29,9 @@ public:
         
         int ans = t[n][amount];
         
+        // cout << "ans = " << ans << endl;
+        // return ans;
+        
         if(ans > amount){
             return -1;
         }
