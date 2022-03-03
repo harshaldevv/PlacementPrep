@@ -1,9 +1,18 @@
 class Solution {
 public:
     int rob(vector<int>& nums) {
-        int n = nums.size();
-        //return max( profit(nums,1, n-2) , profit(nums, 2, n-1) );
+        //basically we want that if we choose the last house then we cant choose the first house
+        // so if we take the first house, we are eventually allowed till n-2 th house
         
+        // and if we  take the last house aka, we dont take the first house, then we go till n-1 th 
+        
+        
+        int n = nums.size();
+        //return max( profit(nums,1, n-2) , profit(nums, 2, n-1) );   --> normal recursion  fails 
+        //obviously
+         
+        
+        //doing memoization
         if(n==0 ){
             return n; 
         }
