@@ -5,8 +5,28 @@ public:
 //         return profit(nums, n-1);
         
         vector<int> dp(n, -1);
-        return profitMemoized(nums, n-1, dp);   
+        return profitMemoized(nums, n-1, dp);  
+        
+        // trying recusrion again instead going with actual number of house
+        
+        //return again(nums, n);
     }
+    
+//     int again(vector<int> &cost, int n){
+        
+//         if(n==0){
+//             return 0
+//         }
+        
+//         if(n==1){
+//             return cost[n];
+//         }
+        
+//         if(n==2){
+//             return 
+//         }
+        
+//     }
     
     int profitMemoized(vector<int> &cost, int n, vector<int> &dp){
         if(n<0){
