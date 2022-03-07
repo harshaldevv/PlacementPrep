@@ -18,19 +18,33 @@ public:
         }
         
         
-        int revPro = 1;
-        int revMaxPro = INT_MIN;
-        for(int i = n-1 ; i>=0;i--){
-            int x = nums[i];
-            revPro *= x;
-            revMaxPro = max(revMaxPro, revPro);
-            
-            if(revPro == 0){
-                revPro = 1;
+        
+        pro = 1;
+        
+        for(int i = n-1 ; i >= 0 ;i--){
+            pro*=nums[i];
+            maxPro = max(pro, maxPro);
+            if(pro == 0){
+                pro=1;
             }
         }
         
-        return max(maxPro, revMaxPro);
+        return maxPro;
+        
+        
+//         int revPro = 1;
+//         int revMaxPro = INT_MIN;
+//         for(int i = n-1 ; i>=0;i--){
+//             int x = nums[i];
+//             revPro *= x;
+//             revMaxPro = max(revMaxPro, revPro);
+            
+//             if(revPro == 0){
+//                 revPro = 1;
+//             }
+//         }
+        
+//         return max(maxPro, revMaxPro);
         
     }
 };
