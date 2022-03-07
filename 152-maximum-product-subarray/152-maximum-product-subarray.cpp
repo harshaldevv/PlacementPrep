@@ -2,49 +2,92 @@ class Solution {
 public:
     int maxProduct(vector<int>& nums) {
         
+        //one pass  --> optimizing the two passes into one pass 
+        
         int n = nums.size();
         
-        int pro = 1;
-        int maxPro = INT_MIN;
+        int forwardPro = 1;
+        int reversePro = 1;
+        
+        int forwardMaxProduct = INT_MIN;
+        int reverseMaxProduct = INT_MIN;
+        
         for(int i = 0 ; i < n ; i++){
+            // i --> forward ptr
+            
+            int j = n-1-i;  //  j --> reverse ptr
             
             int x = nums[i];
-            pro*= x;
-            maxPro = max(maxPro, pro);
-            if(pro == 0){
-                pro = 1;
+            forwardPro*=x;
+            forwardMaxProduct = max( forwardPro , forwardMaxProduct);
+            if(forwardPro==0){
+                forwardPro = 1;
             }
             
-        }
-        
-        
-        
-        pro = 1;
-        
-        for(int i = n-1 ; i >= 0 ;i--){
-            pro*=nums[i];
-            maxPro = max(pro, maxPro);
-            if(pro == 0){
-                pro=1;
+            
+            
+            
+            int y = nums[j];
+            reversePro*=y;
+            reverseMaxProduct = max( reversePro, reverseMaxProduct);
+            
+            if(reversePro == 0){
+                reversePro = 1;
             }
+            
+             
         }
         
-        return maxPro;
+        return max( forwardMaxProduct, reverseMaxProduct);
         
         
-//         int revPro = 1;
-//         int revMaxPro = INT_MIN;
-//         for(int i = n-1 ; i>=0;i--){
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+//         //
+//         //Below is the 2 pass solution -->TC : O(n), Sc : O(1)
+//         int n = nums.size();
+        
+//         int pro = 1;
+//         int maxPro = INT_MIN;
+        
+//         //forward pass --> first pass
+//         for(int i = 0 ; i < n ; i++){
+            
 //             int x = nums[i];
-//             revPro *= x;
-//             revMaxPro = max(revMaxPro, revPro);
+//             pro*= x;
+//             maxPro = max(maxPro, pro);
+//             if(pro == 0){
+//                 pro = 1;
+//             }
             
-//             if(revPro == 0){
-//                 revPro = 1;
+//         }
+        
+        
+        
+//         pro = 1;
+        
+//         //reverse pass --> second pass
+//         for(int i = n-1 ; i >= 0 ;i--){
+//             pro*=nums[i];
+//             maxPro = max(pro, maxPro);
+//             if(pro == 0){
+//                 pro=1;
 //             }
 //         }
         
-//         return max(maxPro, revMaxPro);
+//         return maxPro;
+        
         
     }
 };
