@@ -1,13 +1,7 @@
 class Solution {
 public:
     int maxProduct(vector<int>& nums) {
-        
-        // Another one pass solution --> the authentic one which is taught on YT and seen on 
-        // leetcode discussion
-        
-        
-        
-        
+         
         
         //one pass  --> optimizing the two passes into one pass 
         
