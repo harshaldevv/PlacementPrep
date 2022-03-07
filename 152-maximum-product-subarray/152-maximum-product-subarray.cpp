@@ -63,7 +63,7 @@ public:
         
         
 //         //
-//         //Below is the 2 pass solution -->TC : O(n), Sc : O(1)
+//         //Below is the 2 pass solution -->TC : O(2*n) = O(n), Sc : O(1)
 //         int n = nums.size();
         
 //         int pro = 1;
