@@ -2,6 +2,13 @@ class Solution {
 public:
     int maxProduct(vector<int>& nums) {
         
+        // Another one pass solution --> the authentic one which is taught on YT and seen on 
+        // leetcode discussion
+        
+        
+        
+        
+        
         //one pass  --> optimizing the two passes into one pass 
         
         int n = nums.size();
@@ -13,6 +20,7 @@ public:
         int reverseMaxProduct = INT_MIN;
         
         for(int i = 0 ; i < n ; i++){
+            
             // i --> forward ptr
             
             int j = n-1-i;  //  j --> reverse ptr
