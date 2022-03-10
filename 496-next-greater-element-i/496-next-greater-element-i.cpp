@@ -3,14 +3,12 @@ public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
         
         // find NGRs of all elements of nums2 and push in a hashmap
-        
-
         unordered_map<int, int> mp;
         
-        
-        
         int n = nums2.size();
+        
         stack<int> st;
+        
         for(int i = n-1 ; i >= 0 ; i--){
             while(!st.empty() && st.top() <= nums2[i]){
                 st.pop();
@@ -24,8 +22,6 @@ public:
             }
             st.push(nums2[i]);
         }
-        
-        
         
         
         //make an answer vector
