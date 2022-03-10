@@ -29,7 +29,6 @@ class Solution {
 public:
     int trap(vector<int>& height) {
         
-        
         // 2ptr approach
         int n = height.size();
         
@@ -41,7 +40,8 @@ public:
         
         int totalWater = 0;
         
-        while(l<r){
+        while(l<=r){
+            
             if(height[l] > maxL){
                 maxL = height[l];
             }
