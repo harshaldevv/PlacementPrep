@@ -55,11 +55,11 @@ public:
         
         
         
+        // either of these 2 two ptr approaches work 
         
         
         
         
-        // Im unable to make sense of why this works so doing 2 ptr again with different style
         while(l<=r){
             
             if(height[l] > maxL){
@@ -70,7 +70,7 @@ public:
                 maxR = height[r];
             }
             
-            if(height[l] < height[r]){ // taking minium of either of them
+            if(height[l] < height[r]){ // taking minium of either of the building
                 totalWater += (abs(maxL - height[l]));
                 l++;
             }
