@@ -1,129 +1,113 @@
 class Solution {
-public:
-    
-    vector<int> NSR(vector<int> arr, int n){
-        stack<pair<int, int> > st;
-        vector<int> v;
+    vector<int> NSR(vector<int> &arr){
+        vector<int> ans;
+        int pseudoIndex = arr.size();
+        stack<pair<int, int>> st;  //first price, second i
         
-        int pseudoIndex = n;  //  --> n == size of the array
-        
-        for(int i = n-1; i>=0 ; i--){
-            if(st.size() == 0){
-                v.push_back(pseudoIndex);
+        for(int i = arr.size() -1. ; i >=0 ; i--){
+            while(!st.empty() && st.top().first >= arr[i]){
+                st.pop();
             }
             
-            if(st.size() > 0 && st.top().first < arr[i]){
-                v.push_back(st.top().second);
+            if(st.empty()){
+                ans.push_back(pseudoIndex);
             }
-            if(st.size() >0 && st.top().first >= arr[i]){
-                while(st.size() >0 && st.top().first >= arr[i]){
-                    st.pop();
-                }
-                
-                if(st.size() == 0){
-                    v.push_back(pseudoIndex);
-                }
-                else{
-                    v.push_back(st.top().second);
-                }
+            else{
+                ans.push_back(st.top().second);
             }
             
             st.push({arr[i], i});
         }
         
-        reverse(v.begin(), v.end());
-        return v;
+        reverse(ans.begin(), ans.end());
+        return ans;
     }
     
-    vector<int> NSL(vector<int> arr, int n){
-        stack<pair<int, int> > st;
-        vector<int> v;
+    
+    
+    
+    vector<int> NSL(vector<int> &arr){
+        vector<int> ans;
+        int pseudoIndex = -1;
+        stack<pair<int, int>> st;  //first price, second i
         
-        int pseudoIndex = -1;  //  --> n == size of the array
-        
-        for(int i = 0; i<n ; i++){
-            if(st.size() == 0){
-                v.push_back(pseudoIndex);
+        for(int i = 0 ; i < arr.size() ;i++){
+            while(!st.empty() && st.top().first >= arr[i]){
+                st.pop();
             }
             
-            if(st.size() > 0 && st.top().first < arr[i]){
-                v.push_back(st.top().second);
+            if(st.empty()){
+                ans.push_back(pseudoIndex);
             }
-            if(st.size() >0 && st.top().first >= arr[i]){
-                while(st.size() >0 && st.top().first >= arr[i]){
-                    st.pop();
-                }
-                
-                if(st.size() == 0){
-                    v.push_back(pseudoIndex);
-                }
-                else{
-                    v.push_back(st.top().second);
-                }
+            else{
+                ans.push_back(st.top().second);
             }
             
             st.push({arr[i], i});
         }
         
-        return v;
+        
+        return ans;
+    
+        
     }
     
-    int MAH(vector<int> arr){
-        //arr[] = heights ki array
-        int size = arr.size();
-        vector<int> right = NSR(arr, size);
-        vector<int> left = NSL(arr, size);
+    int MAH(vector<int> &buildings){
         
-        vector<int> width(size, -1);
-        vector<int> area(size, -1);
+        vector<int> right = NSR(buildings);
+        vector<int> left = NSL(buildings);
+        
+        int area = 0;
         int maxArea = -1;
-        for(int i = 0 ; i < size ;i++){
-            width[i] = right[i] - left[i] -1;
-            area[i] = width[i] * arr[i];
-            maxArea = max(area[i], maxArea);
+        
+        for(int i = 0 ; i < right.size() ;i++){
+            area = buildings[i] * (right[i] - left[i] -1);
+            maxArea = max(area, maxArea);
         }
         
         return maxArea;
+        
     }
+    
+public:
     int maximalRectangle(vector<vector<char>>& matrix) {
         int rows = matrix.size();
-        int col = matrix[0].size();
+        int cols = matrix[0].size();
         
-        vector<int> v;
         
-        //copying the first row of the matrix
-        for(int j = 0 ; j < col ; j++ ){  
-            // v.push_back(matrix[0][j]);
-            
-            if(matrix[0][j] == '0'){
-                v.push_back(0);
+        vector<int> buildings(cols);
+        //copying first row in the building arr
+        for(int i = 0 ; i < cols ;i++){
+            if(matrix[0][i] == '0'){
+                buildings[i] = 0;
             }
             else{
-                v.push_back(1);
+                buildings[i] = 1;
             }
             
         }
         
-        int answer = MAH(v);
-        cout << "ans = " << answer << endl;
+        int maxArea = INT_MIN;
+        maxArea = MAH(buildings);
         
         
         
-        for(int i = 1; i < rows ; i++){
-            for(int j = 0 ; j < col ; j++){
+        
+        cout << "maxArea = " << maxArea << endl;
+        
+        for(int i = 1 ; i < rows ;i++){
+            for(int j = 0 ; j < matrix[i].size() ;j++){
                 if(matrix[i][j] == '0'){
-                    v[j] = 0;
-                }else{
-                    v[j] =  v[j] + 1 ;
-                    // v[j] = v[j] + matrix[i][j]; // matrix[i][j] = 1 hoga ab
-                    
-                }   
+                    buildings[j] = 0;
+                }
+                else{
+                    buildings[j] += 1;
+                } 
             }
-            answer = max(MAH(v), answer);
-            cout << "ans = " << answer << endl;
+            
+            maxArea = max(maxArea, MAH(buildings));
         }
         
-        return answer;
-        
+        return maxArea;
     }
 };
