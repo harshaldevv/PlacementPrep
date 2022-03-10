@@ -29,29 +29,105 @@ class Solution {
 public:
     int trap(vector<int>& height) {
         
-        vector<int> maxL = maximumLeft(height);
-        vector<int> maxR = maximumRight(height);
+        
+        // 2ptr approach
         int n = height.size();
         
-//         cout << "left = ";
-//         for(int i = 0 ; i < n ;i++){
-//             cout << maxL[i] << " , ";
-//         }
-//         cout << endl;
+        int l = 0;
+        int r = n-1;
         
-//         cout << "right = " ;
-//         for(int i = 0 ; i < n ;i++){
-//             cout << maxR[i] << " , ";
-//         }
-//         cout << endl;
-        
+        int maxL = 0;
+        int maxR = 0;
         
         int totalWater = 0;
-        for(int i = 0 ; i < n ; i++){
-            totalWater += (min(maxR[i], maxL[i]) - height[i]);
+        
+        while(l<r){
+            if(height[l] > maxL){
+                maxL = height[l];
+            }
+            
+            if(height[r] > maxR){
+                maxR = height[r];
+            }
+            
+            if(maxL < maxR){ // taking minium of either of them
+                totalWater += (abs(maxL - height[l]));
+                l++;
+            }
+            else{
+                totalWater += abs(maxR - height[r]);
+                r--;
+            }
         }
         
         return totalWater;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+//         vector<int> maxL = maximumLeft(height);
+//         vector<int> maxR = maximumRight(height);
+        
+//         int n = height.size();
+        
+        
+//         int totalWater = 0;
+//         for(int i = 0 ; i < n ; i++){
+//             totalWater += ( min(maxR[i], maxL[i]) - height[i]);
+//         }
+        
+//         return totalWater;
         
     }
 };
