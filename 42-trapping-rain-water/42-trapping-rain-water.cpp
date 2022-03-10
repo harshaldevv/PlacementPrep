@@ -40,25 +40,45 @@ public:
         
         int totalWater = 0;
         
-        while(l<=r){
-            
-            if(height[l] > maxL){
-                maxL = height[l];
-            }
-            
-            if(height[r] > maxR){
-                maxR = height[r];
-            }
-            
-            if(maxL < maxR){ // taking minium of either of them
-                totalWater += (abs(maxL - height[l]));
+        while(l<r){
+            if(height[l] < height[r]){
+                maxL = max(height[l], maxL);
+                totalWater += (maxL - height[l]);
                 l++;
             }
             else{
-                totalWater += abs(maxR - height[r]);
+                maxR = max(height[r], maxR);
+                totalWater += (maxR - height[r]);
                 r--;
             }
         }
+        
+        
+        
+        
+        
+        
+        
+        // Im unable to make sense of why this works so doing 2 ptr again with different style
+//         while(l<=r){
+            
+//             if(height[l] > maxL){
+//                 maxL = height[l];
+//             }
+            
+//             if(height[r] > maxR){
+//                 maxR = height[r];
+//             }
+            
+//             if(maxL < maxR){ // taking minium of either of them
+//                 totalWater += (abs(maxL - height[l]));
+//                 l++;
+//             }
+//             else{
+//                 totalWater += abs(maxR - height[r]);
+//                 r--;
+//             }
+//         }
         
         return totalWater;
         
