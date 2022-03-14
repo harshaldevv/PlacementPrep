@@ -8,8 +8,7 @@ public:
             return 0;
         }
         
-        int ans = dp(nums, n, 0);
-        return ans;
+        return dp(nums, n, 0);
         
     }
     
