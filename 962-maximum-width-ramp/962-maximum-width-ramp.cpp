@@ -18,19 +18,39 @@ public:
         
         stack<pair<int, int>> st;
         
-        for(int i = 0; i < n ; i++){
+        for(int i = 0 ; i < n ; i++){
             if(st.empty() || nums[i] < st.top().first){
                 st.push({nums[i], i});
             }
         }
         
-        for(int i = n-1; i >=0 ; i--){
-            while(!st.empty() && nums[i] >= st.top().first){
-                maxWidth = max( maxWidth, i - st.top().second);
+        for(int i = n -1 ; i >=0 ; i--){
+            while( !st.empty() && nums[i] >= st.top().first  ){
+                maxWidth = max(maxWidth, i - st.top().second);
                 st.pop();
             }
+            
         }
         
-        return maxWidth;
+        return maxWidth;    
+        
+//         stack<pair<int, int>> st;
+        
+//         for(int i = 0; i < n ; i++){
+//             if(st.empty() || nums[i] < st.top().first){
+//                 st.push({nums[i], i});
+//             }
+//         }
+        
+//         for(int i = n-1; i >=0 ; i--){
+//             while(!st.empty() && nums[i] >= st.top().first){
+//                 maxWidth = max( maxWidth, i - st.top().second);
+//                 st.pop();
+//             }
+//         }
+        
+//         return maxWidth;
+        
+        
     }
 };
