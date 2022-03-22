@@ -13,8 +13,11 @@ public:
         
 //         return count;
         
+        // HINT - > https://leetcode.com/problems/number-of-good-pairs/discuss/1457646/JAVA-or-STORY-BASED-or-0ms-or-SINGLE-PASS-or-EASY-TO-UNDERSTAND-or-SIMPLE-or-HASHMAP
+        
         int n = nums.size();
-        int mp[101] = {};
+        // int mp[101] = {};
+        unordered_map<int, int> mp;
         
         int ans = 0;
         
