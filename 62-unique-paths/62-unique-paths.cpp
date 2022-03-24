@@ -17,6 +17,9 @@ public:
             ans *= (i);
             ans/=j;
             j++;
+            // https://leetcode.com/problems/unique-paths/discuss/1581998/C%2B%2BPython-5-Simple-Solutions-w-Explanation-or-Optimization-from-Brute-Force-to-DP-to-Math
+            
+            // https://leetcode.com/problems/unique-paths/discuss/1582051/C%2B%2B-EASY-Intuitive-Solution-oror-Combinatorics-oror-TC-O(min(MN))-SC-O(1)-oror-Beats-100
         }
         
         return ans;
