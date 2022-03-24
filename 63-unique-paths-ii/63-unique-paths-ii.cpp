@@ -4,7 +4,10 @@ public:
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
         int rows = obstacleGrid.size();
         int cols = obstacleGrid[0].size();
-        //doing tabulation
+        //doing tabulation  --> https://leetcode.com/problems/unique-paths-ii/discuss/23395/Java-Simple-and-clean-DP-solution-easy-to-understand.   
+        
+        // ^^ this link helped me the most to write the tabulation part. 
+        // baaki sab toh ajeeb thi
         int t[rows][cols];
         memset(t, 0 , sizeof(t));
         
