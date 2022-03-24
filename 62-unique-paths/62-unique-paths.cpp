@@ -3,17 +3,41 @@ public:
     //int dp[100+1][100+1];
     int uniquePaths(int m, int n) {
         
-        // tabulation space optimized -> TC - O(m+n), SC - O(n) aka number of columns
         
-        vector<long> t(n+1, 1);
-        for(int i = 1 ; i < m; i++){
-            for(int j = 1 ; j < n+1 ; j++){
-                t[j] += t[j-1];
-            }
+        // combinatorics way --> TC - O(min(m,n)), SC - O(1)
+        
+        long N = m+n-2;
+        long R = min(m,n)-1;
+        
+        //do N_C_R
+        
+        long ans = 1;
+        int j = 1;
+        for(int i = N; i >= max(m,n); i--){
+            ans *= (i);
+            ans/=j;
+            j++;
         }
         
+        return ans;
         
-        return t[n-1];
+        
+        
+        
+        
+        // tabulation space optimized -> TC - O(m+n), SC - O(n) aka number of columns
+        
+        // feeling lelo is code ki kaise likhna hai, mene thora sloppy way me likha hai isko
+        
+//         vector<long> t(n+1, 1);
+//         for(int i = 1 ; i < m; i++){
+//             for(int j = 1 ; j < n+1 ; j++){
+//                 t[j] += t[j-1];
+//             }
+//         }
+        
+        
+//         return t[n-1];
         
         
         
