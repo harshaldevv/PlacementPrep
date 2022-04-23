@@ -24,13 +24,14 @@ public:
             fast = fast->next;
         }
         
-        while(fast != NULL && fast-> next != NULL){
-            slow = slow->next;
-            fast = fast->next;
+        if(fast == NULL){  // if fast == NULL means we had to remove the first node
+            // therfore return head->next
+            return head->next;
         }
         
-        if(fast == NULL){
-            return head->next;
+        while(fast-> next != NULL){  //iterate till "THE LAST NODE"
+            slow = slow->next;
+            fast = fast->next;
         }
         
         
