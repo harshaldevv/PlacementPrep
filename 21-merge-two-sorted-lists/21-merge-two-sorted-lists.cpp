@@ -12,105 +12,61 @@ class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
         
-        if(list1 == NULL && list2 == NULL){
-            return NULL;
+        if(list1 == nullptr && list2 == nullptr){
+            return nullptr;
         }
         
-        if(list1 == NULL){
+        if(list1 == nullptr){
             return list2;
         }
-        
-        if(list2 == NULL){
+        if(list2 == nullptr){
             return list1;
         }
         
-        //attempt 2 starts --> NO EXTRA SPACE 
-        ListNode *start;
-        ListNode *p1 = list1;
-        ListNode *p2 = list2;
         
-        if(p1->val < p2->val){
-            start = p1;
-            p1 = p1->next;
+        ListNode *newHead;
+        ListNode *newTail;
+        
+        if(list1->val <=  list2->val){
+            newHead = list1;
+            newTail = list1;
+            list1 = list1->next;
         }
         else{
-            start = p2;
-            p2 = p2->next;
+            newHead = list2;
+            newTail = list2;
+            list2 = list2->next;
         }
         
-        ListNode *newHead = start;
+        //got our newHead;
         
-        while(p1 != NULL && p2 != NULL){
-            if(p1->val < p2->val){
-                // kuch kuch karna 
-                start->next = p1;
-                start = start->next;
-                p1 = p1->next;
+        
+        
+        while(list1 != NULL && list2 != NULL){
+            if(list1->val <= list2->val){
+                newTail->next = list1;
+                list1 = list1->next;
             }
             else{
-                // kuch aur karna hai 
-                start->next = p2;
-                start = start->next;
-                p2 = p2->next;
+                newTail->next = list2;
+                list2 = list2->next;
             }
+            newTail = newTail->next;
+            
         }
         
-        while (p1!= NULL){
-            start->next = p1;
-            start = start->next;
-            p1 = p1->next;
+        if(list1 == nullptr){
+            //attach the remaining list 2
+            newTail->next = list2;
         }
         
-        while(p2 !=NULL){
-            start->next = p2;
-            start = start->next;
-            p2 = p2->next;
+        
+        if(list2 == nullptr){
+            //attach the remaining of list1
+            newTail->next = list1;
         }
         
         return newHead;
-        // attempt 2 ends
-        
-//         // attempt 1 -->using extra space
-        
-//         ListNode *dummy = new ListNode(-200);
-//         ListNode *newHead = dummy;
-        
-//         ListNode *p1 = list1;
-//         ListNode *p2 = list2;
-        
-//         while(p1!= NULL && p2!= NULL){
-//             if(p1->val < p2->val){
-//                 ListNode *temp = new ListNode(p1->val);
-//                 newHead->next = temp;
-//                 newHead = newHead->next;
-//                 p1 = p1->next;
-                
-//             }
-//             else{
-//                 ListNode *temp = new ListNode(p2->val);
-//                 newHead->next = temp;
-//                 newHead = newHead->next;
-//                 p2 = p2->next;
-//             }  
-//         }
-        
-//         while(p1!= NULL){
-//             ListNode *temp = new ListNode(p1->val);
-//             newHead->next = temp;
-//             newHead = newHead->next;
-//             p1 = p1->next;
-
-//         }
-        
-//         while(p2 != NULL){
-//             ListNode *temp = new ListNode(p2->val);
-//             newHead->next = temp;
-//             newHead = newHead->next;
-//             p2 = p2->next;
-//         }
-//         newHead = dummy->next;
-        
-//         return newHead;
         
     }
 };
