@@ -11,44 +11,25 @@
 class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {
+        
+        //base cases
         if(head == nullptr){
-            return head;
+            return nullptr;
         }
+        
         if(head->val == val && head->next == nullptr){
-            head = head->next;
+            return nullptr;
+        }
+        
+        
+        //recursive calss
+        if(head->val == val){
+            return removeElements(head->next, val);
+        }
+        else{
+            head->next = removeElements(head->next, val);
             return head;
         }
         
-        ListNode *dummy = new ListNode (-1);
-        dummy->next = head;
-        ListNode *curr = head;
-        ListNode *prev = dummy;
-        
-        while(curr != nullptr){
-            if(curr->val == val){
-                ListNode *nxt = curr->next;
-                
-                if(nxt != nullptr &&nxt->val == val){
-                    curr = nxt;
-                    continue;
-                }
-                
-                
-                prev->next = nxt;
-        
-                prev= curr;
-                curr = nxt;
-                continue;
-            }
-            
-            
-            
-            prev = curr;
-            curr = curr->next;
-            
-        }
-        
-        return dummy->next;
     }
-    
 };
