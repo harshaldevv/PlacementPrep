@@ -10,80 +10,67 @@
  */
 class Solution {
 public:
-    
-    int length (ListNode *head){
-        int l = 0;
-        while(head !=NULL){
-            l++;
-            head = head->next;
-        }
-        return l;
-    }
-    
-    ListNode *reverseLL(ListNode *head){
-        ListNode *curr = head;
-        ListNode *prev = NULL;
-        
-        while(curr != NULL){
-            ListNode *nxt = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = nxt;
-        }
-        
-        return prev;
-    }
-    
-    
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        
-        
-        ListNode *dummy = new ListNode(-1);
-        
-        ListNode *pt = dummy;
-        
-        int sum = 0;
-        int carry = 0;
         
         ListNode *p1 = l1;
         ListNode *p2 = l2;
         
         
-        while(p1 || p2 || carry){
-            sum = 0;
-            if(p1!= NULL){
+        if(p1 == nullptr && p2 == nullptr){
+            return nullptr;
+        }
+        if(p1 == nullptr){
+            return p2;
+        }
+        if(p2 == nullptr){
+            return p1;
+        }
+        
+        ListNode *dummy = new ListNode(-1);
+        ListNode *cursor = dummy;
+        
+        int carry = 0;
+        while(p1 || p2 || carry > 0){
+            int sum = 0;
+            // int sum = p1->val + p2->val;
+            if(p1 != nullptr){
                 sum += p1->val;
             }
-            
-            if(p2!= NULL){
+            if(p2 != nullptr){
                 sum += p2->val;
             }
-            sum +=  carry;
             
-            cout << "sum = " << sum << endl;
-            
+            if(carry != 0){
+                sum+=carry;
+                carry = 0; 
+                
+                
+            }
             carry = sum/10;
-            cout << "carry = " << carry << endl;
+            sum%=10;
             
-            pt->next = new ListNode(sum%10);
-            cout << "sum%10 = " << sum%10 << endl;
+            ListNode *temp = new ListNode(sum);
+            cursor->next = temp;
+            cursor = cursor->next;
             
-            pt = pt->next;
-            
-            if(p1 != NULL){
+            if(p1 != nullptr){
                 p1 = p1->next;
             }
             
-            if(p2!= NULL){
+            
+            if(p2 != nullptr){
                 p2 = p2->next;
             }
+            
+            
+            
         }
         
-        // return reverseLL(dummy->next);  --> reverse me ans nahi chahiye inko
         
-        // therefore
+        
+        
+        
         return dummy->next;
-        
         
         
         
