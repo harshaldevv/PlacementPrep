@@ -10,68 +10,26 @@
  */
 class Solution {
 public:
-    ListNode *reverseLL(ListNode *head){
-        ListNode *curr = head;
-        ListNode *prev = nullptr;
-        ListNode *nxt;
-        
-        while(curr != nullptr){
-            nxt = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = nxt;
-        }
-        
-        return prev;
-    }
     int pairSum(ListNode* head) {
         
-        if(head == nullptr){
-            return 0;
+        //why isnt vector thing working bitch
+        
+        vector<long> v;
+        
+        while(head != nullptr){
+            v.push_back(head->val);
+            head = head->next;
         }
         
-        //using the hint of reversing the ll
-        
-        int n = 0;
-        
-        ListNode *ptr = head;
-        
-        while(ptr != nullptr){
-            n++;
-            ptr = ptr->next;
-        }
-        
-        ListNode *dummy = new ListNode(-1);
-        dummy->next = head;
-        
-        ListNode *secondHead = head;
-        ListNode *firstTail = dummy;
-        
-        
-        for(int i = 0 ; i < n/2 ; i++){
-            firstTail = firstTail->next;
-            secondHead = secondHead->next;
-        }
-        
-        ListNode *t1 = head;
-        firstTail->next = nullptr;
-        
-        ListNode *t2 = reverseLL(secondHead);
-        
-        // now checking manually
-        int sum = 0;
-        while(t1 && t2){
-            if(t1->val + t2->val > sum){
-                sum = t1->val + t2->val;
+        int n = v.size();
+        long sum = 0;
+        for(int i = 0 ; i <n/2 ; i++){
+            if(v[i]+ v[n-i-1] > sum){
+                sum = v[i]+ v[n-i-1];
             }
-            t1 = t1->next;
-            t2 = t2->next;
         }
+        
         
         return sum;
-        
-        
-        
-        
     }
 };
