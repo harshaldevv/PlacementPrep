@@ -25,6 +25,13 @@ public:
         int criticalPointsCount = 0;
         vector<int> criticalPointIndex;
         
+        int firstCriticalPoint = -1;
+        int prevCriticalPoint = -1;
+        int currCriticalPoint = -1;
+        
+        int minDiff = INT_MAX;
+        int maxDiff = INT_MIN;
+        
         while(curr != nullptr){
             index++;
             
@@ -34,17 +41,23 @@ public:
                 break;
             }
             
-            if(curr->val < prev->val && curr-> val < nxt->val){
-                //local min
+            if( (curr->val < prev->val && curr-> val < nxt->val) || (curr->val > prev->val && curr->val > nxt->val)   ){
+                //local min  or local max
                 criticalPointsCount++;
-                criticalPointIndex.push_back(index);  
+                
+                if(firstCriticalPoint == -1){
+                    firstCriticalPoint = index;
+                    prevCriticalPoint = index;
+                }
+                else{
+                    currCriticalPoint = index;
+                    minDiff = min(minDiff, currCriticalPoint - prevCriticalPoint);
+                    
+                    //updating prevCriticalPoint
+                    prevCriticalPoint = currCriticalPoint;
+                }
             }
-            else if(curr->val > prev->val && curr->val > nxt->val){
-                //local max
-                criticalPointsCount++;
-                criticalPointIndex.push_back(index);
-            }
-            
+
             prev = curr;
             curr = curr->next;
         }
@@ -57,13 +70,10 @@ public:
         // v[0] --> min_dist;
         // v[1] --> max_dist
         
-        v[0] = INT_MAX;
-        for(int i = 0 ; i < criticalPointIndex.size() -1 ; i++){
-            v[0] = min(v[0], criticalPointIndex[i+1] - criticalPointIndex[i]);
-        }
+        v[0] = minDiff;
         
-        v[1] = criticalPointIndex.back() - criticalPointIndex.front();  
-        //max dist will always be b/w the first and the last critical point
+        v[1] = currCriticalPoint - firstCriticalPoint;
+        
         
         return v;
         
