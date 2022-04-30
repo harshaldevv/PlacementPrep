@@ -10,73 +10,56 @@
  */
 class Solution {
 public:
-    vector<ListNode*> splitListToParts(ListNode* head, int k) {
-        vector<ListNode*> v;
-        
-        if(k==1 ){
-            v.push_back(head);
-            return v;
-        }
-        
-        if(head == nullptr){
-            for(int i = 0 ; i < k ; i++){
-                v.push_back(nullptr);
-            }
-            return v;
-        }
-        
-        
-        
+    int getLength(ListNode *head){
         ListNode *curr = head;
         int l = 0;
-        while(curr != nullptr){
+        while(curr!= nullptr){
             l++;
             curr = curr->next;
         }
+        return l;
+    }
+    
+    vector<ListNode*> splitListToParts(ListNode* head, int k) {
         
-        // cout << "l = " << l << endl;
+        // now writing elegant code
         
-        int elemsPerGroup = l/k;
+        vector<ListNode*> v(k, nullptr);  //make vector of size k 
+    
+        
+        ListNode *curr = head;
+        ListNode *prev = nullptr;
+        
+        //calculate length
+        int l = getLength(head);
+        
+        int elementsPerGroup = l/k;
         int remaining = l%k;
         
-        curr = head;
-        int i = 0;
-        
-        for(i = 0 ; i < k ; i++){
+        for(int i = 0 ; i < k ; i++){
+            v[i] = curr;
             
-            ListNode *newHead = curr;
-            ListNode *newTail = newHead;
-            
-            int loopKitnibar = elemsPerGroup;
+            // we gotta see now for how many elems this group will have
+            int howManyTimesLoopWillRun = elementsPerGroup;
             
             if(remaining > 0){
-                loopKitnibar = elemsPerGroup+1;
+                howManyTimesLoopWillRun++;
                 remaining--;
             }
             
-            while(newTail != nullptr && loopKitnibar >1 ){
-                newTail = newTail->next;
-                loopKitnibar--;
-            }
-            ListNode *nxt;
-            if(newTail != nullptr){
-                nxt = newTail->next;
-                newTail->next = nullptr;
-            }
-            else{
-                nxt = newTail; //farzi kaam yahan, warna error when lastnode pe hotehai hum
+            for(int j = 0 ; j < howManyTimesLoopWillRun ; j++){
+                prev = curr;
+                curr = curr->next;
             }
             
+            if(prev != nullptr){
+                prev->next = nullptr;
+            }
             
-            v.push_back(newHead);
-            
-            curr = nxt;
             
         }
         
         return v;
-        
-        
         
     }
 };
