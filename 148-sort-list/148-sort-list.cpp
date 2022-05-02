@@ -24,6 +24,10 @@ public:
             slow = slow->next;
             fast = fast->next->next;
         }
+        if(fast != nullptr){
+            prev = prev->next;
+
+        }
         
         return prev;
     }
