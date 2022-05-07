@@ -28,8 +28,6 @@ public:
             }
             
             else if(nums[end] <= nums[mid]){
-                // this part is sorted, 
-                // FIND in the other unsorted part
                 start = mid+1;
             }
             else{
