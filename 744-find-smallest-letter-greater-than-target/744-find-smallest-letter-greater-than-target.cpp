@@ -9,13 +9,16 @@ public:
         while(start <= end){
             int mid = start + (end - start)/2;
             
-            if(letters[mid] > target){
-                res = letters[mid];
-                end = mid -1;
+            if(letters[mid] <= target){  
+                // letter[mid] < target and then doing start = mid +1 was giving wrong ans
+                // res = letters[mid];
+                // end = mid -1;
+                start = mid +1;
                 
             }
             else{
-                start = mid+1;
+                res = letters[mid];
+                end = mid -1;
             }
         }
         
