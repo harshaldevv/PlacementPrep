@@ -23,8 +23,8 @@ public:
                 return nums[mid];
             }
             else if(nums[start] <= nums[mid]){
-                // unsorted array here
-                // find min here
+                //sorted array hai ye,
+                // find in the other half
                 start = mid+1;
             }
             else{
