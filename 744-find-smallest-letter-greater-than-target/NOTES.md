@@ -1,1 +1,2 @@
-​
+if you feel your code is giving wrong output, even if it is in the correct binary search format,
+try focusing on either switching your conditions or just focusing on conditions. basically problem meri condition likhne me hi hoti hai as in me sochta sahi hu lekin me easy case ko pehle "if" me daal deta, jabki my focus should be on writing that condition first in the "if" block jisse mereko "ans" milega
