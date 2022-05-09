@@ -15,9 +15,24 @@ public:
     vector<vector<int>> findSolution(CustomFunction& customfunction, int z) {
         vector<vector<int>> v;
         for(int i = 1 ; i <= 1000 ; i++){
-            for(int j = 1 ; j <= 1000; j++){
-                if(customfunction.f(i,j) == z){
-                    v.push_back({i,j});
+            // do binary search here 
+            int start = 1;
+            int end = 1000 +1;
+            
+            while(start <= end){
+                int mid = start + (end-start)/2;
+                
+                int myZ = customfunction.f(i,mid);
+                if(myZ == z){
+                    v.push_back({i, mid});
+                    break;
+                }
+                else if(myZ > z){
+                    // go left
+                    end = mid -1;
+                }
+                else{
+                    start = mid +1;
                 }
             }
         }
