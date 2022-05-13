@@ -11,7 +11,7 @@ public:
                 start = pos[i];
             }
             
-            if(m >= magnets){
+            if(m == magnets){
                 return true;
             }
         }
