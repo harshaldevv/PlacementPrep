@@ -65,27 +65,22 @@ class Solution{
     {
         // code here
         // return the head of intersection list
-        
         unordered_set<int> s;
         
-        while(head2 != NULL){
+        while(head2 != nullptr){
             s.insert(head2->data);
             head2 = head2->next;
         }
-        
         Node *dummy = new Node(-1);
-        Node *temp = dummy;
+        Node *tail = dummy;
         
-        while(head1 != NULL){
-            auto x = s.find(head1->data);
-            if(x != s.end()){
-                temp->next = head1;
-                temp= temp->next;
+        while(head1 != nullptr){
+            if(s.find(head1->data) != s.end()){
+                tail->next = new Node(head1->data);
+                tail = tail->next;
             }
             head1 = head1->next;
         }
-        
-        temp->next = NULL;
         
         return dummy->next;
     }
