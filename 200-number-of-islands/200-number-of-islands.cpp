@@ -1,49 +1,32 @@
 class Solution {
-    void dfs(vector<vector<char>>& grid, int i, int j){
-        int maxRows = grid.size();
-        int maxCols = grid[0].size();
-        
-        if(i < 0 || j < 0 || i >= maxRows || j >= maxCols){
-            return ;
-        }
-        else if(grid[i][j] != '1'){
-            return ; // either water or land already visited
+public:
+    void dfs(vector<vector<char>> &graph, int i , int j){
+        if( i < 0 || i >= graph.size() || j < 0 || j >= graph[0].size() || graph[i][j] != '1'){
+            return;
         }
         
-        grid[i][j] = '2'; // marking the piece of land as VISITED
+        graph[i][j] = '2'; // marking as visited;
         
-        // left, right, top, bottom dfs calls
-        dfs(grid, i, j-1);
-        dfs(grid, i, j+1);
-        dfs(grid, i-1, j);
-        dfs(grid, i+1, j);
+        dfs( graph,  i   , j-1 );
+        dfs( graph,  i   , j+1 );
+        dfs( graph,  i-1 , j   );
+        dfs( graph,  i+1 , j   );
         
         return ;
     }
-public:
     int numIslands(vector<vector<char>>& grid) {
+        int count = 0;
         
-        int n = grid.size();
-        int m = grid[0].size();
-        long long island = 0;
-        
-        for(int i = 0 ;i < n ; i++){
-            for(int j = 0 ; j < m ; j++){
-                
-                if(grid[i][j] == '1'){ 
-                    // if found a piece of land, do dfs 
-                    // and other neighbbouring piece of land(s)
-                    // and make an island if possible
-                    
+        for(int i = 0 ; i < grid.size(); i++){
+            for(int j = 0 ; j < grid[0].size() ; j++){
+                if(grid[i][j] == '1'){
                     dfs(grid, i, j);
-                    island++;
+                    count++;
                 }
-                
             }
         }
         
-        return island;
-        
+        return count;
         
     }
 };
