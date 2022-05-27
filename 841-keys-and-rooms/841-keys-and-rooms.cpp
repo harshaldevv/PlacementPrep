@@ -1,6 +1,7 @@
 class Solution {
 public:
     void dfs(int i, vector<vector<int>> &rooms, vector<bool> &vis){
+        
         if(vis[i]){ // if already visited
             return;
         }
@@ -8,7 +9,10 @@ public:
         vis[i] = true;
         
         for(auto x : rooms[i]){
-            dfs(x, rooms, vis);
+            if(!vis[x]){
+                dfs(x, rooms, vis);
+            }
+            
         }
         
         return ;
