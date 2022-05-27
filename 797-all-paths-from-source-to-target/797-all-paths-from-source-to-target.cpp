@@ -10,10 +10,11 @@ public:
         else{
             for(auto j : graph[i]){
                 dfs(j, graph, path, ans);
+                path.pop_back();  // hmm ye thora sochne wala step hai
             }
         }
         
-        path.pop_back();  // hmm ye thora sochne wala step hai
+        //path.pop_back();  // hmm ye thora sochne wala step hai
 
         return;
         
