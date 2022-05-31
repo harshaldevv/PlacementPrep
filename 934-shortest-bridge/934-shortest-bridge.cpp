@@ -16,6 +16,7 @@ public:
         }
         
         vis[i][j] = true;
+        grid[i][j] = 2;
         q.push({i, j});
         
         for(int k = 0 ; k < 4 ; k++){
@@ -55,8 +56,8 @@ public:
         // dfs done
         
         // now doing dfs
-        cout << "queue size = " << q.size() << endl;
-        cout <<"queue first elem = " << q.front().first << " " << q.front().second << endl;
+        // cout << "queue size = " << q.size() << endl;
+        // cout <<"queue first elem = " << q.front().first << " " << q.front().second << endl;
         int steps = 0;
         while(!q.empty()){
             int sz = q.size();
@@ -67,17 +68,25 @@ public:
                 int currx = f.first;
                 int curry = f.second;
                 
-                //termination condition
-                // we''ve found the island 2 (ie a piece of land of island 2 is found , therefore return steps)
+                if(grid[currx][curry] == 1 ){
+                    return steps-2; 
+                }
+                
                 
                 
                 for(int k = 0 ; k < 4 ; k++){
                     int newx = currx + dir[k];
                     int newy = curry + dir[k+1];
                     if(newx >= 0 && newy >= 0 && newx < n && newy < n && !vis[newx][newy]){
-                        if(grid[newx][newy] == 1 ){
-                            return steps-1; 
-                        }
+                        
+                        //termination condition
+                        // we''ve found the island 2 (ie a piece of land of island 2 is found , therefore return steps)
+                
+                        
+                        
+                        // termination condition couldnt be placed after currx and curry, cuz there was no way to check 
+                        // if currx and curry are a part of island 2, 
+                        // as even though i tried using 
                         q.push({newx, newy});
                         vis[newx][newy] = true;
                     }
