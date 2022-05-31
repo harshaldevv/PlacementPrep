@@ -16,7 +16,6 @@ public:
         }
         
         vis[i][j] = true;
-        grid[i][j] = 2;
         q.push({i, j});
         
         for(int k = 0 ; k < 4 ; k++){
@@ -30,6 +29,7 @@ public:
         
         
     }
+    
     int shortestBridge(vector<vector<int>>& grid) {
         int n = grid.size();
         
@@ -68,10 +68,6 @@ public:
                 int currx = f.first;
                 int curry = f.second;
                 
-                if(grid[currx][curry] == 1 ){
-                    return steps-2; 
-                }
-                
                 
                 
                 for(int k = 0 ; k < 4 ; k++){
@@ -81,12 +77,17 @@ public:
                         
                         //termination condition
                         // we''ve found the island 2 (ie a piece of land of island 2 is found , therefore return steps)
-                
-                        
+                        if(grid[newx][newy] == 1 ){
+                            return steps-1;   // minus 1 done just to match the output .
+                        }
                         
                         // termination condition couldnt be placed after currx and curry, cuz there was no way to check 
                         // if currx and curry are a part of island 2, 
-                        // as even though i tried using 
+                        // as even though i tried using visited array ki help lena but meh it didnt help
+                        
+                        // therefore zaroori nahi ki hamesha termination condition currx curry nikalne ke baad hi 
+                        // mil jayegi
+                        
                         q.push({newx, newy});
                         vis[newx][newy] = true;
                     }
