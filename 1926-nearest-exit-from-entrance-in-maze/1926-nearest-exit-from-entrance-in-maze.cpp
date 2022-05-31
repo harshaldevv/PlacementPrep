@@ -13,9 +13,21 @@ public:
         int dir[] = {+1, 0, -1, 0, +1};
         
         if(maze[i][j] == '.'){
-            if(i == 0 || j == 0 || i == m-1 || j == n-1){
-                return true;
+            for(int k = 0 ; k < 4 ; k++){
+                int newx = i + dir[k];
+                int newy = j + dir[k+1];
+                
+                if(isvalid(newx, newy, maze ) == false){
+                    // matlab grid se bahar chala gaya newx newy
+                    // therefore i,j is a boundary cell
+                    return true;
+                }
             }
+            
+            
+            // if(i == 0 || j == 0 || i == m-1 || j == n-1){
+            //     return true;
+            // }
         }
         
         return false;
