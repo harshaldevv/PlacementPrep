@@ -25,7 +25,8 @@ public:
             return 1;
         }
         
-        int dir[8][2] = { {-1,0}, {1,0}, {0, -1}, {0, 1}, {-1, +1}, {+1, +1}, {+1, -1}, {-1,-1}   };
+        int dir[8][2] = { {-1,0}, {1,0}, {0, -1}, {0, 1}, 
+                         {-1, +1}, {+1, +1}, {+1, -1}, {-1,-1}   };
         
         queue<pair<int, int>> q;
     
@@ -35,18 +36,22 @@ public:
         int steps = 0;
         
         while(!q.empty()){
+            
             int sz = q.size();
-            // cout << "size = " << sz << endl;
             steps++;
+            
             while(sz--){
                 
                 auto front = q.front();
-                q.pop();
+                q.pop(); // ye kaise karna bhool gaya tha me xD, iski wajah TLE aa rha tha
+                
                 int currx = front.first;
                 int curry = front.second;
                 
                 if(currx == tx && curry == ty){
-                    return steps;
+                    //checking if we reached the target (last) cell 
+                    return steps; 
+                    
                 }
                 
                 for(int k = 0 ; k < 8 ; k++){
