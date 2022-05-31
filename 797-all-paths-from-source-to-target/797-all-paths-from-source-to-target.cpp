@@ -1,31 +1,28 @@
 class Solution {
 public:
-    
-    void dfs(int i, vector<vector<int>> &graph, vector<int> &path, vector<vector<int>> &ans){
-        path.push_back(i);
-        if(i == graph.size() -1){
+    void dfs(int currvertex, int n, vector<vector<int>>& graph, vector<int> &path, vector<vector<int>> & ans){
+        
+        path.push_back(currvertex);
+        
+        if(currvertex == n-1){
             ans.push_back(path);
-            //path.clear();
-        }
-        else{
-            for(auto j : graph[i]){
-                dfs(j, graph, path, ans);
-                path.pop_back();  // hmm ye thora sochne wala step hai
-            }
+            // path.pop_back();
+            // return ;
         }
         
-        //path.pop_back();  // hmm ye thora sochne wala step hai
-
-        return;
-        
+        for(auto x : graph[currvertex]){
+            dfs(x, n, graph, path, ans);
+        }
+        path.pop_back();
     }
-    
     vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
-        vector<vector<int>> ans;
+        int n = graph.size();
+        // vector<bool> vis(n, false);
         vector<int> path;
-        dfs(0, graph, path, ans);
+        vector<vector<int>> ans;
+        dfs(0, n, graph, path, ans);
+            
         return ans;
+        
     }
-    
-    
 };
