@@ -1,32 +1,25 @@
 class Solution {
 public:
-    void dfs(int i, vector<vector<int>> &rooms, vector<bool> &vis){
+    void dfs(int currRoom, vector<vector<int>>& rooms, vector<bool> &vis ){
         
-        if(vis[i]){ // if already visited
-            return;
-        }
+        vis[currRoom ] = true;
         
-        vis[i] = true;
-        
-        for(auto x : rooms[i]){
-            if(!vis[x]){
-                dfs(x, rooms, vis);
+        for(auto nextRoom : rooms[currRoom]){
+            if(!vis[nextRoom]){
+                dfs(nextRoom, rooms, vis);
             }
             
         }
-        
         return ;
     }
     bool canVisitAllRooms(vector<vector<int>>& rooms) {
         int n = rooms.size();
-        
-        vector<bool> vis(n,false);
-    
+        vector<bool> vis(n, false);
         dfs(0, rooms, vis);
         
+        
         for(int i = 0 ; i < n ; i++){
-            // cout << vis[i] << " , " ;
-            if(!vis[i]){
+            if(vis[i] == false){
                 return false;
             }
         }
