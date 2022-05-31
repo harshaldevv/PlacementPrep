@@ -50,15 +50,15 @@ public:
                 int currx = f.first;
                 int curry = f.second;
                 
-                cout << "current = ( " << currx << " , " << curry << " )" << endl; 
+                // cout << "current = ( " << currx << " , " << curry << " )" << endl; 
                 
                 if( (currx != x) || (curry != y)){
-                    cout << " here " << currx << " , " << curry << endl;
+                    // cout << " here " << currx << " , " << curry << endl;
                     if(boundarycell(currx, curry, maze)){
                         return steps-1;
                     }
                 }
-                cout <<"hello " << endl;
+                // cout <<"hello " << endl;
                 
                 
                 for(int k = 0 ; k < 4 ; k++){
