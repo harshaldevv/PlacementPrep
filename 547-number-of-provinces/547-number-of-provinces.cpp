@@ -1,8 +1,6 @@
 class Solution {
 public:
-    // vector<int> parent;
-    // vector<int> rank;
-    
+
     int findPar(int u, vector<int> &parent){
         if(u == parent[u]){
             return u;
@@ -15,10 +13,9 @@ public:
     }
     
     void UNION(int u, int v, vector<int> &parent, vector<int> &rank){
-        // cout << "hello" << endl;
+
         u = findPar(u, parent);
         v = findPar(v, parent);
-        // cout << "hello 22" << endl;
         
         if(u == v){
             return ;
@@ -43,6 +40,10 @@ public:
     
     int findCircleNum(vector<vector<int>>& isConnected) {
         
+        // Used this for DSU part and striver DSU Video
+        // https://leetcode.com/problems/number-of-provinces/discuss/1215380/Union-by-rank-and-path-compression-using-C%2B%2B-oror-easy-to-understand
+        
+        
         // parent array, rank array
         int n = isConnected.size();
         vector<int> parent(n);
@@ -57,19 +58,20 @@ public:
         for(int i = 0 ; i < n ; i++){
             for(int j = i ; j < n ; j++){
                 if(isConnected[i][j] ==1){
+        
                     // make their union
-                    // cout << "here" << endl;
                     UNION(i, j, parent, rank);
-                    // cout << "here too" << endl;
                 }
             }
         }
         
-        //use unordered set to count the number of leader of unions 
-        //leaders of union eventually represent the number of unnions
+        
+        // used this 
+        // for calculating the number of provinces after the union thing is done
+        // https://leetcode.com/problems/number-of-provinces/discuss/783887/C%2B%2B-union-find-solution
+        
         
         int count = 0;
-        
         for(int i = 0 ; i < n ; i++){
             if(parent[i] == i){
                 count++;
@@ -78,7 +80,8 @@ public:
         
         return count;
         
-        // return 5;
+        
+        
         
         
         
