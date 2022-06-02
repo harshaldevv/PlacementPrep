@@ -6,8 +6,6 @@ public:
         
         if(currvertex == n-1){
             ans.push_back(path);
-            // path.pop_back();
-            // return ;
         }
         
         for(auto x : graph[currvertex]){
