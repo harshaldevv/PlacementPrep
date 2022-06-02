@@ -1,32 +1,20 @@
 class Solution {
-    struct Node{
-        int u, v, wt;
-        Node(int first, int second, int weight){
-            u = first;
-            v = second;
-            wt = weight;
-        }
-    };
-    
 public:
     
-    bool static comp( Node a, Node b){
-        return (a.wt < b.wt);
+    bool static comp (const pair<pair<int, int>, int> &a, const pair<pair<int, int>, int> &b){
+        return a.second < b.second;
     }
     
-    int findPar(int u, vector<int> &parent){
-        if( u == parent[u]){
-            return parent[u];
-        }
-        parent[u] = findPar(parent[u], parent);
-        return parent[u];
+    int findPar(int i, vector<int> &parent){
+        if(i == parent[i]){return i;}
+        parent[i] = findPar(parent[i], parent);
+        return parent[i];
     }
-    
-    void UNION(int u, int v, vector<int> &parent, vector<int> &rank){
+    void UNION(int u, int v, vector<int> &parent, vector<int> &rank ){
         u = findPar(u, parent);
         v = findPar(v, parent);
         
-        if(u == v){
+        if(u==v){
             return ;
         }
         
@@ -38,58 +26,48 @@ public:
         }
         else{
             parent[v] = u;
-            rank[u]++;
+            rank[u]++;   
         }
         
         return ;
+           
     }
-    
+        
+            
     int minCostConnectPoints(vector<vector<int>>& points) {
-        int n = points.size() ; // number of points
-        
-        // make graph (wt, u, v)
-        vector<Node> edges;
-        
+        int n = points.size();
+        vector<pair<pair<int, int>,int>> graph;
         for(int i = 0 ; i < n ; i++){
-            for(int j = i+1; j < n ; j++){
+            for(int j = i +1 ;  j < n ; j++){
                 int dist = abs(points[i][0] - points[j][0]) + abs(points[i][1] - points[j][1]);
-                Node noi = Node(i,j,dist);
-                edges.push_back(noi);
-                // cout << noi.u << " , " << noi.v << " , " << noi.wt << endl;
+                graph.push_back({{i,j}, dist});
             }
         }
         
-        // sort the graph
-        sort(edges.begin(), edges.end(), comp);
+        // sort graph
+        sort(graph.begin(), graph.end(), comp);
         
-        
-        //
+        int cost = 0;
         vector<int> parent(n);
         vector<int> rank(n,0);
         for(int i = 0 ; i < n ; i++){
             parent[i] = i;
         }
         
-        int cost = 0;
-        for(int i = 0 ; i < edges.size() ; i++){
-            int a = edges[i].u;
-            int b = edges[i].v;
+        for(int i = 0 ; i < graph.size() ; i++){
+            int a = graph[i].first.first;
+            int b = graph[i].first.second;
+            int wt = graph[i].second;
             
+            // cout << a << " , " << b << " , " << wt << endl;
             
-            int weight = edges[i].wt;
-        
-            a = findPar(a, parent);
-        
-            b = findPar(b, parent);
-            
-            if(a != b){
-                cost += weight;
-                
-                UNION(a, b, parent, rank);
+            if(findPar(a, parent) != findPar(b, parent)){
+                cost+= wt;
+                UNION(a,b, parent, rank);
             }
         }
         
-        
         return cost;
+        
     }
 };
