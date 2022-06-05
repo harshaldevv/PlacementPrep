@@ -114,6 +114,8 @@ public:
         vector<int> lower(2*n-1,0); // lower diagonal
         
         recursion(n,0, ans, board, left, upper, lower);
+        // OPTIMZATION VIDEO - Striver N queen video
+        // https://youtu.be/i05Ju7AftcM?t=2104
         
         return ans;
         
