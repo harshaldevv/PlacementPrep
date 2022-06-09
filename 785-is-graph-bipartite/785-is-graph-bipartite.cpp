@@ -8,8 +8,6 @@ public:
             color[currVertex] = 1;
         }
         
-        
-        
         for(auto nextVertex : adjList[currVertex]){
             if(color[currVertex] == color[nextVertex]){
                 return false;
