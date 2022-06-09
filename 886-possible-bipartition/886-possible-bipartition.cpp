@@ -32,6 +32,15 @@ public:
             adjList[v].push_back(u);
         }
         
+        /***
+        
+        We use an undirected graph for this problem, because it is indirectly stated in the problem description that undirected graph is to be considered.
+That is, if dislikes[i] = [a, b] then a and b cannot be put together in the same group. That means, a dislikes b (a -> b) AND b dislikes a (b -> a). That's why if we use directed graph instead of undirected graph, it gives incorrect answers.
+
+
+        
+        ***/
+        
         
         vector<int> color(n+1, -1);
         
