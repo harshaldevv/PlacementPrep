@@ -1,39 +1,38 @@
 class Solution {
 public:
-    int findMin(vector<int>& nums) {
+    int findMin(vector<int>& arr) {
+        int n = arr.size();
         
         int start = 0;
-        int end = nums.size() -1;
-        int n = nums.size();
+        int end = n-1;
         
         
         
-        while(start <= end){
+        while(start<= end){
             
-            if(nums[start] <= nums[end]){
-            return nums[start]; // array already sorted;
+            if(arr[start] <= arr[end]){
+                return arr[start];
             }
             
-            int mid = start + (end- start)/2;
+            int mid = start + (end-start)/2;
             
             int next = (mid +1)%n;
-            int prev = (mid-1+n)%n;
+            int prev = (mid-1 +n)%n;
             
-            if(nums[mid] < nums[prev] && nums[mid] < nums[next]){
-                return nums[mid];
+            if(arr[mid] <= arr[prev] && arr[mid] <= arr[next]){
+                return arr[mid];
             }
-            else if(nums[start] <= nums[mid]){
-                //sorted array hai ye,
-                // find in the other half
+            else if(arr[start] <= arr[mid]){
+                //sorted
+                // go in unsorted right half
                 start = mid+1;
             }
             else{
-                end = mid -1;
+                end = mid-1;
             }
         }
         
-        
-        return -5001;
+        return -1;
         
     }
 };
