@@ -10,53 +10,58 @@ using namespace std;
 
 class Solution 
 {
-    
-    bool isValid(int arr[], int n, int k , int maxPages){
-        // k = students allowed as per question
-        int students = 1;
-        int sum = 0;
+    public:
+    int isvalid(int maxPages, int a[], int n, int totalStudents){
         
+        int stud = 1;
+        int sum = 0;
         for(int i = 0 ; i < n ; i++){
-            sum += arr[i];
+            sum += a[i];
             if(sum > maxPages){
-                students++;
-                sum = arr[i];
+                stud++;
+                sum = a[i];
             }
-            if(students > k){
+            if(stud > totalStudents){
                 return false;
             }
         }
         
         return true;
+        
     }
-    public:
+        
     //Function to find minimum number of pages.
     int findPages(int A[], int N, int M) 
     {
         //code here
-        // m = students
-        if(M> N ){
+        if(M>N){
             return -1;
         }
         
-        int start = *max_element (A+ 0, A+ N);
-        int end = accumulate(A+0, A+ N, 0);
+        int start = 0;
+        for(int i = 0 ; i < N ; i++){
+            start = max(start, A[i]);
+        }
+        
+        int end = 0;
+
+        for(int i = 0 ; i < N ; i++){
+            end+= A[i];
+        }
+        
         int res = -1;
-        //cout << "start = " << start << " , end = " << end << endl;
         while(start <= end){
             int mid = start + (end-start)/2;
-            
-            if(isValid(A, N, M, mid)== true ){
-                res = mid;
-                end = mid -1;
+            if(isvalid(mid, A, N, M)){
+                res= mid;
+                end = mid-1;
             }
-            
             else{
-                start = mid +1;
+                start = mid+1;
             }
         }
         
-        return  res;
+        return res;
     }
 };
 
