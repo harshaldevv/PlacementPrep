@@ -1,36 +1,42 @@
 class Solution {
 public:
-    bool isValid(vector<int> w, int ourWeight, int days){
-        int d = 1;
+    
+    int isvalid(vector<int> &weights, int D, int capacity){
+        int days = 1;
         int sum = 0;
         
-        for(int i = 0 ; i <w.size() ; i++){
-            sum+=w[i];
-            if(sum > ourWeight){
-                d++;
-                sum = w[i];
+        for(int i = 0 ; i < weights.size() ; i++){
+            sum+=weights[i];
+            if(sum > capacity){
+                days++;
+                sum = weights[i];
             }
-            if(d > days){
+            if(days > D){
                 return false;
             }
         }
-        
         return true;
     }
-    
     int shipWithinDays(vector<int>& weights, int days) {
         
-        int start = *max_element(weights.begin(), weights.end());
-        int end = accumulate(weights.begin(), weights.end(), 0);
-        int res = -1;
+        int start = *max_element(weights.begin(), weights.end()); 
+        // ye isliye karna hai 
+        // kyuki agar yahan se start nahi kia humne ship ki capacity, 
+        // toh iska matlab if ship capacity <  wt of heaviest box,
+        // toh woh box kabhi jaa hi nahi payega ship se
         
+        // if(weights.size() < days){
+        //     return 
+        // }
+        
+        int end =  500*5*10000; //accumulate(weights.begin(), weights.end());
+        int res = -1;
         while(start <= end){
             int mid = start + (end-start)/2;
             
-            if(isValid(weights, mid, days) == true){
-                // go left;
+            if(isvalid(weights, days, mid)){
                 res = mid;
-                end = mid-1;
+                end = mid -1;
             }
             else{
                 start = mid +1;
@@ -38,6 +44,7 @@ public:
         }
         
         return res;
+                             
                              
         
     }
