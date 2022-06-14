@@ -1,5 +1,5 @@
 # The Painter's Partition Problem-II
-## Hard 
+##  Hard 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Dilpreet wants to paint&nbsp;his dog's home that has&nbsp;<strong>n</strong> boards with&nbsp;different lengths. The length of i<sup>th&nbsp;</sup>board is given by <strong>arr[i]</strong> where <strong>arr[]</strong> is an array of <strong>n</strong> integers. He hired <strong>k</strong> painters for this work and each painter takes <strong>1 unit time to paint 1 unit of the board.&nbsp;</strong></span></p>
 
