@@ -1,9 +1,13 @@
 class Solution {
 public:
-    bool isValid(vector<int> &nums, int divisor, int threshold){
+    int isvalid(int divisor, vector<int> &nums, int threshold){
         int sum = 0;
-        for(int i = 0 ; i < nums.size() ; i++){
-            sum+= (ceil((float)nums[i]/divisor));
+        for(auto x : nums){
+            int t= x/divisor;
+            if(x%divisor != 0){
+                t++;
+            }
+            sum+=t;
             if(sum > threshold){
                 return false;
             }
@@ -12,16 +16,13 @@ public:
         return true;
     }
     int smallestDivisor(vector<int>& nums, int threshold) {
-        int start = 1;
-        int end = 1000000;//accumulate(nums.begin(), nums.end(), 0);
-        
+        int start  = 1;
+        int end = 1000000;
         int res = -1;
         while(start <= end){
-            
             int mid = start + (end-start)/2;
-            // cout << "mid = " << mid << endl;
             
-            if(isValid(nums, mid, threshold) == true){
+            if(isvalid(mid, nums, threshold)){
                 res = mid;
                 end = mid -1;
             }
@@ -31,6 +32,5 @@ public:
         }
         
         return res;
-        
     }
 };
