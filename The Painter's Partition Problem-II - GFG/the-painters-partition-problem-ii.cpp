@@ -15,7 +15,7 @@ class Solution
       // mid represents time
       // k repesents the painters i have
       // n =  array size
-      // 
+
       int t = 0; // time sum
       int p = 1; // painters
       
@@ -34,11 +34,6 @@ class Solution
   }
     long long minTime(int arr[], int n, int k)
     {
-        // base case
-        
-        // if(k > n){
-        //     return -1;
-        // }
         
         // code here
         // return minimum time
