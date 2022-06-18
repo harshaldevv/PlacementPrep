@@ -5,7 +5,7 @@ public:
         
         // Trivial solution --  Sorting (TC - O(nlogn));
         
-        // Heap --> Min Heap
+        // Heap --> Min Heap  --> TC O(nlogk), SC - O(N)
         priority_queue<pii, vector<pii>, greater<pii>> minheap;
         
         unordered_map<int, int> mp;
@@ -14,7 +14,7 @@ public:
         }
         
         //make heap from map;
-        for(auto x : mp){
+        for(auto &x : mp){
             int elem = x.first;
             int freq = x.second;
             minheap.push({freq, elem});
