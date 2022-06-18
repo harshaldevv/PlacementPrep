@@ -25,7 +25,7 @@ void solve(){
 	    }
 	}
 	
-	while(minheap.size() > 0){
+	while(!minheap.empty() ){
 	    cout << minheap.top() << " " ;
 	    ans.push_back(v[minheap.top()]);
 	    minheap.pop();
