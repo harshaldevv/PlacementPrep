@@ -4,7 +4,10 @@ public:
         // return 1;  //pass 32/55 cases
         // return 0;  //passes 23/55 cases xD
         
-        if(n== 1 && k ==1){
+        // bhai aditya verma bhai !!!! god hai bhai ye bandaa
+        // observation skills hi hai ye question
+        
+        if(n== 1 || k ==1){
             return 0;
         }
         
