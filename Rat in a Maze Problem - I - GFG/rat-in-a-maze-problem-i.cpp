@@ -10,54 +10,47 @@ using namespace std;
 
 class Solution{
     public:
-    void dfs(int i, int j ,vector<vector<int>> &m, int n, vector<string> &path, string p, vector<vector<int>> &vis){
-        if(i < 0 || j < 0 || i >= n || j >= n || vis[i][j] == 1 ){
-            return ;
+    void solve(int i, int j, vector<vector<int>> &m, int n, vector<string> &path, string p, vector<vector<int>> &vis){
+        
+        if(i< 0 || j < 0 || i >= n || j >= n  || vis[i][j] ==1) {
+            return;
         }
         
         if(m[i][j] == 0){
-            // blocked
+            //blocked
             return ;
         }
         
-        
-        
-        if( i == n-1 && j == n-1){
+        if(i == n-1 && j == n-1){
             path.push_back(p);
-            return ;
+            return;
         }
         
-        // DLRU
         
         vis[i][j] = 1;
         
-        // D = i+1, j
-        dfs(i+1, j, m, n, path, p + "D" , vis);
+        // DLRU
+        // dir = {1,0,-1,0,1};
+        solve(i+1, j, m, n, path, p+ "D", vis);
         
-        // left
-        dfs(i, j-1, m, n, path, p+ "L" , vis);
+        solve(i, j-1, m, n, path, p+ "L", vis);
         
-        // right
-        dfs(i, j+1, m, n, path, p+ "R" , vis);
+        solve(i, j+1, m, n, path, p+ "R", vis);
         
-        // up
-        dfs(i-1, j, m, n, path, p+ "U" , vis);
+        solve(i-1, j, m, n, path, p+ "U", vis);
         
-        vis[i][j] = 0; // back tracking step
+        vis[i][j] = 0;
         
-        return;
-        
-        
-        
-        
+        return ;
     }
+    
     vector<string> findPath(vector<vector<int>> &grid, int n) {
         // Your code goes here
-        // vector<string > ans;
         vector<string> path;
-        vector<vector<int>> vis(n , vector<int> (n,0));
+        string p = "";
+        vector<vector<int>> vis(n, vector<int>(n,0));
+        solve(0,0, grid, n, path, p, vis);
         
-        dfs(0, 0, grid, n, path, "", vis);
         return path;
     }
 };
