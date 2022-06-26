@@ -19,6 +19,10 @@ public:
             return ;
         }
         
+        //key thing here
+        // if im ignoring x, then i have to ignore all the occurences all of x that come 
+        // aka i also wont take those occurencs of x
+        
         // include
         holder.push_back(e);
         solve(i+1, sum+e, nums, holder, ans, target, true);
