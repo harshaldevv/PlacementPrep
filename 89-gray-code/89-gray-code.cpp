@@ -35,17 +35,12 @@ public:
 //         return ans;
         
         
-//         vector<int> ans(1<<n);
-//         cout << "1<<n = " << 1<< n << endl;
-        
-//         for (int i=0; i<(1<<n); i++) {
-//             ans[i] = i^(i>>1);
-//             //cout << "i>>1 = " << i>>1 << endl;
-//         }
-//         return ans;
+
+        // iterative code
         
         vector<int> v;
         long long int p=pow(2,n);
+        cout << "p = " << p << endl;
         for(int i=0; i<p; i++){
             v.push_back(i^(i/2));
         }
