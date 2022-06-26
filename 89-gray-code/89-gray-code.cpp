@@ -21,17 +21,35 @@ public:
         return ans;
     }
     vector<int> grayCode(int n) {
+        // recursive --> too much likhna
         
-        vector<string> stringAns;
-        stringAns = code(n);
+//         vector<string> stringAns;
+//         stringAns = code(n);
         
-        vector<int> ans;
-        for(auto x : stringAns){
-            int numb = stoi(x,0,2);
-            ans.push_back(numb);
+//         vector<int> ans;
+//         for(auto x : stringAns){
+//             int numb = stoi(x,0,2);
+//             ans.push_back(numb);
+//         }
+        
+//         return ans;
+        
+        
+//         vector<int> ans(1<<n);
+//         cout << "1<<n = " << 1<< n << endl;
+        
+//         for (int i=0; i<(1<<n); i++) {
+//             ans[i] = i^(i>>1);
+//             //cout << "i>>1 = " << i>>1 << endl;
+//         }
+//         return ans;
+        
+        vector<int> v;
+        long long int p=pow(2,n);
+        for(int i=0; i<p; i++){
+            v.push_back(i^(i/2));
         }
-        
-        return ans;
+        return v;
         
     }
 };
