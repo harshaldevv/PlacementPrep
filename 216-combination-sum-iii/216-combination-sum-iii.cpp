@@ -1,21 +1,46 @@
 class Solution {
 public:
-    void combination(vector<vector<int>>& result, vector<int> sol, int k, int n) {
-    if (sol.size() == k && n == 0) { result.push_back(sol); return ; }
-    if (sol.size() < k) {
-      for (int i = sol.empty() ? 1 : sol.back() + 1; i <= 9; ++i) {
-        if (n - i < 0) break;
-        sol.push_back(i);
-        combination(result, sol, k, n - i);
-        sol.pop_back();
-      }
+    
+    void solve(vector<int> &nums, int i, int sum, vector<int> &holder, vector<vector<int>> &ans, int k, int n){
+        if(holder.size() == k ){
+            if(sum == n){
+                ans.push_back(holder);
+            }
+            return;
+        }
+        
+        if(i == nums.size()){
+            return ;
+        }
+        
+        int e = nums[i];
+        
+        //include
+        holder.push_back(e);
+        solve(nums, i+1, sum+e, holder, ans, k, n);
+        
+        // exclude
+        holder.pop_back();
+        solve(nums, i+1, sum, holder, ans, k,n);
+        
+        return ;
+        
     }
-  }
-
-  vector<vector<int>> combinationSum3(int k, int n) {
-    vector<vector<int>> result;
-    vector<int> sol;
-    combination(result, sol, k, n);
-    return result;
-  }
+    vector<vector<int>> combinationSum3(int k, int n) {
+        
+        vector<int> numb;
+        for(int i = 1  ; i <= 9 ; i++){
+            numb.push_back(i);
+        }
+        
+        
+        vector<vector<int>> ans;
+        vector<int> holder;
+        int sum = 0;
+        
+        solve(numb, 0, sum, holder, ans, k,n);
+        
+        return ans;
+        
+    }
 };
