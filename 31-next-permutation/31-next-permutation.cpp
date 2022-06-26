@@ -23,11 +23,10 @@ public:
         // find just bigger number than nums[i]
         // go from behind -> cuz we know array is sorted 
         int next = nums.size() -1;
-        while(next){
+        for( ; next > i ; next--){
             if(nums[next] > nums[i]){
                 break;
             }
-            next--;
         }
         
         swap(nums[i], nums[next]);
