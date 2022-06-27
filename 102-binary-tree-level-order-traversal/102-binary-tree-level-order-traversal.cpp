@@ -14,7 +14,7 @@ public:
     vector<vector<int>> levelOrder(TreeNode* root) {
         vector<vector<int>> ans;
         
-        if(root == nullptr){
+        if(root== nullptr){
             return ans;
         }
         
@@ -23,30 +23,23 @@ public:
         q.push(root);
         
         while(!q.empty()){
-            
             int sz = q.size();
-            
             vector<int> level;
-            
             while(sz--){
                 auto front = q.front();
                 q.pop();
-                
                 level.push_back(front->val);
-                //cout << front->val << " " ;
                 
-                if(front->left != nullptr){
+                if(front->left){
                     q.push(front->left);
                 }
                 
-                if(front->right != nullptr){
+                if(front->right){
                     q.push(front->right);
                 }
             }
-            //cout << endl;
             
             ans.push_back(level);
-            
         }
         
         return ans;
