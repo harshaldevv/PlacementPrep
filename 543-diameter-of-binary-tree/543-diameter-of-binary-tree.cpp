@@ -47,6 +47,7 @@ public:
         
         
         //Above approach fails at 100/104 th test case--> gives WA
+        // cuz diameter "path" may or "may not" "pass" through the "root".
         
         
         
