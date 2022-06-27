@@ -11,52 +11,35 @@
  */
 class Solution {
 public:
-    
-    int height(TreeNode *root){
+    int height2(TreeNode *root){
         if(root == nullptr){
             return 0;
         }
         
-        int left = height(root->left);
-        int right = height(root->right);
+        int left = height2(root->left);
+        if(left == -1){
+            return -1;
+        }
         
-        return max (left, right) +1;
+        int right = height2(root->right);
+        if(right == -1){
+            return -1;
+        }
+        
+        if(abs(right - left) > 1){
+            return -1;
+        }
+        
+        return max(left, right) +1;
+        
     }
-    
     bool isBalanced(TreeNode* root) {
-        if(root == nullptr){
-            return true;
-        }
-        
-        int left = height(root->left);
-        int right = height(root->right);
-        // cout <<"left, right = " << left << ", " << right << endl;
-        int diff = abs(right - left);
-        // cout << "diff = " << diff << endl;
-        
-        if(diff > 1){
+        if(height2(root) == -1){
+            //unbalanced subtree mil gaya kahi
             return false;
-        }
-        
-        bool leftcheck = isBalanced(root->left);
-        bool rightcheck = isBalanced(root->right);
-        
-        if(leftcheck && rightcheck){
-            return true;
         }
         else{
-            return false;
+            return true;
         }
-        
-        
-        /***
-         a height-balanced binary tree is defined as:
-         a binary tree in which the left and right subtrees of every node differ in height
-         by no more than 1.
-         
-         AKA HEIGHT DIFF = ATMOST "1"
-         
-        ***/
-        
     }
 };
