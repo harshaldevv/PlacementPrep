@@ -23,8 +23,12 @@ public:
         
         int right = solve(root->right);
         
+        // // makes more sense -->instead of LC DIscuss section code link i posted
+        // instead of !root->left and !root-right in the if check,
+        // it's better to check if root->left exists and (&&) if it does , are the values equal ?
+        // same for root->right 
         if(root->left && root->left->val != root->val){
-            left = 0;
+            left = 0;  
         }
         if(root->right && root->right->val != root->val){
             right = 0;
