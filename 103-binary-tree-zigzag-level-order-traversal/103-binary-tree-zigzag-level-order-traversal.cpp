@@ -62,33 +62,88 @@ public:
         
         // below approach without using reverse()
         
-        while(!q.empty()){
-            int sz = q.size();
-            vector<int>level(sz, -1);
+//         while(!q.empty()){
             
-            for(int i = 0 ; i < sz ; i++){
+//             int sz = q.size();
+//             vector<int>level(sz, -1);
+            
+//             for(int i = 0 ; i < sz ; i++){
                 
-                auto front = q.front();
-                q.pop();
+//                 auto front = q.front();
+//                 q.pop();
                 
-                if(!toRev){
-                    level[i] = front->val;
+//                 if(!toRev){
+//                     level[i] = front->val;
+//                 }
+//                 else{
+//                     level[sz - 1 - i] = front->val;
+//                 }
+                
+//                 if(front->left){
+//                     q.push(front->left);
+//                 }
+                
+//                 if(front->right){
+//                     q.push(front->right);
+//                 }
+//             }
+            
+//             toRev = !toRev;
+//             ans.push_back(level);
+            
+//         } --> OP
+        
+        
+        //now actually doing zig zag traversal
+        
+        deque<TreeNode*> dq;
+        dq.push_back(root);
+        bool left2Right = true;
+        
+        while(!dq.empty()){
+            int sz = dq.size();
+            
+            vector<int> level;
+            
+            for(int i = 0 ; i< sz ; i++){
+                
+                if(!left2Right){
+                    auto front = dq.back();
+                    dq.pop_back();
+                    
+                    level.push_back(front->val);
+                    
+                    if(front->right){
+                        dq.push_front(front->right);
+                    }
+                    
+                    if(front->left){
+                        dq.push_front(front->left);
+                    }
+                    
                 }
                 else{
-                    level[sz - 1 - i] = front->val;
+                    auto front = dq.front();
+                    dq.pop_front();
+                    
+                    level.push_back(front->val);
+                    
+                    if(front->left){
+                        dq.push_back(front->left);
+                    }
+                    
+                    if(front->right){
+                        dq.push_back(front->right);
+                    }
+                    
                 }
                 
-                if(front->left){
-                    q.push(front->left);
-                }
-                
-                if(front->right){
-                    q.push(front->right);
-                }
             }
             
-            toRev = !toRev;
+            
             ans.push_back(level);
+            left2Right = !left2Right ;
+            
         }
         
         return ans;
