@@ -23,10 +23,10 @@ public:
         
         int right = solve(root->right);
         
-        if(!root->left || root->left->val != root->val){
+        if(root->left && root->left->val != root->val){
             left = 0;
         }
-        if(!root->right || root->right->val != root->val){
+        if(root->right && root->right->val != root->val){
             right = 0;
         }
         
@@ -46,6 +46,9 @@ public:
         
         
         return l;
+        
+        // Code which resolved which doubt  of what to do before l = max() wali line
+        // https://leetcode.com/problems/longest-univalue-path/discuss/108152/Simple-C%2B%2B-DFS
         
     }
 };
