@@ -73,11 +73,9 @@ public:
                 
                 if(!toRev){
                     level[i] = front->val;
-                    // toRev = true;
                 }
                 else{
                     level[sz - 1 - i] = front->val;
-                    // toRev = false;
                 }
                 
                 if(front->left){
