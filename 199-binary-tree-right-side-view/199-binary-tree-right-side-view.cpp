@@ -20,8 +20,8 @@ public:
             ans.push_back(root->val);
         }
         
-        solve(root->right  , level+1 , ans);
-        solve(root->left , level+1 , ans);
+        solve(root->right , level+1 , ans);
+        solve(root->left  , level+1 , ans);
         
         // for right view, we do --> root, right, left  (modified pre order traversal)
         
@@ -30,7 +30,7 @@ public:
         return ;
         
         // TC - O(N);
-        // SC - O(N)
+        // SC - O(H) --> height of tree (Worst case -> skewed tree)
         
         
         
