@@ -26,16 +26,59 @@ public:
         q.push(root);
         bool toRev = false;
         
+//         while(!q.empty()){
+//             int sz = q.size();
+            
+//             vector<int> level;
+            
+//             while(sz--){
+//                 auto front = q.front();
+//                 q.pop();
+                
+//                 level.push_back(front->val);
+                
+//                 if(front->left){
+//                     q.push(front->left);
+//                 }
+                
+//                 if(front->right){
+//                     q.push(front->right);
+//                 }
+//             }
+            
+//             if(toRev){
+//                 reverse(level.begin(), level.end());
+//                 toRev = false;
+//             }
+//             else{
+//                 //push level as it is 
+//                 toRev = true;
+//             }
+            
+//             ans.push_back(level);
+//         }
+        
+        // ^^ this approach used reverse() 
+        
+        // below approach without using reverse()
+        
         while(!q.empty()){
             int sz = q.size();
+            vector<int>level(sz, -1);
             
-            vector<int> level;
-            
-            while(sz--){
+            for(int i = 0 ; i < sz ; i++){
+                
                 auto front = q.front();
                 q.pop();
                 
-                level.push_back(front->val);
+                if(!toRev){
+                    level[i] = front->val;
+                    // toRev = true;
+                }
+                else{
+                    level[sz - 1 - i] = front->val;
+                    // toRev = false;
+                }
                 
                 if(front->left){
                     q.push(front->left);
@@ -46,15 +89,7 @@ public:
                 }
             }
             
-            if(toRev){
-                reverse(level.begin(), level.end());
-                toRev = false;
-            }
-            else{
-                //push level as it is 
-                toRev = true;
-            }
-            
+            toRev = !toRev;
             ans.push_back(level);
         }
         
