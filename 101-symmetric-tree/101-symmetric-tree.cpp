@@ -12,6 +12,9 @@
 class Solution {
 public:
     bool isSame(TreeNode *p, TreeNode *q){
+        // isSame() --> Leetcode 100
+        // https://leetcode.com/problems/same-tree/
+        
         if(p == nullptr && q== nullptr){
             return true;
         }
@@ -25,6 +28,7 @@ public:
         //checking alternate nodes
         return isSame(p->right, q->left) && isSame(p->left, q->right);
     }
+    
     bool isSymmetric(TreeNode* root) {
         
         // Recursive soln
