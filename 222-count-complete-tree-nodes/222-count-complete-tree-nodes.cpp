@@ -17,7 +17,15 @@ public:
         }
         // recursive way --> iterative way bhi likhunga, it wont take up stack space
         
-        return 1 + countLeftHeight(root->left); // keep going left
+        // return 1 + countLeftHeight(root->left); // keep going left
+        
+        int h = 0;
+        while(root){
+            h++;
+            root = root->left;
+        }
+        
+        return h;
         
     }
     
@@ -27,7 +35,15 @@ public:
         }
         // recursive way --> iterative way bhi likhunga, it wont take up stack space
         
-        return 1 + countRightHeight(root->right); // keep going right
+        // return 1 + countRightHeight(root->right); // keep going right
+        
+        int h = 0;
+        while(root){
+            h++;
+            root = root->right;
+        }
+        
+        return h;
         
     }
     int countNodes(TreeNode* root) {
