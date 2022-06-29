@@ -55,8 +55,8 @@ public:
         int rh = countRightHeight(root);
         
         if(lh == rh){
-            // return (int)pow(2,lh) -1;
-            return (1<<lh) -1;
+            return (int)pow(2,lh) -1;
+            
         }
         
         return 1 + countNodes(root->left) + countNodes(root->right);
