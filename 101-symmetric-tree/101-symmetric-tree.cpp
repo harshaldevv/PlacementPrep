@@ -50,7 +50,8 @@ public:
             q.pop();
             
             if(l == nullptr && r == nullptr){
-                continue;
+                continue; // critical
+                // see test case --> [9,-42,-42,null,76,76,null,null,13,null,13]
             }
             if(l == nullptr && r != nullptr || l != nullptr && r == nullptr ){
                 return false;
