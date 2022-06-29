@@ -78,10 +78,40 @@ public:
         
         
         // modified pre order traversal (root, right, left)
-        solve(root,0,  ans);
+        // solve(root,0,  ans);  // TC - O(N), SC - O(H)
+        // return ans;
+        
+        
+        // another way is level order traversal of tree and using it, 
+        // if i == sz -1, we push node val in our ans array  [sz = size]
+        // (if we do normal level order traversal)
+        // you'll remember what sz is when you'll write normal level order traversal
+        
+        // Implementing the above idea
+        queue<TreeNode*> q;
+        q.push(root);
+        
+        while(!q.empty()){
+            int sz = q.size();
+            for(int i = 0 ; i < sz ; i++){
+                auto front = q.front();
+                q.pop();
+                
+                if(i== sz -1){
+                    ans.push_back(front->val);
+                }
+                
+                if(front->left){
+                    q.push(front->left);
+                }
+                
+                if(front->right){
+                    q.push(front->right);
+                }
+            }
+        }
+        
         return ans;
-        
-        
         
         
         
