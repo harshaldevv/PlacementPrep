@@ -11,33 +11,39 @@
  */
 class Solution {
 public:
-    int countNodes(TreeNode* root) {
-        int nodes = 0;
+    int countLeftHeight(TreeNode * root){
         if(root == nullptr){
-            return nodes;
+            return 0;
+        }
+        // recursive way --> iterative way bhi likhunga, it wont take up stack space
+        
+        return 1 + countLeftHeight(root->left); // keep going left
+        
+    }
+    
+    int countRightHeight(TreeNode *root){
+        if(root == nullptr){
+            return 0;
+        }
+        // recursive way --> iterative way bhi likhunga, it wont take up stack space
+        
+        return 1 + countRightHeight(root->right); // keep going right
+        
+    }
+    int countNodes(TreeNode* root) {
+        if(root == nullptr){
+            return 0;
         }
         
-        queue<TreeNode*> q;
-        q.push(root);
+        int lh = countLeftHeight(root);
+        int rh = countRightHeight(root);
         
-        while(!q.empty()){
-            int sz = q.size();
-            while(sz--){
-                auto front = q.front();
-                q.pop();
-                nodes++;
-                
-                if(front->left){
-                    q.push(front->left);
-                }
-                
-                if(front->right){
-                    q.push(front->right);
-                }
-            }
+        if(lh == rh){
+            return (int)pow(2,lh) -1;
         }
         
-        return nodes;
+        return 1 + countNodes(root->left) + countNodes(root->right);
+        
         
     }
 };
