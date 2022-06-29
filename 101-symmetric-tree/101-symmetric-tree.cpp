@@ -22,13 +22,54 @@ public:
             return false;
         }
         
+        //checking alternate nodes
         return isSame(p->right, q->left) && isSame(p->left, q->right);
     }
     bool isSymmetric(TreeNode* root) {
+        
+        // Recursive soln
+        
         if(root == nullptr){
             return true;
         }
         
-        return isSame(root->left, root->right);
+//         return isSame(root->left, root->right);
+        
+        
+        // Iterative / non recursive soln
+        
+        queue<TreeNode*> q;
+        q.push(root->left);
+        q.push(root->right);
+        
+        while(!q.empty()){
+            
+            auto l = q.front();
+            q.pop();
+            auto r = q.front();
+            q.pop();
+            
+            if(l == nullptr && r == nullptr){
+                continue;
+            }
+            if(l == nullptr && r != nullptr || l != nullptr && r == nullptr ){
+                return false;
+            }
+            
+            if(l->val != r->val){
+                return false;
+            }
+            
+            
+            q.push(l->left);
+            q.push(r->right);
+            
+            q.push(l->right);
+            q.push(r->left);
+            
+        }
+        
+        return true;
+    
     }
 };
