@@ -51,10 +51,10 @@ public:
             return nullptr;
         }
         
-        if(!left && right ){
+        if(!left ){
             return right;
         }
-        else if(!right && left){
+        else if(!right){
             return left;
         }
         else{
