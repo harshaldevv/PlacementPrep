@@ -34,6 +34,12 @@ public:
     }
     
     int kthSmallest(TreeNode* root, int k) {
+        // for kth  smallest, we do NORMAL INORDER
+        // for kth largest, we do REVERSE INORDER (right, root, left)
+        
+        // TC - O(N)
+        // SC - O(N) --> recursive stack space  --> can be optimised by using morris traversal to O(1)
+        
         
         inorder(root, k);
         return ans;
