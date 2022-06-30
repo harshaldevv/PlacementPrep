@@ -32,5 +32,9 @@ public:
         
         // method 2--> take inorder traversal . check if it is in increasing order. IF yes, it is valid bst, else no
         // because inorder traversal of a BST gives us sorted array
+        
+        // Complexities of both method is 
+        // TC - O(N)
+        // SC - O(N) 
     }
 };
