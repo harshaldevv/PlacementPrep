@@ -27,7 +27,7 @@ public:
     bool isValidBST(TreeNode* root) {
         
        // range of values se check kro
-        
+        //Method 1
         return validBSTchecker(root, LONG_MIN, LONG_MAX);
         
         // method 2--> take inorder traversal . check if it is in increasing order. IF yes, it is valid bst, else no
