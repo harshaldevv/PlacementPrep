@@ -20,19 +20,38 @@ public:
             return ;
         }
         
+        // With MORRIS TRAVERSAL
+        TreeNode* curr = root;
+        while(curr != nullptr){
+            if(curr->left){
+                TreeNode* runner = curr->left;
+                while(runner->right){
+                    runner = runner->right;
+                }
+                runner->right = curr->right;
+                curr->right = curr->left;
+                curr->left = nullptr;
+            }
+            curr = curr->right;
+        }
         
-        // Without MORRIS TRAVERSAL  (from striver video)
-        // TC -> O(N)
-        // SC -> O(N)
+        return;
         
         
-        flatten(root->right);
-        flatten(root->left);
         
-        root->right = prev;
-        root->left = nullptr;
+//         // Without MORRIS TRAVERSAL  (from striver video)
+//         // TC -> O(N)
+//         // SC -> O(N)
         
-        prev = root;
+        
+//         flatten(root->right);
+//         flatten(root->left);
+        
+//         root->right = prev;
+//         root->left = nullptr;
+        
+//         prev = root;
+        // return;
         
         
         
