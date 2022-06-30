@@ -21,6 +21,8 @@ public:
         }
         
         // With MORRIS TRAVERSAL
+        // TC - O(N)
+        // SC - O(1)
         TreeNode* curr = root;
         while(curr != nullptr){
             if(curr->left){
