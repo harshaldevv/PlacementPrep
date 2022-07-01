@@ -45,8 +45,11 @@ public:
         return false;
     }
     bool findTarget(TreeNode* root, int k) {
-        inorder(root);
+        inorder(root);  
         bool ans = twoSum(root, k);
+        
+        // TC ->O(N) + O(N) = O(2N) ==> O(N)
+        // SC -> O(N)
         
         return ans;
         
