@@ -51,6 +51,12 @@ public:
         swap(firstElement->val, secondElement->val);
         
         return ;
+        
+        /***
+        1) https://leetcode.com/problems/recover-binary-search-tree/discuss/32535/No-Fancy-Algorithm-just-Simple-and-Powerful-In-Order-Traversal
+        2) https://leetcode.com/problems/recover-binary-search-tree/discuss/1962981/Idea-%3A-Inorder-Traversal-oror-Easy-to-understand
+        3) Striver video
+        ***/
       
     }
 };
