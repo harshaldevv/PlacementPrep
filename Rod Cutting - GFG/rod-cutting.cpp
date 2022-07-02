@@ -13,7 +13,7 @@ class Solution{
     int cutRod(int price[], int n) {
         //code here
         
-        int size = sizeof(price);
+        
         
         vector<int> length;
         for(int i = 1 ; i <=n ; i++){
