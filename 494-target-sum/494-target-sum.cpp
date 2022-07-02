@@ -31,10 +31,7 @@ class Solution {
     }
 public:
     int findTargetSumWays(vector<int>& nums, int target) {
-        // if(nums == NULL){
-        //     return 0;
-        // }
-        
+
         int n = nums.size();
         
         if(n == 0){
@@ -56,6 +53,7 @@ public:
         
         for(int i = 0 ; i < nums.size() ; i++){
             sum_arr+=nums[i];
+            
             if(nums[i] == 0){
                 zero_count++;
             }
@@ -71,7 +69,7 @@ public:
         }
         
         cout <<" here 3" << endl;
-        return countSubset(nums,floor(abs(sum_arr - target))/2 ) ;//* (1<<zero_count);
+        return countSubset(nums,floor(abs(sum_arr - target))/2 ) ;                                           //* (1<<zero_count);
         // count the number of subsets such that difference b/w the subset is target
         
     }
