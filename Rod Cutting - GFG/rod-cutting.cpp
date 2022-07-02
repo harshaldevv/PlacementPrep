@@ -12,30 +12,30 @@ class Solution{
   public:
     int cutRod(int price[], int n) {
         //code here
-        int length[n];
         
-        for(int i = 0 ; i < n ; i++){
-            length[i] = i+1;
+        int size = sizeof(price);
+        
+        vector<int> length;
+        for(int i = 1 ; i <=n ; i++){
+            length.push_back(i);
         }
         
-        //int N = n; //sizeof(price)/sizeof(price[0]);
+        // length, prices, n
         
+        int t[n +1][n+1];
         
-        int t[n+1][n+1];
-        
-        for(int i = 0 ; i < n+1 ; i++){
-            t[i][0] = 0;
+        //initlization
+        for(int i = 0 ; i < n + 1; i++){
+            for(int j =0 ; j < n+1 ; j++){
+                t[i][j] = 0;
+            }
         }
         
-        for(int j = 0 ; j < n+1 ; j++){
-            t[0][j] = 0;
-        }
         
-        for(int i = 1 ; i < n+1 ; i++){
-            for(int j = 1 ; j < n+1 ; j++){
+        for(int i =1 ; i < n +1 ; i++){
+            for(int j = 0 ; j < n+1 ; j++){
                 if(length[i-1] <= j){
-                    t[i][j] = max( price[i-1] + t[i][j-length[i-1]]       
-                                    , t[i-1][j]);
+                    t[i][j] = max(price[i-1] + t[i][j-length[i-1]], t[i-1][j]);
                 }
                 else{
                     t[i][j] = t[i-1][j];
@@ -44,8 +44,6 @@ class Solution{
         }
         
         return t[n][n];
-        
-        //return 5;
     }
 };
 
