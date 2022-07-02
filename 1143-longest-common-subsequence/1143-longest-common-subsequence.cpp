@@ -7,6 +7,8 @@ public:
         vector<vector<int>> t(n+1, vector<int>(m+1, -1));
         
         return LCS(text1, text2, n,m, t);
+        // passing string by reference, doesnt lead to TLE -->
+        // first attempt me i didnt pass by reference and hence lead to TLE
         
     }
     
