@@ -11,45 +11,27 @@
  */
 class Solution {
 public:
-    int sum;
-    int solve(TreeNode *root){
-        if(root== nullptr){
+    int solve(TreeNode *root, int &res){
+        if(root == nullptr){
             return 0;
         }
+        // aditya verma
+        int l = solve(root->left, res);
+        int r = solve(root->right, res);
         
-        //left
-        int leftSum = max(solve(root->left), 0);
+        int pathSum = max(root->val, root->val + max(l,r));
         
-        // right
-        int rightSum = max(solve(root->right), 0);
+        int totalSum = max(pathSum, root->val + l + r);
         
-        sum = max(sum, root->val + leftSum + rightSum); // sum involving root + left + sum
+        res = max(res, totalSum);
         
-        return root->val + max(leftSum, rightSum); 
-        // passing sum to the above level --> therefore root-> val isnt added to return
-        
-        
-        /***
-        HELPFUL POST
-        
-        1)
-        https://leetcode.com/problems/binary-tree-maximum-path-sum/discuss/603423/Python-Recursion-stack-thinking-process-diagram
-        
-        2)
-        https://leetcode.com/problems/binary-tree-maximum-path-sum/discuss/603072/C%2B%2B-solution-O(n)-with-detailed-explanation
-        
-        ***/
-        
+        return pathSum;
+
     }
     int maxPathSum(TreeNode* root) {
-        // Trivial soln -- >TC -  O(N^2) approach 
-        
-        // This approach --> TC - O(N) approach
-        sum = INT_MIN;
-        
-        solve(root);
-        
-        return sum;
+        int res = INT_MIN;
+        solve(root, res);
+        return res;
         
     }
 };
