@@ -21,8 +21,14 @@ public:
         if(!root->left && !root->right && sum == target){
             // we found our targetSum 
             ans.push_back(nums);
-            // nums.pop_back();
+            
             // return ;
+            
+            // In question wheer we need to  find "all" paths, dont return after you've met your condition
+            
+            // let it run and it will be eventually handled.
+            
+            // see the 2 submission of this problem and you'll realise what im talking about
         }
         helper(root->left, nums, sum, target);
         helper(root->right, nums, sum, target);
