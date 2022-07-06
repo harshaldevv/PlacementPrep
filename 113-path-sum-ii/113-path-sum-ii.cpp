@@ -21,8 +21,8 @@ public:
         if(!root->left && !root->right && sum == target){
             // we found our targetSum 
             ans.push_back(nums);
-            nums.pop_back();
-            return ;
+            // nums.pop_back();
+            // return ;
         }
         helper(root->left, nums, sum, target);
         helper(root->right, nums, sum, target);
