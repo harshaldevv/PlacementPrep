@@ -2,7 +2,7 @@ class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
         
-        // left small , right big
+        // left small , right big --> HITESH SIR code
         
         int n = nums.size();
         
