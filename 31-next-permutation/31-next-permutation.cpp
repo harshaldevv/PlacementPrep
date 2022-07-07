@@ -1,41 +1,43 @@
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
-        
-        // left small , right big --> HITESH SIR code
-        
-        int n = nums.size();
-        
-        int i = n-2;
-        for( ; i >= 0 ; i--){
-            if(nums[i] < nums[i+1] ){
-                break;
-            }
+        //hitesh sir taught me
+        // we want left small, right big
+        int i = nums.size() -2;// starting from second last element
+        while(i>= 0 && nums[i] >= nums[i+1]){
+            i--;
         }
         
-        if(i ==-1){
-            // array is reverse sorted
+        if(i==-1){
+            // array is reverse sorted,
+            // therefore
             reverse(nums.begin(), nums.end());
-            return ;
+            return;
         }
         
-        // next bigger number than nums[left];
+        // we got the case
         
-        int next = n-1;
+        // 1,2,4,3,2,1
+        //   ^
         
-        while(next > i){
+        // find just bigger number than nums[i]
+        // go from behind -> cuz we know array is sorted 
+        int next = nums.size() -1;
+        for( ; next > i ; next--){
             if(nums[next] > nums[i]){
                 break;
             }
-            next--;
         }
         
         swap(nums[i], nums[next]);
         
-        reverse(nums.begin() + i+1 , nums.end());
+        // 1,3,4,2,2,1
+        //     ^
         
-        return ;
+        //now reverse from i+1, to end
+        reverse(nums.begin() + i+1, nums.end());
         
+        return;
         
         
     }
