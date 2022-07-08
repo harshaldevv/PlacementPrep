@@ -1,38 +1,32 @@
 class Solution {
 public:
-    
-    double helper(double x, long long n){
-        if(n == 0 || x == 1){
+    double recursiveMyPow(double x, long long n){
+        
+        if(x == 1 || n == 0){
             return 1;
         }
         
-        if(n < 0 ){
-            n = n*(-1);
+        if( n < 0 ){
+            n = -n;
             x = 1/x;
         }
         
         if(n%2 == 1){
-            // n == odd
-            // return x * myPow(x , n-1);
-            return x * myPow(x*x , n/2);
+            return x*recursiveMyPow(x, n-1);
         }
         else{
-            return myPow(x*x, n/2);
+            return recursiveMyPow(x*x, n/2);
         }
     }
     
-    double iterativeMyPow(double x, long long n){
-    
-        if(x == 1 || n ==0){
+    double iterativemyPower(double x, long long n){
+        if( x== 1 || n == 0){
             return 1;
         }
         
-        bool isNeg = false; 
-        // isNeg stores if the power was negative. If it was negative
-        // then we need to just 1/res our final answer
-        
+        bool isPowerNeg = false;
         if(n < 0){
-            isNeg = true;
+            isPowerNeg = true;
             n = -n;
         }
         
@@ -40,30 +34,37 @@ public:
         
         while(n){
             if(n%2 == 1){
-                res*= x;
+                // odd
+                res *= x;
                 n--;
             }
             else{
-                x = (x*x);
+                x = x*x;
                 n/=2;
             }
         }
         
-        if(isNeg){
-            res = 1/res;
+        if(isPowerNeg){
+            return 1/res;
         }
+        else{
+            return res;
+        }
+    
         
-        return res;
+        
+        
     }
     
+    
     double myPow(double x, int n) {
-        // long long nn = ( (long long) (n) );
-        // return helper(x, nn);
+        
+//         long long nn = (long long)n;
+        
+//         return recursiveMyPow(x,nn);
         
         long long nn = (long long)(n);
-        return iterativeMyPow(x, nn);
-        
-        
+        return iterativemyPower(x, nn);
         
     }
 };
