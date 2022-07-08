@@ -13,7 +13,11 @@ public:
             if(ans.back()[1] >=intervals[i][0]){
                 
                 // merge but with caution
-                // ans.back()[1] = intervals[i][1]; // this wont work cuz if intervals[i][1] < ans.back()[1] --> leads to WA
+                
+                // ans.back()[1] = intervals[i][1]; 
+                // this wont work cuz if intervals[i][1] < ans.back()[1], and if still we swap them
+                // --> leads to WA 
+                // therefore we need to check as seen below
                 
                 if( intervals[i][1] < ans.back()[1] ){
                     // do nothing
