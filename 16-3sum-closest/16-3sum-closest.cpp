@@ -52,9 +52,11 @@ public:
             }
             
             //rolling the duplicates of number 1
-            while(i+1 < n && nums[i] == nums[i+1]){
-                i++;
-            }
+            // while(i+1 < n && nums[i] == nums[i+1]){
+            //     i++;
+            // }
+            
+            // we need to do so to save ourselves from 
         }
         
         return ans;
