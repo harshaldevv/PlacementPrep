@@ -1,40 +1,36 @@
 class Solution {
 public:
-    int BS(vector<int> &nums, int target, int l, int r){
-        int start = l+1;
-        int end = r;
-        
-        while(start <= end){
-            int mid = start + (end-start)/2;
-            
-            if(nums[mid] == target){
-                return mid;
-            }
-            else if(nums[mid] > target){
-                // go left
-                end = mid -1;
-            }
-            else{
-                start = mid +1;
-            }
-        }
-        
-        return -1;
-        
-    }
     vector<int> twoSum(vector<int>& numbers, int target) {
         
-        for(int i = 0 ; i < numbers.size() ; i++){
-            int x = target - numbers[i];
+        
+        // Brute Force --> 2 for loops -> TC - O(n^2), SC - O(1)
+        
+        // Binary Search --> for every element e, find "target-e" in the SORTED array --> TC - O(nlogn), SC - O(1)
+        
+        // 2 ptr approach -> TC - O(n), SC - O(1)
+        
+        int i = 0;
+        int j = numbers.size() -1;
+        
+        while(i< j){
+            int a = numbers[i];
+            int b = numbers[j];
             
-            int BS_index = BS(numbers, x, i, numbers.size()-1);
-            if(BS_index != -1 ){
-                return {i+1, BS_index+1};
+            int sum = a+b;
+            
+            if(sum == target){
+                return {i +1,j +1};  // +1 becuase 1 - based indexing
+            }
+            else if(sum> target){
+                // go left
+                j--;
+            }
+            else{
+                i++;
             }
         }
-        vector<int> v;
-        return v;
         
+        return {-1, -1};
         
     }
 };
