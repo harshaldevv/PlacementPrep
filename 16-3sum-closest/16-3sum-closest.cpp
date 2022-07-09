@@ -52,11 +52,13 @@ public:
             }
             
             //rolling the duplicates of number 1
-            // while(i+1 < n && nums[i] == nums[i+1]){
-            //     i++;
-            // }
+            while(i+1 < n && nums[i] == nums[i+1]){
+                i++;
+            }
             
-            // we need to do so to save ourselves from 
+            // we need to do so to save ourselves from redudnant same calculations
+            // if we comment this, the above while loop, it works fine, but it just 
+            // an optimization/step i learned in "3sum", so why not use it here too.
         }
         
         return ans;
