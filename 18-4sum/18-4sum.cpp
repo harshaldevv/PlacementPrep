@@ -5,7 +5,9 @@ public:
         
         vector<vector<int>> ans;
         sort(nums.begin(), nums.end());
-        
+        //overflow encounter kar raha tha isliye long long kahi kahi use krna pada
+        // warna normally sab int me chal rha tha sab
+        // see my first submission of this ques to realise what im saying
         for(int i = 0 ; i < n ; i++){
             for(int j = i +1 ; j < n ; j++){
                 
