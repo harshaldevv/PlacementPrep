@@ -11,11 +11,6 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        
-        if(list1 == nullptr && list2 == nullptr){
-            return nullptr;
-        }
-        
         if(list1 == nullptr){
             return list2;
         }
@@ -23,50 +18,44 @@ public:
             return list1;
         }
         
+        ListNode *p = list1;
+        ListNode *q = list2;
         
-        ListNode *newHead;
-        ListNode *newTail;
+        ListNode *newHead, *newTail;
         
-        if(list1->val <=  list2->val){
-            newHead = list1;
-            newTail = list1;
-            list1 = list1->next;
+        if(p->val <= q->val){
+            newHead = p;
+            newTail = p;
+            p = p->next;
         }
         else{
-            newHead = list2;
-            newTail = list2;
-            list2 = list2->next;
+            newHead = q;
+            newTail = q;
+            q = q->next;
         }
         
-        //got our newHead;
-        
-        
-        
-        while(list1 != NULL && list2 != NULL){
-            if(list1->val <= list2->val){
-                newTail->next = list1;
-                list1 = list1->next;
+        while( p != nullptr && q!= nullptr){
+            if(p->val <= q->val){
+                newTail->next = p;
+                newTail = newTail->next;
+                p = p->next;
             }
             else{
-                newTail->next = list2;
-                list2 = list2->next;
+                newTail->next = q;
+                newTail = newTail->next;
+                q = q->next;
             }
-            newTail = newTail->next;
-            
         }
         
-        if(list1 == nullptr){
-            //attach the remaining list 2
-            newTail->next = list2;
+        if( p != nullptr ){
+            newTail->next = p;
         }
-        
-        
-        if(list2 == nullptr){
-            //attach the remaining of list1
-            newTail->next = list1;
+        else if( q != nullptr ){
+            newTail->next = q;
         }
         
         return newHead;
+        
         
     }
 };
