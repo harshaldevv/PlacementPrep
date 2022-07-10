@@ -10,36 +10,34 @@ class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
         
-        if(head == nullptr || head->next == nullptr){
-            return nullptr;
-        }
+        bool cycleFound = false;
         
-        ListNode *slow = head;
+        ListNode* slow = head;
         ListNode *fast = head;
         
-        bool cycle = false;
-        while(fast != nullptr && fast->next != nullptr){
+        while( fast && fast->next){
             slow = slow->next;
             fast = fast->next->next;
             
             if(slow == fast){
-                cycle = true;
+                cycleFound = true;
                 break;
             }
         }
         
-        if(!cycle){
+        if(!cycleFound){
             return nullptr;
         }
         
         fast = head;
-        
-        while(slow != fast){
+        // Now move fast and slow one by one and where they meet is the starting point of our LL
+        while( slow != fast){
             slow = slow->next;
             fast = fast->next;
         }
         
-        return fast;
+        return slow;
+        
         
     }
 };
