@@ -110,58 +110,58 @@ struct Node{
 
 /*  Function which returns the  root of 
     the flattened linked list. */
-Node *merge(Node *l1, Node *l2){
-    if(l1 == nullptr){
-        return l2;
-    }
-    if(l2 == nullptr){
-        return l1;
-    }
-    
-    Node *head, *tail;
-    
-    if(l1->data <= l2->data){
-        head = l1;
-        tail = l1;
-        l1 = l1->bottom;
-    }
-    else{
-        head = l2;
-        tail = l2;
-        l2 = l2->bottom;
-    }
-    
-    while(l1 != nullptr && l2 != nullptr){
-        if(l1->data <= l2->data){
-            tail->bottom = l1;
-            tail = tail->bottom;
-            l1 = l1->bottom;
-        }
-        else{
-            tail->bottom = l2;
-            tail = tail->bottom;
-            l2 = l2->bottom;
-        }
-        
-    }
-    if(l1 == nullptr){
-        tail->bottom = l2;
-    }
-    else if(l2 == nullptr){
-        tail->bottom = l1;
-    }
-    
-    head->next = nullptr;
-    
-    return head;
-}
-
 Node *flatten(Node *root)
 {
    // Your code here
    if(root == nullptr || root->next == nullptr){
        return root;
    }
-   return merge(root, flatten(root->next));
+   
+   
+   Node *nxt = flatten(root->next);
+   
+   
+   // now my root and root->next are to be merged
+   
+   Node *p = root;
+   Node *q = nxt;
+   
+   Node *newhead, *newtail;
+   
+   if(p->data <= q->data){
+       newhead = p;
+       newtail = p;
+       p = p->bottom;
+   }
+   else{
+       newhead = q;
+       newtail = q;
+       q = q->bottom;
+   }
+   
+   while( p!= nullptr && q != nullptr){
+       
+       if(p->data <= q->data){
+           newtail->bottom = p;
+           newtail = newtail->bottom;
+           p = p->bottom;
+       }
+       else{
+           newtail -> bottom = q;
+           newtail = newtail->bottom;
+           q = q->bottom;
+       }
+   }
+   
+   if(q == nullptr){
+       newtail->bottom = p;
+   }
+   if(p == nullptr){
+       newtail->bottom = q;
+   }
+   
+   newhead->next = nullptr;
+   
+   return newhead;
 }
 
