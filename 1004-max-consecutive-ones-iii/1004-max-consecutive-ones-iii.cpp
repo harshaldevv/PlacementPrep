@@ -1,30 +1,75 @@
 class Solution {
 public:
     int longestOnes(vector<int>& nums, int k) {
-        // the problem is nothing but finding the longest window with atmost k zeros.
         
-        int zeroCount = 0;
-        int i = 0;
-        int j = 0;
-        int size = 0;
-        for( ; j < nums.size() ; j++){
-            if(nums[j] == 0){
-                zeroCount++;
+        int l = 0;
+        int r = 0;
+        int n = nums.size();
+        int zero = 0;
+        
+        int ans = 0;
+        
+        while(r < n){
+            if(nums[r] == 0){
+                zero++;
             }
-            //invalid window.
-            //gotta reduce its size till zerocount < k
-            while(zeroCount > k){
-                //jabtak zerocunt k se bada
-                //ghatae jao
-                if(nums[i] == 0){
-                    zeroCount--;
-                }
-                i++;
+            
+            if(zero > k){
                 
+                while(zero > k){
+                    if(nums[l] == 0){
+                        zero--;
+                    }
+                    l++;
+                }
             }
-            size = max(size, j-i+1);
+            
+            ans = max(ans, r - l +1);
+            
+            r++;
+            
         }
         
-        return size;
+        return ans;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+//         int l = 0;
+        
+//         int n = nums.size();
+        
+//         int ans = 0;
+        
+//         int zero = 0;
+        
+//         for(int r = 0 ; r < n ; r++){
+//             if(nums[r] == 0){
+//                 zero++;
+//             }
+            
+//             while(zero > k){
+//                 if(nums[l] == 0){
+//                     zero--;
+//                 }
+//                 l++;
+//             }
+            
+//             ans = max(ans, r - l +1);
+//         }
+        
+//         return ans;
+        
     }
 };
