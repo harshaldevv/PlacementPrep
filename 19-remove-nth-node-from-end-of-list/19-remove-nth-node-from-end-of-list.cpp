@@ -12,30 +12,30 @@ class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
         
-        // 2 pass soln already done 
-        
-        
-        // doing one pass soln
-        
-        ListNode *fast = head;
-        ListNode *slow = head;
-        
-        for(int i = 0 ;  i < n ; i++){
-            fast = fast->next;
+        if(head == nullptr){
+            return head;
         }
         
-        if(fast == NULL){  // if fast == NULL means we had to remove the first node
-            // therfore return head->next
+        ListNode *ptr = head;
+        
+        for(int i = 0 ; i < n ; i++){
+            ptr = ptr->next;
+        }
+        
+        if(ptr == nullptr){
+            // it means we were asked to remove the first node
             return head->next;
         }
         
-        while(fast-> next != NULL){  //iterate till "THE LAST NODE"
-            slow = slow->next;
-            fast = fast->next;
+        ListNode* start = head;
+        
+        while(ptr->next){
+            start = start->next;
+            ptr = ptr->next;
         }
         
+        start->next = start->next->next;
         
-        slow->next = slow->next->next;
         
         return head;
         
