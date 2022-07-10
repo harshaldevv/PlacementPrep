@@ -10,48 +10,51 @@
  */
 class Solution {
 public:
+    int lengthLL(ListNode *head){
+        int l = 0;
+        
+        while(head != nullptr){
+            l++;
+            head = head->next;
+        }
+        return l;
+    }
     ListNode* rotateRight(ListNode* head, int k) {
-        if(head == NULL || head->next == NULL || k == 0){
+        if(head == nullptr || k ==0){
             return head;
         }
+        int l = lengthLL(head);
         
-        // get length along with get to the lastNode;
-        int length = 1;
+        // cout << "l = " << l << endl;
         
-        ListNode *temp = head;
-        
-        while(temp->next != NULL){
-            length++;
-            temp = temp->next;
+        if(k >= l){
+            k = k%l;
         }
-        
-        k = k%length;
         
         if(k == 0){
             return head;
         }
         
-        //got the lastNode;
-        //circular linked list bana di
-        temp->next = head;
+        cout << "k,l " << k << " , " << l << endl;
         
-        int x = 1;
+        ListNode *ptr = head;
         
-        ListNode *tempAgain = head;
-        
-        while(x < length - k){
-            tempAgain = tempAgain->next;
-            x++;
+        for(int i = 1 ; i < (l - k) ;i++){
+            ptr = ptr->next;
         }
         
-        ListNode *answer = tempAgain->next;
+        ListNode *temp = ptr->next;
+        ptr->next = nullptr;
         
-        tempAgain->next = NULL;
+        ListNode *temp2 = temp;
         
-        return answer;
+        while(temp2->next != nullptr){
+            temp2 = temp2->next;
+        }
         
+        temp2->next = head;
         
-        
+        return temp;
         
         
         
