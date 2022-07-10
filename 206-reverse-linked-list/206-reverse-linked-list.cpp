@@ -16,12 +16,7 @@ public:
             return head;
         }
         
-        // prev = null
-        // curr --> 1
-        //  null.<------1       2---> 
-        //                    nxt
-        //           prev 
-        //                    curr
+        
             
         ListNode *curr = head;
         ListNode *prev = nullptr;
