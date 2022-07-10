@@ -160,7 +160,11 @@ Node *flatten(Node *root)
        newtail->bottom = q;
    }
    
-   newhead->next = nullptr;
+   newhead->next = nullptr; // this is important, warna we can access the other
+   // nodes using the next pointer
+   // but jab merge ho jayega ek list me toh head ka next should not give 
+   // access to other nodes na.. head ka next toh null hona chahiye
+   // cuz sare nodes ab head ke neeche aake lag gaye hai
    
    return newhead;
 }
