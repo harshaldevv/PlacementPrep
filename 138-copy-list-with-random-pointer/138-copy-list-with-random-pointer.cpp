@@ -17,61 +17,69 @@ public:
 class Solution {
 public:
     Node* copyRandomList(Node* head) {
-        
         if(head == nullptr){
-            return nullptr;
+            return head;
+        }
+        Node *ptr = head;
+        
+        while(ptr != nullptr){
+            
+            Node *cloned = new Node(ptr->val);
+            Node *temp = ptr->next;
+            
+            ptr->next = cloned;
+            cloned->next = temp;
+            
+            ptr = temp;
         }
         
-        Node *curr = head;
+        // return head;
         
-        while(curr != nullptr){
-            Node *t = new Node(curr->val);
-            t->next = curr->next;
-            curr->next = t;
-            curr = curr->next->next;
+        
+        Node *original = head;
+        
+        while(original != nullptr){
+            Node *cloned   = original->next;
+            
+            Node *rndm = original->random;
+            
+            Node *rndm_dash = nullptr ; // randm_dash is to be paired with cloned
+            
+            if(rndm != nullptr){
+                rndm_dash = rndm ->next;
+            }
+            
+            
+            cloned->random = rndm_dash;
+            
+            original = original -> next ->next;
+            
         }
         
-        // return head->next;
+        // return head;
         
-        curr = head;
-        while(curr != nullptr){
-            Node *t = curr->next;
-            Node *rand = curr->random;
+        Node *cloned = head->next;
+        Node *temp = head;
+        
+        Node *newHead = cloned;
+        
+        while(cloned != nullptr){
             
-            if(rand != nullptr){
-                t->random = rand->next;
+            Node *p = cloned->next;
+            if(p == nullptr){
+                // we've reach the end of our Linked List
+                temp->next = p; // and p == nullptr
+                return newHead;
             }
-            else{
-                t->random = nullptr;
-            }
             
+            Node *q = p->next;
+            cloned->next = q;
+            temp->next = p;
             
-            curr = curr->next->next;
+            cloned = cloned->next;
+            temp = temp->next;
         }
         
-        // reweaving the list
-        
-        Node *answer = head->next;
-        
-        Node *clonedList = head->next;
-        curr = head;
-        
-        while(curr != nullptr){
-            curr->next = curr->next->next;
-            
-            if(clonedList->next != nullptr){
-                clonedList->next = clonedList->next->next;
-                clonedList =  clonedList->next;
-            }
-            else{
-                clonedList->next =  nullptr;
-            }
-            
-            curr = curr->next;
-        }
-        
-        
-        return answer;
-        
+        return newHead;
     }
 };
