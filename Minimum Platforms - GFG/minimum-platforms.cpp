@@ -24,8 +24,9 @@ class Solution{
     	int i = 1;
     	int j = 0;
     	
-    	int ans = 0;
     	int count = 1;
+    	int ans = 1; 
+    	
     	
     	while(i < n && j < n){
     	    if(arr[i] <= dep[j]){
