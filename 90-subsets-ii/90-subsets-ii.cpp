@@ -33,43 +33,24 @@ public:
         
         int e = nums[i];
         
-        //include
-        holder.push_back(e);
-        solve2(nums, i+1, holder, ans, true);
-        
-        //agar ek baari le lia toh phir ab aage nahi lena duplicate number ko
-        holder.pop_back(); // isliye pehle yahan holder se pop kardo
-        
-        if(i >0 && nums[i] == nums[i-1] && pre){
-            return ;
-        }
+        //key thing here
+        // if im ignoring x, then i have to ignore all the occurences all of x that come 
+        // aka i also wont take those occurencs of x
         
         //exclude
-        
         solve2(nums, i+1, holder, ans, false);
         
-        return;
+        if(i>0 && nums[i] == nums[i-1] && !pre){
+            return;
+        }
         
+        //include
+        holder.push_back(nums[i]);
+        solve2(nums, i+1, holder, ans, true);
         
-//         //key thing here
-//         // if im ignoring x, then i have to ignore all the occurences all of x that come 
-//         // aka i also wont take those occurencs of x
-//         // ignoring --> pre = false
+        holder.pop_back();
         
-//         //exclude
-//         solve2(nums, i+1, holder, ans, false);
-        
-//         if(i>0 && nums[i] == nums[i-1] && !pre){
-//             return;
-//         }
-        
-//         //include
-//         holder.push_back(nums[i]);
-//         solve2(nums, i+1, holder, ans, true);
-        
-//         holder.pop_back();
-        
-//         return ;
+        return ;
 
         
     }
