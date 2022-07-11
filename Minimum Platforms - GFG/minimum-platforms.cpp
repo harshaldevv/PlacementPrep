@@ -16,6 +16,12 @@ class Solution{
     	/*
     	Just think yourself as a station master, and you just care 
     	how many came and how many went. Not when one came and when went
+    	
+    	 arrival of a train is before departure. 
+    	 So i am sure if a train is areiving it will 
+    	 first arrive and then which ever train departs 
+    	 it has for sure arrived and hence is departing, 
+    	 this is the logic here.
     	*/
     	
     	sort(arr, arr+n);
