@@ -24,8 +24,12 @@ class Solution{
     	int i = 1;
     	int j = 0;
     	
-    	int count = 1;
-    	int ans = 1; 
+    	int count = 1;  // this counts the number of occupied platforms at this instant
+    	int ans = 1;  // this count the number of max platforms we require
+    	// where max platforms would be max of occupied platforms at any instant
+    	// therefore we keep ans = max(ans, count), so that incase our count > ans
+    	// at any point of time, we increment our ans.
+    	
     	
     	
     	while(i < n && j < n){
