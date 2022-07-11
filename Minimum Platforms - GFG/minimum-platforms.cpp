@@ -24,12 +24,15 @@ class Solution{
     	int i = 1;
     	int j = 0;
     	
+    	// basically count = platformNeeded 
     	int count = 1;  // this counts the number of occupied platforms at this instant
     	int ans = 1;  // this count the number of max platforms we require
     	// where max platforms would be max of occupied platforms at any instant
     	// therefore we keep ans = max(ans, count), so that incase our count > ans
     	// at any point of time, we increment our ans.
     	
+    	// count and ans = 1, bcz initally one train has taken up one platform
+    	// as we have j =1, which means one train has already arrived on 1 platform
     	
     	
     	while(i < n && j < n){
