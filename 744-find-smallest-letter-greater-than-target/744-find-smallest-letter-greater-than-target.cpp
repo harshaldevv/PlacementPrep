@@ -1,32 +1,34 @@
 class Solution {
 public:
     char nextGreatestLetter(vector<char>& letters, char target) {
-        char res = '#';
+        // ceil of a number/ character
         
-        int n = letters.size();
-        int start = 0;
-        int end = n-1;
-        
-        while(start <= end){
-            int mid = start + ( end-start)/2;
+        int l = 0;
+        int r = letters.size() -1;
+        int mid ;
+        char ans = '#';
+        while(l<=r){
+            mid = l + (r-l)/2;
             
             if(letters[mid] == target){
-                // go right
-                start = mid +1;
+                l = mid +1; 
             }
-            else if(letters[mid] < target){
-                //go right
-                start = mid+1;
+            else if(letters[mid] < target ){
+                // go right
+                l = mid +1;
             }
             else{
-                res= letters[mid];
-                end = mid -1;
+                ans = letters[mid];
+                //go left
+                r = mid -1;
             }
         }
         
-        if(res == '#'){
-            res = letters[0];
+        if(ans == '#'){
+            return letters[0];
         }
-        return res;
+        else{
+            return ans;
+        }
     }
 };
