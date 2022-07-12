@@ -1,67 +1,72 @@
 class Solution {
 public:
-    //int ans = 0;
-    bool possible(int r, int c, int n, vector<string> &board){
+    bool ispossible(vector<string> &board, int currrow, int currcol, int n){
+        // go full left;
         
-        int tempR;
-        int tempC;
-        
-        //check left;
-        for(int i = c ; i>=0 ; i--){
-            if(board[r][i] == 'Q'){
+        int j = currcol;
+        while(j>=0){
+            if(board[currrow][j] == 'Q'){
                 return false;
             }
+            j--;
+        }
+        
+        // go diagonal UP (i--, j--)
+        int i = currrow;
+        j = currcol;
+        while(i>=0 && j >=0){
+            if(board[i][j] == 'Q'){
+                return false;
+            }
+            i--;
+            j--;
+        }
+        
+        // go diagonal Down (i++, j--)
+        i = currrow;
+        j = currcol;
+        while(i < n && j >=0){
+            if(board[i][j] == 'Q'){
+                return false;
+            }
+            i++;
+            j--;
         }
     
-        //check upper diagonal left;
-        tempR = r;
-        tempC = c;
-        while(tempR >= 0 && tempC >=0){
-            if(board[tempR][tempC] == 'Q'){
-                return false;
-            }
-            tempR--;
-            tempC--;
-        }
-        
-        //check lower diagonal left
-        tempR = r;
-        tempC = c;
-        while(tempR < n && tempC >= 0){
-            if(board[tempR][tempC] == 'Q'){
-                return false;
-            }
-            tempR++;
-            tempC--;
-        }
         
         return true;
     }
-    void dfs(int n, int currcol, vector<string> &board, vector<vector<string>> &ans){
-        if(currcol == n){
+    
+    void helper(vector<string>&board, int currcol, vector<vector<string>>&ans, int n){
+        if(currcol >= n){
             ans.push_back(board);
-            return;
+            return ;
         }
         
-        for(int currrow = 0; currrow < n ; currrow++){
-            if(possible(currrow, currcol, n, board)){
-                board[currrow][currcol] = 'Q';
-                dfs(n, currcol+1, board, ans);
-                board[currrow][currcol] = '.';
+        for(int i = 0 ; i < n ; i++){
+            // iterate through all the rows of currcol and check if a Q can be placed
+            if(ispossible(board, i, currcol, n)){
+                board[i][currcol] = 'Q';
+                helper(board, currcol +1, ans, n);
+                board[i][currcol] = '.';
             }
         }
+        
         return ;
     }
     int totalNQueens(int n) {
         
-        if(n==1){
-            return 1;
-        }
-        
-        vector<string> board(n, string(n, '.'));
         vector<vector<string>> ans;
         
-        dfs(n, 0, board, ans);
+        
+        string s = "";
+        for(int i = 0 ; i< n ; i++){
+            s+='.';
+        }
+        
+        vector<string> board(n, s);
+        
+        helper(board, 0, ans, n);
         
         return ans.size();
         
