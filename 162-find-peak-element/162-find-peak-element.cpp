@@ -1,32 +1,32 @@
 class Solution {
 public:
     int findPeakElement(vector<int>& arr) {
-        int n= arr.size();
+        int l = 0;
+        int r = arr.size() -1;
+        int n = arr.size();
         
         if(n==1){
+            //return arr[n-1];
             return 0;
         }
-        
-        int start = 0;
-        int end = n-1;
-        
-        
-        
-        while(start <= end){
-            int mid = start + (end-start)/2;
+        while(l<=r){
+            int mid = l  + (r-l)/2;
             
             if(mid > 0 && mid < n-1){
-                // checking b/w index 1 to n-2 (both inclusive)
+                // check here
                 
-                if(arr[mid] > arr[mid-1] && arr[mid] > arr[mid+1]){
+                int prev = mid - 1;
+                int nxt = mid + 1;
+                
+                if(arr[mid] > arr[prev] && arr[mid] > arr[nxt]){
                     return mid;
                 }
-                else if(arr[mid+1] > arr[mid] ){
-                    // right side is more promising / has a possible ans
-                    start = mid+1;
+                else if(arr[mid] > arr[prev]){
+                    // go right
+                    l = mid +1;
                 }
                 else{
-                    end = mid -1;
+                    r = mid -1; 
                 }
             }
             else if(mid == 0){
@@ -38,17 +38,15 @@ public:
                 }
             }
             else{
-                // mid == n-1
-                if(arr[n-1] > arr[n-2]){
-                    return n-1;
+                if(arr[n-2] > arr[n-1] ){
+                    return n-2;
                 }
                 else{
-                    return n-2;
+                    return n-1;
                 }
             }
         }
         
         return -1;
-        
     }
 };
