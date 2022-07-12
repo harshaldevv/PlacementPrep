@@ -10,48 +10,51 @@ using namespace std;
 
 class Solution{
     public:
-    void solve(int i, int j, vector<vector<int>> &m, int n, vector<string> &path, string p, vector<vector<int>> &vis){
+    
+    void helper(vector<vector<int>> &grid, string path, int i, int j, int n, vector<vector<bool>> &vis, vector<string> &ans){
         
-        if(i< 0 || j < 0 || i >= n || j >= n  || vis[i][j] ==1) {
-            return;
-        }
-        
-        if(m[i][j] == 0){
-            //blocked
+        if( i < 0 || i >= n || j < 0 || j >= n ){
             return ;
         }
         
-        if(i == n-1 && j == n-1){
-            path.push_back(p);
-            return;
+        if(grid[i][j] == 0){
+            return ;
         }
         
+        if(vis[i][j] == true){
+            return ;
+        }
         
-        vis[i][j] = 1;
+        if( i == n-1 && j == n-1){
+            ans.push_back(path);
+            return ;
+        }
         
-        // DLRU
-        // dir = {1,0,-1,0,1};
-        solve(i+1, j, m, n, path, p+ "D", vis);
+        vis[i][j] = true;
         
-        solve(i, j-1, m, n, path, p+ "L", vis);
+        helper(grid, path +"U", i-1, j, n, vis, ans);
+        helper(grid, path +"D", i+1, j, n, vis, ans);
+        helper(grid, path +"L", i, j-1, n, vis, ans);
+        helper(grid, path +"R", i, j+1, n, vis, ans);
         
-        solve(i, j+1, m, n, path, p+ "R", vis);
-        
-        solve(i-1, j, m, n, path, p+ "U", vis);
-        
-        vis[i][j] = 0;
+        vis[i][j] = false; // backtrack
         
         return ;
+        
     }
-    
     vector<string> findPath(vector<vector<int>> &grid, int n) {
         // Your code goes here
-        vector<string> path;
-        string p = "";
-        vector<vector<int>> vis(n, vector<int>(n,0));
-        solve(0,0, grid, n, path, p, vis);
         
-        return path;
+        vector<string> ans;
+        string path = "";
+        
+        vector<vector<bool>> vis(n, vector<bool>(n, false));
+        
+        helper(grid, "", 0,0 ,n, vis, ans);
+        
+        return ans;
+        
+        
     }
 };
 
