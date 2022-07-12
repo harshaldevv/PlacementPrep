@@ -29,6 +29,14 @@ public:
         
         // put wordDict in map for faster access /trivial of a word from the dictonary
         
+        // if smjh nahi aa raha ki kyu ispe tle aa rha hai toh, recursive tree bana le
+        // smjh jayega why we need to cache the values, as we calling the same function
+        // again and again on the same index. Ab jab ek baar jab hume ans mil gya hai us index ke 
+        // lie, toh phir baar baar kyu calculate kru . Tree bana (indexes of string leke),
+        // smjh jayega kya keh raha hu me
+        
+        
+        
         unordered_set<string> dictonary(wordDict.begin(), wordDict.end());
         
         int n = s.size();
