@@ -1,38 +1,41 @@
 class Solution {
 public:
-    int findMin(vector<int>& arr) {
+    int getPivot(vector<int> &arr){
+        int l = 0;
+        int r = arr.size()  -1;
         int n = arr.size();
         
-        int start = 0;
-        int end = n-1;
-        
-        
-        
-        while(start<= end){
+        while(l <= r ){
             
-            if(arr[start] <= arr[end]){
-                return arr[start];
+            if(arr[l] <= arr[r]){
+                return l;
             }
             
-            int mid = start + (end-start)/2;
-            
-            int next = (mid +1)%n;
-            int prev = (mid-1 +n)%n;
+            int mid = l + (r-l)/2;
+            int prev = (mid -1 + n)%n;
+            int next = (mid + 1 )%n;
             
             if(arr[mid] <= arr[prev] && arr[mid] <= arr[next]){
-                return arr[mid];
+                return mid;
             }
-            else if(arr[start] <= arr[mid]){
-                //sorted
-                // go in unsorted right half
-                start = mid+1;
+            
+            if(arr[l] <= arr[mid]  ){
+                // this is sorted
+                // go in the right half
+                l = mid +1;
             }
             else{
-                end = mid-1;
+                r = mid -1;
             }
         }
         
-        return -1;
+        return 0;
+    }
+    
+    int findMin(vector<int>& nums) {
+        int pivot = getPivot(nums);
+        
+        return nums[pivot];
         
     }
 };
