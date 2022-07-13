@@ -41,6 +41,7 @@ public:
             }
         }
         
+        // bas hints dekhe ki kya kar skte hai, lekin code poora kar dia
         return faceInWhichDirection != 0 || (currx == 0 && curry == 0);
         
     }
