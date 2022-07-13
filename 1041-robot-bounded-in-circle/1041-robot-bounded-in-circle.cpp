@@ -36,7 +36,7 @@ public:
                 faceInWhichDirection = faceInWhichDirection%4;
             }
             else if(instruct == 'R'){
-                faceInWhichDirection = faceInWhichDirection - 1 + ( +4);
+                faceInWhichDirection = faceInWhichDirection - 1 + ( +4);  // +4 isliye cuz maanlo -ve ho gaya isliye +4 toh bring in the +ve bounds
                 faceInWhichDirection = faceInWhichDirection%4;
             }
         }
