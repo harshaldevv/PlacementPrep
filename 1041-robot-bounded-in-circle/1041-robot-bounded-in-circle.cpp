@@ -1,15 +1,15 @@
 class Solution {
 public:
     bool isRobotBounded(string instructions) {
-        // therefore if their change in the direction vector, after 
+        
         int currx = 0;
         int curry = 0;
         int faceInWhichDirection = 0 ;  
         
-        // 1 -> north (currx, curry +1)
-        // 2 -> east (currx-1, curry)
-        // 3 -> south, currx, curry -1
-        // 4 - west (currx +1, curry)
+        // 0 -> north (currx, curry +1)
+        // 1 -> east (currx-1, curry)
+        // 2 -> south, currx, curry -1
+        // 3 - west (currx +1, curry)
         
         
         for(auto &instruct : instructions){
@@ -42,6 +42,12 @@ public:
         }
         
         // bas hints dekhe ki kya kar skte hai, lekin code poora kar dia
+        
+        // The robot stays in the circle if and only if (looking at the final vector) 
+        // it changes direction (ie. doesn't stay pointing north), or it moves 0.
+        // Note north = 0 , therefore ive checked faceindirection with 0(north), as our
+        // initial direction was north (0);
+        
         return faceInWhichDirection != 0 || (currx == 0 && curry == 0);
         
     }
