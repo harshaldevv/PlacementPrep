@@ -1,37 +1,36 @@
-#define pii pair<int, int>
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
         
-        // Trivial solution --  Sorting (TC - O(nlogn));
         
-        // Heap --> Min Heap  --> TC O(nlogk), SC - O(N)
-        priority_queue<pii, vector<pii>, greater<pii>> minheap;
+        // min heap cuz we want minimum (or less) frequency wale 
+        // elements pop out ho jaye
+        // last me higher frequency wale reh jayengge
         
         unordered_map<int, int> mp;
-        for(auto &x : nums){
+        for(auto &x :nums){
             mp[x]++;
         }
         
-        //make heap from map;
-        for(auto &x : mp){
-            int elem = x.first;
-            int freq = x.second;
-            minheap.push({freq, elem});
-            if(minheap.size() > k){
-                minheap.pop();
+        // min heap -- > {freq, element}
+        
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+        
+        for(auto &it : mp){
+            pq.push({it.second, it.first});
+            
+            if(pq.size() > k){
+                pq.pop();
             }
         }
         
         vector<int> ans;
-        while(!minheap.empty()){
-            auto TOP = minheap.top();
-            minheap.pop();
-            ans.push_back(TOP.second);
+        while(!pq.empty()){
+            auto front = pq.top();
+            pq.pop();
+            ans.push_back(front.second);
         }
         
         return ans;
-        
-        
     }
 };
