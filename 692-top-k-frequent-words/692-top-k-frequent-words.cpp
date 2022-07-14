@@ -14,6 +14,7 @@ class MyComp{
 class Solution {
 public:  
     vector<string> topKFrequent(vector<string>& words, int k) {
+        
         // min heap
         // cuz we want to remove the smallest frequencies, 
         // therefore min heap, cuz upar jo bachenge woh smaller frequncies hogi, 
@@ -43,6 +44,17 @@ public:
             
         }
         
+        /* Now at this point the priority queue will contain the top k frequent elements or strings of the set */
+
+  
+        /* 
+        
+        Since, we know that we want to find the top k frequent strings hence we 
+        can directly declare the size of the answer vector and while psing we will 
+        get the strings in ascending order of the frequency hence we will put the strings
+        from back side so that we don't have to do an extra work to reverse the vector before returning  
+        
+        */
         vector<string> ans(k);
         int i = k-1;
         while(!pq.empty()){
@@ -53,8 +65,7 @@ public:
             i--;
         }
         
-        // sort(ans.begin(), ans.end());
-        
+       
         return ans;
         
     }
