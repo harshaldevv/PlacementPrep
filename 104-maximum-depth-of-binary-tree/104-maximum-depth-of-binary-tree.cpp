@@ -16,10 +16,10 @@ public:
             return 0;
         }
         
-        int left = maxDepth(root->left);
-        int right = maxDepth(root->right);
+        int l = maxDepth(root->left);
+        int r = maxDepth(root->right);
         
-        return max(left, right) + 1;
+        return 1 + max(l,r);
         
     }
 };
