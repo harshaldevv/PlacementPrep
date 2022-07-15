@@ -1,6 +1,16 @@
 class Solution {
 public:
+    void reversal(string &s, int i, int j){
+        while(i<j){
+            swap(s[i], s[j]);
+            i++;
+            j--;
+        }
+        return ;
+    }
     string reverseWords(string s) {
+        
+        // now we'll optimise on the space --> bring down to O(1)
         
         // brute force  
         // TC - O(n), SC - O(n)
