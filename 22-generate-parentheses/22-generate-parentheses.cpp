@@ -3,12 +3,16 @@ public:
     void helper(int open, int close, string &holder, vector<string> &ans){
         cout << "open, close = " << open << " , " << close << endl;
         if (open == close && open == 0 && close == 0 ){
-            // stopping condition
+            // stopping / base condition
             ans.push_back(holder);
             return ;
         }
         
         if(open < 0 ){
+            // -> warna open minus 1 , minus 2, aise jaata rahega, therefore but 
+            // we wish to stop as soon as we get open < 0
+            
+            // we have to stop after we have zero opening brackets
             return ;
         }
         
