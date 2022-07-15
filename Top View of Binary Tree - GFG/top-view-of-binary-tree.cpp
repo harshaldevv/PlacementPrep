@@ -107,40 +107,53 @@ class Solution
     vector<int> topView(Node *root)
     {
         //Your code here
-        map<int, int> mp ; // col, node->data
         
-        queue<pair<Node*, int>>q; // node, col
+            vector<int> ans;
+        if(root == nullptr){
+            return ans;
+        }
         
+        map<int, Node*> mp;
+        
+        
+        int col = 0;
+        queue<pair<Node*, int>> q;
         q.push({root, 0});
         
-        vector<int> ans;
-        
         while(!q.empty()){
-            auto front = q.front();
-            q.pop();
+            int sz = q.size();
             
-            Node* node = front.first;
-            int col = front.second;
-            // cout << "jere" << endl;
-            if(mp.find(col) == mp.end()){
-                mp[col] = node->data;
-            }
-            
-            if(node->left){
-                q.push({node->left, col-1});
-            }
-            
-            if(node->right){
-                q.push({node->right, col+1});
+            for(int i = 0 ; i < sz ; i++){
+                
+                auto front = q.front();
+                q.pop();
+                
+                int col = front.second;
+                Node *node = front.first;
+                
+                if(mp.find(col) == mp.end()){
+                    mp[col] = node;
+                }
+                
+                
+                if(node->left){
+                    q.push({node->left, col - 1});
+                }
+                if(node->right){
+                    q.push({node->right, col + 1});
+                }
             }
         }
         
-        for(auto x : mp){
-            ans.push_back(x.second);
+        
+        //traverse the map
+        
+        for(auto &x : mp){
+            ans.push_back(x.second->data);
         }
+        
         return ans;
     }
-    
 
 };
 
