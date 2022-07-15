@@ -12,8 +12,6 @@
 class Solution {
 public:
     vector<vector<int>> verticalTraversal(TreeNode* root) {
-        
-        
         vector<vector<int>> ans;
         
         if(root == nullptr){
@@ -21,54 +19,45 @@ public:
         }
         
         
-        queue<pair<TreeNode*, pair<int, int>>> q; // node, vertical, level
+        queue< pair< TreeNode*, pair<int, int> >> q;
         
-        map<int, map<int, multiset<int>>> mp; // --> vertical, level, nodes->val
+        q.push({root, {0,0}});
         
-        q.push({root,{0,0}});
+        
+        //col, 
+        map<int, map<int, multiset<int>> > mp;
         
         while(!q.empty()){
             int sz = q.size();
-            
-            while(sz--){
+            for(int i = 0 ; i < sz ; i++){
                 auto front = q.front();
                 q.pop();
                 
-                TreeNode * node = front.first;
-                int v = front.second.first;
-                int level = front.second.second;
-                mp[v][level].insert(node->val);
+                TreeNode* node = front.first;
+                int col  = front.second.first;
+                int row = front.second.second;
+                
+                mp[col][row].insert(node->val);
                 
                 if(node->left){
-                    q.push({node->left, {v-1, level +1}});
+                    q.push({node->left, {col-1, row+1}});
                 }
                 if(node->right){
-                    q.push({node->right,{v+1, level+1}});
-                }
+                    q.push({node->right, {col+1, row+1}});
+                } 
             }
-            
         }
         
-        // for(auto it : mp){
-        //     vector<int> col;
-        //     for(auto p : it.second){
-        //         col.insert(col.end(), p.second.begin(), p.second.end());
-        //     }
-        //     ans.push_back(col);
-        // }
-        
-        for(auto it :mp){
-            vector<int> col;
-            for(auto p : it.second){
-                for (auto x: p.second) {
-                    col.push_back(x);
+        for(auto &x : mp){
+            vector<int> temp;
+            for(auto &it : x.second){
+                for(auto &p : it.second){
+                    temp.push_back(p);
                 }
             }
-            ans.push_back(col);
+            ans.push_back(temp);
         }
         
         return ans;
-        
-        
     }
 };
