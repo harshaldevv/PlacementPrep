@@ -23,8 +23,11 @@ public:
         
         while(!q.empty()){
             int sz = q.size();
-             long long subtract = q.front().second;    
+             long long subtract = q.front().second;  
             // To make the i start from 1 on every level
+            
+            //optimization done to avoid integer overflow
+            
             
             long long LI; // left index
             long long RI; // right index
@@ -35,7 +38,7 @@ public:
                 
                 
                 TreeNode * node = front.first;
-                long long i = front.second - subtract +1;
+                long long i = front.second - subtract ;
                 
                 if(idx == 0){
                     LI = i;
