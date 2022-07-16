@@ -11,45 +11,44 @@
  */
 class Solution {
 public:
-    
-    
-    TreeNode* constructTree(vector<int>&preorder,int prestart, int preend,vector<int>&inorder, int instart, int inend, unordered_map<int, int> &mp){
+    TreeNode* createtree(vector<int>& preorder, int prestart, int preend, vector<int>& inorder, int instart, int inend, unordered_map<int, int> &mp){
         
-        if(prestart > preend || instart > inend){
+        
+        if(preend < prestart || inend < instart){
             return nullptr;
         }
         
-        TreeNode *root = new TreeNode(preorder[prestart]);
+        int rootVal = preorder[prestart];
+        int indx = mp[rootVal];  // get index from the inorder array (use the map we created);
         
-        int i = mp[root->val]; //index of root->val in inorder
-        // i ke left me poora root->left ka maal
-        // i ke right me poora root->right ka maal
-        int numsleft = i - instart;
+        TreeNode *root = new TreeNode(rootVal);
         
         
-        root->left = constructTree(preorder, prestart +1, prestart+ numsleft, inorder, instart, i -1, mp);
-        root->right = constructTree(preorder, prestart + numsleft +1, preend, inorder, i+1, inend, mp);
+        int numberstoTheLeft = indx - instart;
+        
+        root->left = createtree(preorder, prestart +1 ,prestart + numberstoTheLeft, inorder, instart, indx -1, mp);
+        root->right = createtree(preorder, prestart +1 + numberstoTheLeft,  preend, inorder, indx +1, inend, mp);
+        
         
         return root;
+            
+        
+        
         
     }
-   
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        // make map of inorder
         
-        unordered_map<int, int> mp;
+        unordered_map<int, int> mp; // value, index
         
-        for(int i = 0 ; i < inorder.size() ; i++){
-            auto x = inorder[i];
+        int n = inorder.size();
+        
+        for(int i = 0 ;  i < n ; i++){
+            int x = inorder[i];
             mp[x] = i;
         }
         
-       
-        TreeNode *root = constructTree(preorder, 0, preorder.size() -1, inorder, 0, inorder.size()-1, mp);
-        
-       
-        return root;
-        
-         
+        return createtree(preorder, 0 , preorder.size()-1, inorder, 0, inorder.size() -1 , mp);
         
     }
 };
