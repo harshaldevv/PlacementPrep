@@ -11,27 +11,30 @@
  */
 class Solution {
 public:
-    int solve(TreeNode *root, int &res){
+    int helper(TreeNode* root, int &maxSum){
         if(root == nullptr){
             return 0;
         }
-        // aditya verma
-        int l = solve(root->left, res);
-        int r = solve(root->right, res);
         
-        int pathSum = max(root->val, root->val + max(l,r));
+        int left = helper(root->left, maxSum);
+        int right = helper(root->right, maxSum);
         
-        int totalSum = max(pathSum, root->val + l + r);
+        int mereKoLekeSum = max(root->val, root->val + max(left ,right)) ;
         
-        res = max(res, totalSum);
+        int totalPathSum = max(mereKoLekeSum, root->val + left + right );
         
-        return pathSum;
-
+        maxSum = max(maxSum, totalPathSum );
+        
+        return mereKoLekeSum ;
+        
     }
     int maxPathSum(TreeNode* root) {
-        int res = INT_MIN;
-        solve(root, res);
-        return res;
+        
+        int maxSum = INT_MIN;
+        
+        helper(root, maxSum);
+        
+        return maxSum;
         
     }
 };
