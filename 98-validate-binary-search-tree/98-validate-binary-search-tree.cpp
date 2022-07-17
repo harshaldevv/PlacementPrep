@@ -31,6 +31,17 @@ public:
         return left &&right;
     }
     bool isValidBST(TreeNode* root) {
+        // Brute Way --> For a BST, the inorder of BST is always sorted
+        // therefore we do inorder traversal now, and store the values in an array
+        // Then we chck if it is sorted or not. If it is sorted, we return true,
+        // else we return false 
+        // How we check if the array is sorted --> we iteratre the array, 
+        // if we nums[i-1] < nums[i] for all the indexes we return true, else we return false
+        
+        // TC - O(n), SC - O(n)
+        
+        
+        
         
         // range of values se check kro
         return helper(root, LLONG_MIN, LLONG_MAX);
