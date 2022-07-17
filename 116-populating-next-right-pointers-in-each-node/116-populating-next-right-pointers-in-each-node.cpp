@@ -19,6 +19,10 @@ public:
 class Solution {
 public:
     void helper(Node * root){
+        
+        // TC - O(n)
+        // SC - O(1) --> ignoring right now the recursive stack O(n)
+        
         if(root == nullptr){
             return ;
         }
@@ -39,6 +43,14 @@ public:
     }
     
     void connectInnerNodes(Node* root){
+        
+        // T(n) = 2* T(n/2) + O(n) --> at every node, we go left and right, so basically
+        // we are taking only the n/2 nodes.  --> recurrence is similar to merge sort
+        // Also for a particular node, we are doing O(n) work 
+        
+        //after solving, we get TC - O(nlogn)
+        // SC - O(1) --> if we ignore recursive stack of O(n)
+        
         if(root == nullptr){
             return ;
         }
@@ -79,15 +91,18 @@ public:
         
         // level order traversal approach was TC - O(n), SC - O(n)
         
-        // now doing Tc - O(n), SC - O(1)
+        // now optimally doing Tc - O(n), SC - O(1)
         
         
-        helper(root);
+        
+        // basically this code of mine will work in T(n) = O(nlogn) , SC - O(1) [recursive stack = O(n)]
+
+        helper(root); // --> takes O(n) time
         
         cout << "chal gaya helper" << endl;
         // connectInnerNodes(root->left, root->right);
         
-        connectInnerNodes(root);
+        connectInnerNodes(root);// --> takes TC - O(nlogn)
         
         
         return root;
