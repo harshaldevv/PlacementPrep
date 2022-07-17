@@ -54,8 +54,7 @@ public:
         
         // TC - O(n), SC - O(n)
         
-        // Now we'll optimize on the space
-        //return checker(root).isBst;
+        
         
         
         // range of values se check kro
