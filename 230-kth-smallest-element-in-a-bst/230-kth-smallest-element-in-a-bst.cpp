@@ -38,6 +38,7 @@ public:
         // For kth smallest in BST, use normal inorder
         // inorder --> left, root, right
         // use the counter thing then
+        // if counter == k, return root->val
         
         
         inorder(root, k);
@@ -47,6 +48,7 @@ public:
         // For Kth LARGEST, use MODIFIED INORDER
         // Modified inorder -> right, root, left
         // use the counter thing then, similar to how we it in this ques
+        // if counter == k, return root->val
         
         
         
