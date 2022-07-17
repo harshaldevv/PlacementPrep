@@ -9,6 +9,19 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+struct Triplet{
+    int leftMax;
+    int rightMin;
+    bool isBst;
+    
+    Triplet(int x, int y, bool ans){
+        leftMax = x;
+        rightMin = y;
+        isBst = ans;
+    }
+    
+};
+
 class Solution {
 public:
     bool helper(TreeNode *root, long long smol, long long large){
@@ -16,10 +29,6 @@ public:
             return true;
         }
         
-        // if(root->left == nullptr && root->right == nullptr){
-            // leaf node is always a BST
-            // return true;
-        // }
         
         if(smol >= root->val || large <= root->val){
             return false;
@@ -30,7 +39,12 @@ public:
         
         return left &&right;
     }
+    
+    
+    
+    
     bool isValidBST(TreeNode* root) {
+        
         // Brute Way --> For a BST, the inorder of BST is always sorted
         // therefore we do inorder traversal now, and store the values in an array
         // Then we chck if it is sorted or not. If it is sorted, we return true,
@@ -40,11 +54,13 @@ public:
         
         // TC - O(n), SC - O(n)
         
-        
+        // Now we'll optimize on the space
+        //return checker(root).isBst;
         
         
         // range of values se check kro
-        return helper(root, LLONG_MIN, LLONG_MAX);
+        // TC - O(n), SC - O(1)
+         return helper(root, LLONG_MIN, LLONG_MAX);
         
     }
 };
