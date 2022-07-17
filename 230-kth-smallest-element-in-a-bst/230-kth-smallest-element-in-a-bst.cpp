@@ -11,37 +11,44 @@
  */
 class Solution {
 public:
-    int count = 0;
     int ans;
-    
+    int count = 0;
     void inorder(TreeNode *root, int k){
+        
         if(root == nullptr){
             return ;
         }
         
+        // left, root, right
+        
         inorder(root->left, k);
         
-        //root
         count++;
         if(count == k){
             ans = root->val;
-            return;
+            return ;
         }
         
         inorder(root->right, k);
         
         return ;
     }
-    
     int kthSmallest(TreeNode* root, int k) {
-        // for kth  smallest, we do NORMAL INORDER
-        // for kth largest, we do REVERSE INORDER (right, root, left)
         
-        // TC - O(N)
-        // SC - O(N) --> recursive stack space  --> can be optimised by using morris traversal to O(1)
+        // For kth smallest in BST, use normal inorder
+        // inorder --> left, root, right
+        // use the counter thing then
         
         
         inorder(root, k);
+        
         return ans;
+        
+        // For Kth LARGEST, use MODIFIED INORDER
+        // Modified inorder -> right, root, left
+        // use the counter thing then, similar to how we it in this ques
+        
+        
+        
     }
 };
