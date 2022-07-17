@@ -18,31 +18,41 @@ public:
 
 class Solution {
 public:
-    
-    void dfs(Node *curr, Node* nxt){
-        // using the soln from discuss
-        
-        if(curr == nullptr){
-            return ;
-        }
-        
-        curr->next = nxt;
-        dfs(curr->left, curr->right);
-        
-        if(curr->next == nullptr){
-            dfs(curr->right, NULL);
-        }
-        else{
-            dfs(curr->right, curr->next->left);
-        }
-        
-        return ;
-        
-            
-    }
-    
     Node* connect(Node* root) {
-        dfs(root, nullptr);
+        
+        // TC - O(n)
+        // SC - O(1)
+        
+        Node *p = root;
+        
+        while(p ){
+            Node *nextLevel = p->left;
+            if(nextLevel == nullptr){
+                // it means we have are "p" at the last level
+                // and we've connected the last level 
+                // therefore just break
+                break;
+                
+            }
+            
+            while(p){
+                
+                p->left->next = p->right;
+                
+                if(p->next){
+                    p->right->next = p->next->left;
+                }
+                else{
+                    // p->next= null hai,
+                    // therefore kuch mat karo abhi
+                    ;
+                }
+                
+                p = p->next;
+            }
+            p = nextLevel;
+        }
+        
         return root;
     }
 };
