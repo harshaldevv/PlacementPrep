@@ -1,49 +1,50 @@
 class MedianFinder {
 public:
-    priority_queue<double> maxHeap; 
-    // stores the first half of the array
+    // 2 priority queues --
+    // maxheap to store the first half of the array
+    // minheap to store the second half of the array
     
-    priority_queue<double, vector<double>, greater<double> > minHeap; 
-    // stores the second half of the array
-    
+    priority_queue<double> maxheap;
+    priority_queue<double, vector<double>, greater<double> > minheap;
     int size = 0;
-    int count = 0;
-    
     MedianFinder() {
-        maxHeap = priority_queue<double>();
-        minHeap = priority_queue<double, vector<double>, greater<double> >();
+        maxheap = priority_queue<double>();
+        minheap = priority_queue<double, vector<double>, greater<double> >();
         size = 0;
-        count = 0;
-        
     }
     
     void addNum(int num) {
+        minheap.push(num);
         
-        maxHeap.push(num);
+       if(minheap.size() > maxheap.size()){
+           //tranfer minheap top to maxheap 
+           
+           maxheap.push(minheap.top());
+           minheap.pop();
+       }
         
-        // now transfer the maximum element from the maxheap to the minheap
-        minHeap.push(maxHeap.top());
-        maxHeap.pop();
-        
-        if(minHeap.size() > maxHeap.size()){
-            // unbalanced
-            // transfer minimum element from minheap to maxHeap
-            int minElem = minHeap.top();
-            minHeap.pop();
+        if(minheap.top() < maxheap.top()){
+            maxheap.push(minheap.top());
+            minheap.pop();
             
-            maxHeap.push(minElem);
+            minheap.push(maxheap.top());
+            maxheap.pop();
         }
+        
+        size++;
+        
     }
     
     double findMedian() {
-        
-        if(maxHeap.size() == minHeap.size()){
-            //even size
-            return (maxHeap.top() + minHeap.top() )/2;
+        if(size %2 != 0){
+            // odd size length
+            // return the first half last's element, aka maxheap's top element
+            return maxheap.top();
         }
         else{
-            return maxHeap.top();
+            return (minheap.top() + maxheap.top() ) /2;
         }
+        
         
     }
 };
