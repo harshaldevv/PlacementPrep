@@ -1,40 +1,52 @@
 class Solution {
 public:
-    void dfs(vector<vector<int>>& image, int sr, int sc, int newColor, int startColor){
-        if(image[sr][sc] != startColor){
-            return ;
-        }
-        else{
-            image[sr][sc] = newColor;
-        }
+    bool isvalid(vector<vector<int>> &grid, int i, int j){
+        int m = grid.size();
+        int n = grid[0].size();
         
-        int dx[4] = {0,0,-1,+1};
-        int dy[4] = {-1, +1, 0, 0};
-        
-        for(int i = 0 ; i < 4 ; i++){
-            
-            int newX = sr + dx[i];
-            int newY = sc + dy[i];
-            
-            if(newX >= 0 && newX < image.size() && newY >= 0 && newY < image[0].size()){
-                // valid coordinates;
-                dfs(image, newX, newY, newColor, startColor);
-            }
+        if( i < 0 || j < 0 || i>= m || j >= n){
+            return false;
         }
         
-        return;
-        
+        return true;
         
     }
-    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
-        
-        int startColor = image[sr][sc];
-        if(newColor == startColor){
-            return image;
+    void dfs(vector<vector<int>> &grid, int i, int j, int org, int color){
+        if(!isvalid(grid, i, j)){
+            return ;
         }
-        dfs(image, sr, sc, newColor, startColor);
+        
+        if(grid[i][j] != org){
+            return ;
+        }
+        
+        // else grid[i][j] = org , therefore we change its color to "color"
+        grid[i][j] = color;
+        
+        int dir[5] = {-1,0,1,0,-1};
+        
+        for(int k = 0 ; k < 4 ; k++){
+            int newx = i + dir[k];
+            int newy = j + dir[k+1];
+            
+            dfs(grid, newx, newy, org, color);
+        }
+        
+        return ;
+        
+    }
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        if(image[sr][sc] == color){
+            return image; 
+            // learned this from example 2.
+            // If startingRow and startingColumn cell is already filled
+            // with the color COLOR, then no changes are to be made to the image
+        }
+        
+        int originalColor = image[sr][sc];
+        dfs(image, sr, sc, originalColor, color);
+        
         
         return image;
-        
     }
 };
