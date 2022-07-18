@@ -11,94 +11,30 @@
  */
 class Solution {
 public:
-    
-    TreeNode *prev;
     void flatten(TreeNode* root) {
         
-        if(root == nullptr){
-            return ;
-        }
+        TreeNode *ptr = root;
         
-        
-        TreeNode * curr = root;
-        
-        while(curr != nullptr){
-            TreeNode *p = curr->right;
-            TreeNode *q = curr->left;
-            if(q){
-                while(q->right){
-                    q = q->right;
+        while(ptr){
+            if(ptr->left){
+                TreeNode *p = ptr->left;
+                TreeNode *q = ptr->right;
+                // now go right right
+                while(p->right != nullptr){
+                    p = p->right;
                 }
-                q->right = p;
                 
-                curr->right = curr->left;
-                curr->left = nullptr;
+                p->right = q;
+                
+                ptr->right = ptr->left;
+                ptr->left = NULL;
+                
             }
-            curr = curr->right;
+            
+            ptr = ptr->right;
         }
         
         return ;
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-//         if(root == nullptr){
-//             return ;
-//         }
-        
-//         // With MORRIS TRAVERSAL
-//         // https://leetcode.com/problems/flatten-binary-tree-to-linked-list/discuss/1207642/JS-Python-Java-C%2B%2B-or-Simple-O(1)-Space-and-Recursive-Solutions-w-Explanation
-//         // TC - O(N)
-//         // SC - O(1)
-//         TreeNode* curr = root;
-//         while(curr != nullptr){
-//             if(curr->left){
-//                 TreeNode* runner = curr->left;
-//                 while(runner->right){
-//                     runner = runner->right;
-//                 }
-//                 runner->right = curr->right;
-//                 curr->right = curr->left;
-//                 curr->left = nullptr;
-//             }
-//             curr = curr->right;
-//         }
-        
-//         return;
-        
-        
-        
-// //         // Without MORRIS TRAVERSAL  (from striver video)
-// //         // TC -> O(N)
-// //         // SC -> O(N)
-        
-        
-// //         flatten(root->right);
-// //         flatten(root->left);
-        
-// //         root->right = prev;
-// //         root->left = nullptr;
-        
-// //         prev = root;
-//         // return;
-        
-        
-        
         
     }
 };
