@@ -30,13 +30,17 @@ public:
         
         return false;
     }
+    
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
         // directed graph 
         // detect cycle --> if cycle detected return false
         // else return true
         
         
-        //cycle detection --> either by BFS or DFS --> learn both
+        //cycle detection  in directed gr--> either by BFS or DFS --> learn both
+        
+        // via DFS -->TC - O(V + E) --> where V = n
+        //SC - O(2N + N ) (2n for vector, n for recursive stack)
         
         int n = numCourses;
         
