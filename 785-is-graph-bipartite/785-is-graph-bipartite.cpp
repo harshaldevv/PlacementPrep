@@ -4,6 +4,7 @@ public:
     bool isBipartiteGraph(vector<vector<int>> &graph, int currvertex, vector<int> &color){
         
         if(color[currvertex] == -1){
+            // not colored yet , therefore color it with 1
             color[currvertex] = 1;
         }
         
