@@ -19,7 +19,9 @@ public:
 class Solution {
 public:
     Node* connect(Node* root) {
-        // level order traversal se karte hai
+        // level order traversal se karte hai 
+        // TC - O(n), SC - O(n)
+        
         if(root == nullptr){
             return nullptr;
         }
