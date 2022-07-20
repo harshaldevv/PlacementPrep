@@ -64,7 +64,7 @@ public:
                 
                 // binary search
             
-                auto &v = mapping[ word[i]-'a'];
+                auto &v = mapping[ word[i]-'a'];  // & nahi lagaya toh TLE aa gaya tha
                 
                 
                 int res = BS( v, prevIndex); // -> find ceil of a number
