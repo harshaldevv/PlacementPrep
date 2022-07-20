@@ -8,6 +8,8 @@ public:
     }
     
     int next(int price) {
+        // NGL -- > do (my index - NGL index)  --> my index minus NGL index
+        // -> my index = i , and NGL index jo bhi stack se ayega
         
         int res = 0;
         
@@ -16,10 +18,14 @@ public:
         }
         
         if(st.empty()){
-            res =  i+1; //   i -(-1);
+            // if st is empty, therefore NGL index = -1
+            // therefore myindex - NGL index = i - (-1)
+            
+            res =  i - (-1); 
         }
         else{
-            res = i - st.top().second +1;
+            res = i - st.top().second +1; 
+            // +1 because final - initial + 1, to get the length of the span
         }
         
         
