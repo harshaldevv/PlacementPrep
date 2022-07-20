@@ -1,69 +1,79 @@
 class Solution {
 public:
-    
-    vector<int> NSL(vector<int> &nums, int n){
-        vector<int> v;
-        stack<pair<int, int>> st;  // pair -> first == height, second == index
+    vector<int> NSL(vector<int> &nums){
+        // NSL --> 
+        // go i = 0 to n;
+        // smaller hai toh ">=" use karlo
+        int n = nums.size();
         
-        int pseudoIndex = -1;
-        
-        for(int i = 0 ; i < n ; i++){
+        vector<int> v(n);
+        stack<pair<int, int>> st;
+        for(int i = 0 ; i  < n ; i++){
             while(!st.empty() && st.top().first >= nums[i]){
                 st.pop();
             }
             
             if(st.empty()){
-                v.push_back(pseudoIndex);
+                v[i] = -1;
             }
             else{
-                v.push_back(st.top().second);
+                v[i] = st.top().second;
+            }
+            
+            st.push({nums[i], i});
+        }
+        
+        
+        return v;
+        
+    }
+    
+    vector<int> NSR(vector<int> &nums){
+        
+        int n = nums.size();
+        
+        stack<pair<int, int>> st;
+        vector<int> v(n);
+        
+        for(int i = n-1 ; i  >= 0 ; i--){
+            while(!st.empty() && st.top().first >= nums[i]){
+                st.pop();
+            }
+            
+            if(st.empty()){
+                // v[i] = -1;
+                v[i] = n;
+            }
+            else{
+                v[i] = st.top().second;
             }
             
             st.push({nums[i], i});
         }
         
         return v;
+        
+        
     }
-    
-    vector<int> NSR(vector<int> &nums, int n){
-        vector<int> ans;
-        stack<pair<int, int>> st;
-        int pseudoIndex = n;
-        
-        for(int i = n-1; i >= 0 ; i--){
-            while(!st.empty() && st.top().first >= nums[i]){
-                st.pop();
-            }
-            
-            if(st.empty()){
-                ans.push_back(pseudoIndex);
-            }
-            else{
-                ans.push_back(st.top().second);
-            }
-            
-            st.push({nums[i], i});
-        }
-        
-        reverse(ans.begin(), ans.end());
-        
-        return ans;
-    }
-    
     int largestRectangleArea(vector<int>& heights) {
-    
+        
         int n = heights.size();
+        // NSL, NSR index
         
-        vector<int> right = NSR(heights, n);
-        vector<int> left = NSL(heights, n);
+        vector<int> left = NSL(heights);
+        vector<int> right = NSR(heights);
         
-        int area;
-        int maxArea = INT_MIN;
+        
+        vector<int> width(n);
+        
+        vector<int> area(n);
+        int maxArea = 0;
+        
         for(int i = 0 ; i < n ; i++){
-            //cout << right[i] << " , " <<left[i] << " " << " , h =  " << heights[i] << endl;
-            int width = (right[i] - left[i] -1);
-            area = heights[i] * width ;
-            maxArea = max(area, maxArea);
+            width[i] = (right[i] - left[i]) - 1;
+            
+            area[i] = width[i] * heights[i];
+            maxArea = max(maxArea, area[i]);
         }
         
         return maxArea;
