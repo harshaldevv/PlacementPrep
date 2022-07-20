@@ -1,113 +1,133 @@
 class Solution {
-    vector<int> NSR(vector<int> &arr){
-        vector<int> ans;
-        int pseudoIndex = arr.size();
-        stack<pair<int, int>> st;  //first price, second i
-        
-        for(int i = arr.size() -1. ; i >=0 ; i--){
-            while(!st.empty() && st.top().first >= arr[i]){
-                st.pop();
-            }
-            
-            if(st.empty()){
-                ans.push_back(pseudoIndex);
-            }
-            else{
-                ans.push_back(st.top().second);
-            }
-            
-            st.push({arr[i], i});
-        }
-        
-        reverse(ans.begin(), ans.end());
-        return ans;
-    }
-    
-    
-    
-    
-    vector<int> NSL(vector<int> &arr){
-        vector<int> ans;
-        int pseudoIndex = -1;
-        stack<pair<int, int>> st;  //first price, second i
-        
-        for(int i = 0 ; i < arr.size() ;i++){
-            while(!st.empty() && st.top().first >= arr[i]){
-                st.pop();
-            }
-            
-            if(st.empty()){
-                ans.push_back(pseudoIndex);
-            }
-            else{
-                ans.push_back(st.top().second);
-            }
-            
-            st.push({arr[i], i});
-        }
-        
-        
-        return ans;
-    
-        
-    }
-    
-    int MAH(vector<int> &buildings){
-        
-        vector<int> right = NSR(buildings);
-        vector<int> left = NSL(buildings);
-        
-        int area = 0;
-        int maxArea = -1;
-        
-        for(int i = 0 ; i < right.size() ;i++){
-            area = buildings[i] * (right[i] - left[i] -1);
-            maxArea = max(area, maxArea);
-        }
-        
-        return maxArea;
-        
-    }
-    
 public:
-    int maximalRectangle(vector<vector<char>>& matrix) {
-        int rows = matrix.size();
-        int cols = matrix[0].size();
+    void printArr(vector<int> &nums){
+        cout << "v = ";
         
-        
-        vector<int> buildings(cols);
-        //copying first row in the building arr
-        for(int i = 0 ; i < cols ;i++){
-            if(matrix[0][i] == '0'){
-                buildings[i] = 0;
-            }
-            else{
-                buildings[i] = 1;
-            }
-            
+        for(auto & x : nums){
+            cout << x << ", " ;
         }
         
-        int maxArea = INT_MIN;
-        maxArea = MAH(buildings);
+        cout << endl;
+        
+        return ;
+    }
+    vector<int> NSL(vector<int> nums){
+        
+        int n = nums.size();
+        
+        vector<int> v(n);
+        stack<pair<int, int> > st;
+        
+        for(int i = 0 ; i < n ; i++){
+            while(!st.empty() && st.top().first >= nums[i] ){
+                st.pop();
+            }
+            
+            if(st.empty()){
+                v[i] = -1;
+            }
+            else{
+                v[i] = st.top().second;
+            }
+            
+            st.push({nums[i], i});
+        }
+        
+        return v;
+    }
+    
+    
+    
+    vector<int> NSR(vector<int> nums){
+        
+        int n = nums.size();
+        vector<int> v(n);
+        stack<pair<int, int> > st;
+        
+        for(int i = n-1 ; i >= 0 ; i--){
+            while(!st.empty() && st.top().first >= nums[i] ){
+                st.pop();
+            }
+            
+            if(st.empty()){
+                v[i] = n;
+            }
+            else{
+                v[i] = st.top().second;
+            }
+            
+            st.push({nums[i], i});
+        }
+        
+        return v;
+    }
+    
+    int MAH(vector<int> height){
+        
+        int n = height.size();
+        
+        vector<int> left = NSL(height);
+        // cout << "hjeree" << endl;
+        
+        vector<int> right = NSR(height);
+        // cout << "NSR" << endl;
         
         
+        vector<int> width(n);
+        vector<int> area(n);
+        
+        int maxAREA = 0;
+        
+        for(int i = 0 ; i < n ; i++){
+            width[i] = right[i] - left[i] -1;
+            
+            area[i] = width[i]*height[i];
+            
+            maxAREA = max(maxAREA, area[i]);
+        }
+        
+        return maxAREA;
+        
+    }
+    int maximalRectangle(vector<vector<char>>& matrix) {
+        
+        // maximum area histogram in a binary matrix 
+        
+        // MAH --> NSL, NSR indexes and then width[] and then area[] , then max area from area[]
         
         
-        cout << "maxArea = " << maxArea << endl;
+        // copy first row in a vector
         
-        for(int i = 1 ; i < rows ;i++){
-            for(int j = 0 ; j < matrix[i].size() ;j++){
+        int m = matrix.size();
+        int n = matrix[0].size();
+        
+        vector<int> building(n, 0);
+        // printArr(building);
+        
+        int maxArea = 0;
+        
+        for(int i = 0 ; i < m ; i++){
+            for(int j = 0 ; j < n ; j++){
+                
                 if(matrix[i][j] == '0'){
-                    buildings[j] = 0;
+                    building[j] = 0;
                 }
                 else{
-                    buildings[j] += 1;
-                } 
+                    building[j] += 1;
+                }
             }
             
-            maxArea = max(maxArea, MAH(buildings));
+            // printArr(building);
+            
+            // send this building vector in the MAH function
+            
+            int maxAreaInThisHisotgram = MAH(building);
+            
+            maxArea = max(maxArea, maxAreaInThisHisotgram);
+            
         }
         
         return maxArea;
+        
     }
 };
