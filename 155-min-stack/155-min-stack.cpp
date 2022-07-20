@@ -1,10 +1,12 @@
 class MinStack {
 private:
     stack<int> s;
-    stack<int> ss;
+    stack<int> ss; // supporting stacks --> only stores the minimum elements in it
 
 public:
     MinStack() {
+        // minstack implementation with O(N) extra space
+        ;
     }
     
     void push(int val) {
