@@ -17,7 +17,11 @@ public:
             ans += to_string(x);
         }
         
-        // return ans;
+        
+        // or we could have counted the number of zeroes in our array, if it is equal
+        // to arr.size(), it means our whole array is filled with zeroes,
+        // therefore just return "0";
+        
         
         int i = 0;
         while(i< ans.size() -1){
