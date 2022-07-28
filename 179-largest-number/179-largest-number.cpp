@@ -18,9 +18,7 @@ public:
         }
         
         
-        // or we could have counted the number of zeroes in our array, if it is equal
-        // to arr.size(), it means our whole array is filled with zeroes,
-        // therefore just return "0";
+        
         
         // In this below while loop, we are trying to remove the trailing zeroes
        // as soon as we find the first non zero character, we return the substring 
@@ -39,6 +37,11 @@ public:
         }
         
         return ans.substr(i);
+        
+        
+        // or we could have counted the number of zeroes in our array, if it is equal
+        // to arr.size(), it means our whole array is filled with zeroes,
+        // therefore just return "0"; xD
         
     }
 };
