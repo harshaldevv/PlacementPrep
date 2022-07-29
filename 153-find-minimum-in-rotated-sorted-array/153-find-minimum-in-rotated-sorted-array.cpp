@@ -1,27 +1,31 @@
 class Solution {
 public:
+    
     int getPivot(vector<int> &arr){
-        int l = 0;
-        int r = arr.size()  -1;
         int n = arr.size();
+        int l = 0;
+        int r = arr.size() -1;
         
-        while(l <= r ){
+        while(l<=r){
             
             if(arr[l] <= arr[r]){
                 return l;
             }
             
             int mid = l + (r-l)/2;
-            int prev = (mid -1 + n)%n;
-            int next = (mid + 1 )%n;
             
+            int prev = (mid -1 + n )%n;
+            int next = (mid +1 )%n;
+            
+            // pivot element would be smaller than both of its neighbours
             if(arr[mid] <= arr[prev] && arr[mid] <= arr[next]){
                 return mid;
             }
             
-            if(arr[l] <= arr[mid]  ){
-                // this is sorted
-                // go in the right half
+            // else now go in the unsorted half
+            if(arr[l] <= arr[mid]){
+                // this half is sorted
+                // go in the unsorted half
                 l = mid +1;
             }
             else{
@@ -29,13 +33,14 @@ public:
             }
         }
         
-        return 0;
+        return l;
     }
-    
     int findMin(vector<int>& nums) {
-        int pivot = getPivot(nums);
+        // rotated sorted array --> means pehle pivot nikalo
         
-        return nums[pivot];
+        int piv = getPivot(nums);
+        
+        return nums[piv];
         
     }
 };
