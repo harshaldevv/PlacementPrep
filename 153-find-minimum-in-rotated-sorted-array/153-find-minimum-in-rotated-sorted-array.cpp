@@ -33,7 +33,7 @@ public:
             }
         }
         
-        return l;
+        return l; // you can return l or return 0 --> both of them work
     }
     int findMin(vector<int>& nums) {
         // rotated sorted array --> means pehle pivot nikalo
