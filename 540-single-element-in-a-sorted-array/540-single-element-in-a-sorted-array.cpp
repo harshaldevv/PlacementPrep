@@ -1,52 +1,58 @@
 class Solution {
 public:
-    int singleNonDuplicate(vector<int>& nums) {
-        // pls do this in logn pls
-       if(nums.size() == 1){
-           return nums[0];
-       }
+    int singleNonDuplicate(vector<int>& arr) {
+        
+        // O(logn) approach
+        int n = arr.size();
+        
+        if( n == 1){
+            return arr[0];
+        }
         
         int l = 0;
-        int r = nums.size() -1;
+        int r = n-1;
         
-        while(l<= r){
+        while(l<=r){
             int mid = l + (r-l)/2;
             
-            if(mid%2 != 0 && nums[mid] == nums[mid-1] || mid%2 == 0 && nums[mid] == nums[mid+1]){
-                // go right
-                l = mid +1;
+            if(mid >0 && mid < n-1){
+                
+                if(arr[mid] != arr[mid-1] && arr[mid] != arr[mid+1]){
+                    return arr[mid];
+                }
+                
+                if(mid %2 == 0){
+                    // mid is even
+                    if(arr[mid] == arr[mid+1]){
+                        l = mid +1;
+                    }
+                    else{
+                        r = mid -1;
+                    }
+                }
+                else if( mid %2 != 0){
+                    // mid is odd
+                    if(arr[mid] == arr[mid-1]){
+                        l = mid +1;
+                    }
+                    else{
+                        r = mid-1;
+                    }
+                }
             }
-            else{
-                r = mid -1;
+            else if(mid == 0){
+                if(arr[0] != arr[1]){
+                    return arr[0];
+                }
+            }
+            else if(mid == n-1){
+                if(arr[n-1] != arr[n-2] ){
+                    return arr[n-1];
+                }
             }
         }
         
-        return nums[l];
+        return arr[l];
         
-        
-        
-        
-        
-        
-//         // linear search
-//         for(int i= 0 ; i < nums.size()-1;i+=2){
-//             if(nums[i] != nums[i+1]){
-//                 return nums[i];
-//             }
-//         }
-//         return nums[nums.size()-1]; // warna phir ab last element hu hoga hamara ans
-        
-        
-//         // XOR SOLUTION
-//         // We can use the property of xor operation in this problem. We know that a ⊕ a = 0, 
-//         // i.e, two same numbers when xor-ed, cancels each other out. In our case, every element 
-//         // occurs twice except the one. Thus, if we xor all the elements from nums, every 
-//         // element will cancel each other out except the required answer.
-//         int ans = 0;
-        
-//         for(auto x : nums){
-//             ans^=x;
-//         }
-//         return ans;
     }
 };
