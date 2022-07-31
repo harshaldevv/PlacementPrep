@@ -1,51 +1,52 @@
 class Solution {
 public:
-    
-    int isvalid(vector<int> &weights, int D, int capacity){
-        int days = 1;
-        int sum = 0;
+    bool isvalid(int mid, vector<int> &weights, int D){
+        // we wish to wish all weights using a ship whose max capacity = mid 
+        // in D days
         
+        int reqDays = 1;
+        int sum = 0;
         for(int i = 0 ; i < weights.size() ; i++){
-            sum+=weights[i];
-            if(sum > capacity){
-                days++;
+            sum += weights[i];
+            if(sum > mid){
                 sum = weights[i];
+                reqDays++;
             }
-            if(days > D){
+            if(reqDays > D){
                 return false;
             }
         }
+        
         return true;
     }
     int shipWithinDays(vector<int>& weights, int days) {
+        int n = weights.size();
         
-        int start = *max_element(weights.begin(), weights.end()); 
-        // ye isliye karna hai 
-        // kyuki agar yahan se start nahi kia humne ship ki capacity, 
-        // toh iska matlab if ship capacity <  wt of heaviest box,
-        // toh woh box kabhi jaa hi nahi payega ship se
+        int l = 0;
+        int r = 0;
         
-        // if(weights.size() < days){
-        //     return 
-        // }
+        for(int i = 0 ; i < n ; i++){
+            l = max(l, weights[i]);
+            r += weights[i];
+        }
         
-        int end =  500*5*10000; //accumulate(weights.begin(), weights.end());
-        int res = -1;
-        while(start <= end){
-            int mid = start + (end-start)/2;
-            
-            if(isvalid(weights, days, mid)){
-                res = mid;
-                end = mid -1;
+        int ans = -1;
+        while(l<=r){
+            int mid = l + (r-l)/2;
+            // cout << "mid = " << mid << endl;
+            // mid represnts the capacity of our probable ship 
+            if(isvalid(mid, weights, days)){
+                // since we gotta decrease/minimise the weight
+                ans = mid;
+                r = mid -1;
             }
             else{
-                start = mid +1;
+                l = mid +1;
             }
         }
         
-        return res;
-                             
-                             
+        return ans;
+        
         
     }
 };
