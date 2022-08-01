@@ -26,6 +26,12 @@ public:
         
         ans[0] = 0;
         
+        /*
+        https://leetcode.com/problems/counting-bits/discuss/1808016/C%2B%2B-oror-Vectors-Only-oror-Easy-To-Understand-oror-Full-Explanation
+        
+        read this link to get feeling of the statement in the below for loop
+        */
+        
         for(int i = 1 ; i <= n ; i++){
             ans[i] = ans[i/2] + i%2;   // i%2  = 0 for even and 1 for odd
             // ans[i] = ans[i/2] + (i&1); // (i&1) --> = 0 for even and 1 for odd;
