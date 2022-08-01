@@ -27,8 +27,8 @@ public:
         ans[0] = 0;
         
         for(int i = 1 ; i <= n ; i++){
-            ans[i] = ans[i/2] + i%2;   // i%2  = 0 for even and 1 for odd
-            // ans[i] = ans[i/2] + (i&1); // i&1 --> = 0 for even and 1 for odd;
+            // ans[i] = ans[i/2] + i%2;   // i%2  = 0 for even and 1 for odd
+            ans[i] = ans[i/2] + (i&1); // (i&1) --> = 0 for even and 1 for odd;
         }
         return ans;
         
