@@ -18,8 +18,8 @@ public:
         
         while(n){
             ans++;
-            n = (n & (n-1) );
-
+            // n = (n & (n-1) );
+            n&=(n-1);
         }
         
         return ans;
