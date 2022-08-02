@@ -1,18 +1,17 @@
 class Solution {
 public:
     bool isPowerOfFour(int n) {
-        
         // TC - O(32)   --> as we traverse max of 32 bits ---> = O(1) 
         // SC - O(1)
-        
         /// check if n is a power of 2 or not
         if(n<0){
-            return false;
+            return false; // --> negative numbers toh power of 4 ho hi nahi sakte -
+            // eg n = -4 cant be acheived by taking any power of 4 (ie 4^x) 
         }
+        
         if( (n & (n-1) ) != 0){
             return false; // the number is not a power of 2 , therefore it can be a power of 4
         }
-        
         // now that we know it is a power of 2 --> therefore it contains only one set bit
         // and if a number is a power of 4, its set bit would exist at an even bit 
         // (1-based indexing for bits)
