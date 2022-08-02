@@ -13,10 +13,7 @@ public:
         
        while(i>=0){
            if( ( n & (1<<i) ) != 0 ){
-               // found MSB (set bit) --> if condition ki value ab 1 ho gyi hai
-               // kyuki 1 (MSB) & 1  (from 1<<i) --> in dono ka "and (&)" 
-               // equal to 1 hota hai
-               
+               // found MSB (set bit)
                break;
            }
            i--;
