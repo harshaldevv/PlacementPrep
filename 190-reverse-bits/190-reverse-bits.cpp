@@ -6,8 +6,12 @@ public:
         int r = 0;
         
         while(l>r){
-            bool bit1 = n & (1<<l);
+            bool bit1 = n & (1<<l); 
             bool bit2 = n & (1<<r);
+            
+            // int bit1 and int b2 --> this wont work kyuki int karke we wont get THE ith bit 
+            // rather we'll got some different number 
+            // humko bool hi karna hoga --> jab bhi bit chahiye do bool
             
             if(bit1 != bit2){
                 //toggle the bits
