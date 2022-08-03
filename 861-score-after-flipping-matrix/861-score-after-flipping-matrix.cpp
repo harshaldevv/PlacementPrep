@@ -77,8 +77,8 @@ public:
         for(int i = 0 ; i < m ; i++){
             for(int j = 0 ; j < n ; j++){
                 if(grid[i][j] == 1){
-                    sum += (grid[i][j])*(1<<(n-j-1));
-                    // 1<< n-j-1 --> means  2^(n-j-1);
+                    sum += (grid[i][j])*(1<<( n-1 - j));
+                    // 1<< n-j-1 --> means  2^(n-1-j);
                 }
             }
             // cout << "sum = " << sum << endl;
