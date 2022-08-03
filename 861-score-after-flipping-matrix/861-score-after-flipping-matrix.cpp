@@ -19,13 +19,7 @@ public:
         return ;
     }
     
-    void printRow(vector<int> &v){
-        for(auto &x : v){
-            cout << x << " " ;
-        }
-        cout << endl;
-        return ;
-    }
+   
     int matrixScore(vector<vector<int>>& grid) {
         
         int m = grid.size();
@@ -43,7 +37,7 @@ public:
         // printRow(grid[0]);
         
         //step 2 --> start from first column, flip all the bits of this column
-        // if the number of 1s is <= row_size/2 --> and row_size = "n"
+        // if the number of 1s is <= row_size/2 --> and row_size = "m"
         for(int j = 1  ; j < n ; j++){
             int ones = 0;
             for(int i = 0 ; i< m ; i++){
@@ -51,17 +45,13 @@ public:
                     ones++;
                 }
             }
-            cout << "ones = " << ones << endl;
+            
             if(ones <= m/2){
-                cout << "here" <<endl;
                 flipThisColumn(grid, j);
             }
         }
         
-        // printRow(grid[0]);
-        
         // calculate sum
-        
         int sum = 0;
         
         for(int i = 0 ; i < m ; i++){
@@ -70,12 +60,10 @@ public:
                     sum += (grid[i][j])*(1<<(n-j-1));
                 }
             }
-            cout << "sum = " << sum << endl;
+            // cout << "sum = " << sum << endl;
         }
         
         return sum;
-        
-        
         
     }
 };
