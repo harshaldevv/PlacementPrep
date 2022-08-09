@@ -21,7 +21,7 @@ public:
         // find the first set bit from right
         int index = -1;
         for(int i = 0 ; i < 32 ; i++){
-            if( (xorr>>i & 1) != 0 ){
+            if( (xorr & 1<<i) != 0 ){
                 index = i;
                 break;
             }
@@ -35,33 +35,18 @@ public:
         int first = 0;
         int second = 0;
         for(auto &x : nums){
-            if( (x>>index & 1) == 1){
-                first ^= x;
+            if( (x & 1<<index) ==0){
+                second ^= x;
             }
             else{
-                second ^= x;
+                first ^= x;
             }
         }
         
         ans[0] = first;
         ans[1] = second;
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         
         return ans;
     }
