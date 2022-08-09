@@ -10,7 +10,10 @@ public:
             
             for(int j = 0 ; j < nums.size() ; j++){
                 if( (nums[j]>>i & 1) == 1 ){
+                    // counting set bits 
+                    
                     // i th bit is 1
+                    
                     sum++;
                 }
             }
@@ -18,7 +21,7 @@ public:
             sum %= 3;
             
             if(sum != 0){
-                ans |= sum << i;
+                ans += sum << i;
             }
             
         }
