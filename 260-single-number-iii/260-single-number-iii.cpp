@@ -22,6 +22,10 @@ public:
         int index = -1;
         for(int i = 0 ; i < 32 ; i++){
             if( (xorr & 1<<i) != 0 ){
+                // ith bit set is SET --> therefore we do != 0 
+                // we dont do == "1" --> bcz i-th bit  =1 hai toh jab & lenge toh
+                // toh non zero number aata hai
+                
                 index = i;
                 break;
             }
@@ -36,6 +40,7 @@ public:
         int second = 0;
         for(auto &x : nums){
             if( (x & 1<<index) ==0){
+                // ith bit is not set 
                 second ^= x;
             }
             else{
