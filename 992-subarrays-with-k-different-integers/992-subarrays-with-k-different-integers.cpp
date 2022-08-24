@@ -7,8 +7,16 @@ public:
         
         
         // trick --> Exact(k) = atMost(k) - atMost(k-1);
+        // very HARD ques :")
+        
         
         return subaaraysWithAtMost_K_Distinct(k, nums)- subaaraysWithAtMost_K_Distinct(k-1, nums);
+        
+        /*
+        https://leetcode.com/problems/subarrays-with-k-different-integers/discuss/640450/c%2B%2B-code-easy-solution-using-map-and-sliding-window-with-approach
+        
+        */
+            
         
     }
     
