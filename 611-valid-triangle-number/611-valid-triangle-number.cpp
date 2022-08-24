@@ -38,19 +38,46 @@ public:
 //                 }
 //             }
 //         }
+        // Brute --> O(n^3) , SC  - O(1)
+        
+        
+        // Optimized --> O(n^2 * logn) , SC  - O(1)
+        
+//         sort(nums.begin(), nums.end());
+        
+//         for(int i = 0; i < n ; i++){
+//             for(int j = i  +1 ; j < n ; j++){
+//                 int a = nums[i];
+//                 int b = nums[j];
+                
+//                 // binary search to find numbers less than a+b
+//                 // if found incremenet cnt
+//                 int temp = doBinarySearch(j+1, n-1, a+b , nums);
+//                 cnt += temp;
+//                 // cout << "temp = " << temp <<endl;
+//             }
+//         }
+        
+//         return cnt;
+        
+        
+        
+        // Best --> O(n^2)
         
         sort(nums.begin(), nums.end());
-        
-        for(int i = 0; i < n ; i++){
-            for(int j = i  +1 ; j < n ; j++){
-                int a = nums[i];
-                int b = nums[j];
-                
-                // binary search to find numbers less than a+b
-                // if found incremenet cnt
-                int temp = doBinarySearch(j+1, n-1, a+b , nums);
-                cnt += temp;
-                // cout << "temp = " << temp <<endl;
+        for(int k = 2 ; k < n ; k++){
+            
+            int i = 0;
+            int j = k-1;
+            
+            while(i<j){
+                if(nums[i] + nums[j] > nums[k]){
+                    cnt += (j-i);
+                    j--;
+                }
+                else{
+                    i++;
+                }
             }
         }
         
