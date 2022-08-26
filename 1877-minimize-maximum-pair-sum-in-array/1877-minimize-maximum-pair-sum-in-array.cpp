@@ -18,6 +18,14 @@ public:
         
         return ans;
         
+        /*
+        https://leetcode.com/problems/minimize-maximum-pair-sum-in-array/discuss/1499532/Short-and-Easy-Explanation-or-2-Approaches-or-C%2B%2B-or-Beginner-friendly
+        
+        check O(n) TC in this link
+        
+        */
+        
+        
         
         
     }
