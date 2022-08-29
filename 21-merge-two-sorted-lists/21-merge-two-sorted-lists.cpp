@@ -11,47 +11,52 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        if(list1 == nullptr){
-            return list2;
+        
+        ListNode *newHead = nullptr;
+        ListNode *newTail = nullptr;
+        
+        ListNode *p1 = list1;
+        ListNode *p2 = list2;
+        
+        if(p1 == nullptr){
+            return p2;
         }
-        if(list2 == nullptr){
-            return list1;
+        
+        if(p2 == nullptr){
+            return p1;
         }
         
-        ListNode *p = list1;
-        ListNode *q = list2;
-        
-        ListNode *newHead, *newTail;
-        
-        if(p->val <= q->val){
-            newHead = p;
-            newTail = p;
-            p = p->next;
+        if(p1 ->val <= p2->val){
+            newHead = p1;
+            newTail = p1;
+            p1 = p1->next;
         }
         else{
-            newHead = q;
-            newTail = q;
-            q = q->next;
+            newHead = p2;
+            newTail = p2;
+            p2 = p2->next;
         }
         
-        while( p != nullptr && q!= nullptr){
-            if(p->val <= q->val){
-                newTail->next = p;
+        while(p1 && p2){
+            if(p1->val <= p2->val){
+                newTail->next = p1;
                 newTail = newTail->next;
-                p = p->next;
+                p1 = p1->next;
             }
             else{
-                newTail->next = q;
+                newTail->next = p2;
                 newTail = newTail->next;
-                q = q->next;
+                p2 = p2->next;
+                
             }
         }
         
-        if( p != nullptr ){
-            newTail->next = p;
+        if(p1){
+            newTail->next = p1;
         }
-        else if( q != nullptr ){
-            newTail->next = q;
+        
+        if(p2){
+            newTail->next = p2;
         }
         
         return newHead;
