@@ -10,44 +10,25 @@
  */
 class Solution {
 public:
-    ListNode *reverseLL(ListNode* head){
-        
-        ListNode * prev = nullptr;
-        ListNode *curr = head;
-        ListNode *nxt;
-        
-        while(curr != nullptr){
-            nxt = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = nxt;
-        }
-        
-        return prev;
-    }
-  
     ListNode* reverseKGroup(ListNode* head, int k) {
-        if(head == nullptr){
-            return head;
-        }
         
-        
-        ListNode *ptr = head;
+        ListNode *temp = head;
         
         for(int i = 0 ; i < k ; i++){
-            if(ptr != nullptr){
-                ptr = ptr->next;
-            }
-            else{
+            if(temp == nullptr){
                 return head;
             }
+            temp = temp->next;
         }
         
-        ListNode* curr = head;
-        ListNode *prev = nullptr;
-        ListNode* nxt;
         
-        for(int i = 0 ; i < k ; i++){
+        // reverse the k nodes now
+        ListNode *curr = head;
+        ListNode *prev = nullptr;
+        ListNode *nxt;
+        
+        // reverse k nodes
+        for(int i =0 ; i < k ; i++){
             nxt = curr->next;
             curr->next = prev;
             prev = curr;
@@ -57,8 +38,5 @@ public:
         head->next = reverseKGroup(curr, k);
         
         return prev;
-        
-        
-        
     }
 };
