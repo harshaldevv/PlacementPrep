@@ -10,44 +10,45 @@
  */
 class Solution {
 public:
-    int lengthLL(ListNode *head){
+    int getLength(ListNode *head){
         int l = 0;
-        
-        while(head != nullptr){
+        ListNode *temp = head;
+        while(temp != nullptr){
             l++;
-            head = head->next;
+            temp = temp->next;
         }
+        
         return l;
     }
     ListNode* rotateRight(ListNode* head, int k) {
-        if(head == nullptr || k ==0){
+        if(head == nullptr){
             return head;
         }
-        int l = lengthLL(head);
-        
-        // cout << "l = " << l << endl;
-        
-        if(k >= l){
-            k = k%l;
+        if(k==0){
+            return head;
         }
+        int l = getLength(head);
+        
+        cout << "l = " << l << endl;
+        
+        k = k%l;
+        cout << "k = " << k << endl;
         
         if(k == 0){
             return head;
         }
         
-        cout << "k,l " << k << " , " << l << endl;
         
-        ListNode *ptr = head;
-        
-        for(int i = 1 ; i < (l - k) ;i++){
-            ptr = ptr->next;
+        ListNode *p = head;
+        for(int i = 1 ; i < l -  k ; i++){
+            p = p->next;
         }
         
-        ListNode *temp = ptr->next;
-        ptr->next = nullptr;
+        cout << "p = " << p->val << endl;
+        ListNode *temp = p->next;
+        p->next =  nullptr;
         
         ListNode *temp2 = temp;
-        
         while(temp2->next != nullptr){
             temp2 = temp2->next;
         }
@@ -55,8 +56,6 @@ public:
         temp2->next = head;
         
         return temp;
-        
-        
         
     }
 };
