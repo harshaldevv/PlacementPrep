@@ -51,46 +51,45 @@ public:
         ListNode *p1 = head;
         ListNode*p2 = reverseLL(aage);
         
-//         while(p1 && p2){
-            
-//             ListNode *p1next = p1->next;
-            
-//             p1->next = p2;
-            
-//             p1 = p2;
-//             p2 = p1next;
-            
-//         }
-//         return ;
-        
-        
-        
-        if(p2 == nullptr){
-            return ;
-        }
-        
-        ListNode *newHead = p1;
-        ListNode *newTail = p1;
-        p1 = p1->next;
-        
-        newTail->next = p2;
-        newTail = newTail->next;
-        
-        bool flag = true;
         while(p1 && p2){
-            if(flag){
-                p2 = p2->next;
-                newTail->next = p1;
-                newTail = newTail->next;
-            }
-            else{
-                p1 = p1->next;
-                newTail->next = p2;
-                newTail = newTail->next;
-            }
             
-            flag = !flag;
+            ListNode *p1next = p1->next;
+            
+            p1->next = p2;
+            
+            p1 = p2;
+            p2 = p1next;
+            
         }
+        return ;
+        
+        
+        
+//         if(p2 == nullptr){
+//             return ;
+//         }
+//         ListNode *newHead = p1;
+//         ListNode *newTail = p1;
+//         p1 = p1->next;
+        
+//         newTail->next = p2;
+//         newTail = newTail->next;
+        
+//         bool flag = true;
+//         while(p1 && p2){
+//             if(flag){
+//                 p2 = p2->next;
+//                 newTail->next = p1;
+//                 newTail = newTail->next;
+//             }
+//             else{
+//                 p1 = p1->next;
+//                 newTail->next = p2;
+//                 newTail = newTail->next;
+//             }
+            
+//             flag = !flag;
+//         }
         
     }
 };
