@@ -12,55 +12,46 @@ class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         
-        if(l1 == nullptr){
-            return l2;
-        }
-        if(l2 == nullptr){
-            return l1;
-        }
+        int sum = 0;
+        int c = 0;
         
-        ListNode *p1 = l1;
+        ListNode* p1 = l1;
+        
         ListNode *p2 = l2;
         
-        ListNode *dummy = new ListNode(-1);
-        ListNode* cursor = dummy;
         
-        int sum = 0;
-        int carry = 0;
+        ListNode *dummy = new ListNode (-1);
+        ListNode *temp = dummy;
         
-        while ( p1 || p2 || carry){
-            
+        while(p1 || p2 || c){
             sum = 0;
             
-            sum+= carry;
-            carry = 0;
-            if(p1 != nullptr){
+            if(p1){
                 sum += p1->val;
             }
             
-            if( p2 != nullptr){
+            if(p2){
                 sum += p2->val;
             }
             
-            if(sum >= 10){
-                carry = sum/10;
-                sum%= 10;
-            }
+            sum += c;
+            c = 0;
             
-            ListNode *temp = new ListNode(sum);
-            cursor->next = temp;
-            cursor = cursor->next;
+            c = sum/10;
+            sum %=10;
             
-            if(p1 != nullptr){
+            temp->next = new ListNode (sum);
+            temp = temp->next;
+            
+            if(p1){
                 p1 = p1->next;
             }
-            
-            if(p2 != nullptr ){
+            if(p2){
                 p2 = p2->next;
             }
-            
         }
         
         return dummy->next;
+        
     }
 };
