@@ -12,15 +12,15 @@ public:
             return ;
         }
         
+        // exclude
+        solve(i+1, sum, holder, ans, nums, k);
+        
         //include
         holder.push_back(nums[i]);
         solve(i, sum + nums[i], holder, ans, nums, k);
         
         // backtrack
         holder.pop_back();
-        
-        // exclude
-        solve(i+1, sum, holder, ans, nums, k);
         
         return ;
         
