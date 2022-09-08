@@ -1,22 +1,20 @@
 class Solution {
 public:
-    bool isPossible(vector<string> &board, int currRow, int currCol, int n){
-        // go full left
+    
+    bool ispossible(int R, int C, vector<string> &board, vector<vector<string>> &ans, int n){
+        // go left
         
-        int j = currCol ;
-        while(j>=0){
-            if(board[currRow][j] == 'Q' ){
+        for(int i = C ; i >= 0 ; i--){
+            if(board[R][i] == 'Q'){
                 return false;
             }
-            j--;
         }
         
+        // go diagnoally left up
+        int i = R;
+        int j = C;
         
-        // go diagonally up ( i--, j--)
-        int i = currRow;
-        j = currCol;
-        
-        while(i >=0  && j >=0 ){
+        while( i>= 0 && j >=0 ){
             if(board[i][j] == 'Q'){
                 return false;
             }
@@ -24,12 +22,11 @@ public:
             j--;
         }
         
+        // go diagnoally left bottom
+        i = R;
+        j = C;
         
-        // go diagonally down ( i++, j--)
-        i = currRow;
-        j = currCol;
-        
-        while(i < n && j >=0){
+        while(i < n && j >= 0){
             if(board[i][j] == 'Q'){
                 return false;
             }
@@ -38,46 +35,44 @@ public:
         }
         
         return true;
+        
     }
-    void solve(vector<string>&board, int currCol, vector<vector<string>>&ans, int n){
-       
-        // n = board's size --> n*n = totalrows * totalcolumns
-        if(currCol >= board.size()){
+    
+    void solve(int col, vector<string> &board, vector<vector<string>> &ans, int n){
+        if(col == n){
             ans.push_back(board);
             return ;
         }
         
-        for(int i = 0 ; i < n ; i++){
-            if(isPossible(board, i, currCol, n)){
-                board[i][currCol] = 'Q';
-                solve(board, currCol+1, ans, n);
-                board[i][currCol] = '.';
+        int rows = n;
+        
+        for(int r = 0 ; r < rows ; r++){
+            if(ispossible(r, col, board, ans, n)){
+                board[r][col] = 'Q';
+                solve(col+1, board, ans, n);
+                board[r][col] = '.';
             }
         }
         
         return ;
         
     }
-    
     vector<vector<string>> solveNQueens(int n) {
         
         vector<vector<string>> ans;
-        
+    
         string s = "";
         
         for(int i = 0 ; i < n ; i++){
-            s+='.';
+            s+= '.';
         }
         
-        vector<string> board(n,s);
+        vector<string> board(n, s);
         
-        solve(board, 0, ans, n);
+        // check every column
+        solve(0, board, ans, n);
         
         return ans;
-        
-        // basically har col pe toh jana hai
-        
-        
         
     }
 };
