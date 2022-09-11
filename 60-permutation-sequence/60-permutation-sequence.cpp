@@ -1,6 +1,10 @@
 class Solution {
 public:
     string getPermutation(int n, int k) {
+        
+        // TC - O(n) * O(n) = O(n^2)
+        // SC - O(n)
+        
         vector<int> numb;
         
         for(int i=1 ; i <= n ; i++){
