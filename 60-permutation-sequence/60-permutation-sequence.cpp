@@ -20,7 +20,7 @@ public:
             fact.push_back(f);
         }
         
-        k--;
+        k--; // 0 based indexing for the kth permutation
         
         string ans = "";
         
