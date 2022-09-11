@@ -1,52 +1,39 @@
 class Solution {
 public:
-    void solve(int i, vector<string> &phone, string &digits,  string &path,vector<string> &ans){
-        if(i==digits.size()){
-            ans.push_back(path);
-                return ;
+    
+    void solve(string &digits, int i, vector<string> &ans, string &holder, vector<string> &mp){
+        
+        if(i >= digits.size()){
+            ans.push_back(holder);
+            return ;
         }
         
-        for(auto &c : phone[digits[i] - '0']){
-            path.push_back(c);
-            solve(i+1, phone, digits, path, ans);
-            path.pop_back(); // back track
+        auto t = mp[digits[i] - '0'];
+        
+        for(auto &x : t){
+            holder.push_back(x);
+            solve(digits, i +1, ans, holder, mp);
+            holder.pop_back();
         }
+        
         return ;
+
     }
     vector<string> letterCombinations(string digits) {
         
-        vector<string> phone{"", "", "abc", "def", "ghi", "jkl", "mno","pqrs","tuv","wxyz"};
-        
-        
-
         vector<string> ans;
-        if(digits.size() == 0){
+        if(digits == ""){
             return ans;
         }
-        string path = "";
-        solve(0, phone, digits, path, ans);
+        string holder = "";
         
         
+        vector<string> mp = {"#", "##", "abc", "def", "ghi", "jkl" , "mno", "pqrs", "tuv", "wxyz"};
         
+        // cout << mp.size() << " blah" << endl;
         
-        
-        
-        
-        
-        
-        // backtracking khtm
-        
-        // YAHI 3 bach rahe hai, jaldi jaldi khtm kardo
-        
-        // trees (interviewbit poora)
-        // graphs (dijsktra, all path algorithms, 0-1 BFS)
-        // DP revise karna hai
-        
-        // 2 pointers / sliding window (aditya verma)
-        
-        
-        
-        
+        int i = 0;
+        solve(digits, i, ans, holder, mp);
         
         return ans;
         
