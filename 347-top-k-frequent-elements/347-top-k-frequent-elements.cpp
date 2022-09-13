@@ -8,7 +8,7 @@ public:
         // min heap --> cuz hume min freq wale elements ko nikalte rehna hai
         // and then last me jo bachenge woh max freq wale honge
         
-        vector<int> ans(k, -1);
+        vector<int> ans;
         
         
         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
@@ -25,11 +25,12 @@ public:
             }
         }
         
-        int indx = k-1;
+        // int indx = k-1;
         
         while(!pq.empty()){
-            ans[indx] = pq.top().second;
-            indx--;
+            // ans[indx] = pq.top().second;
+            ans.push_back(pq.top().second);
+            // indx--;
             pq.pop();
         }        
         
