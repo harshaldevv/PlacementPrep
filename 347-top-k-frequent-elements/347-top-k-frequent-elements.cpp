@@ -2,34 +2,36 @@ class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
         
+        // heap --> cuz of "k"
+        // pair ki feeling ie number, freq
         
-        // min heap cuz we want minimum (or less) frequency wale 
-        // elements pop out ho jaye
-        // last me higher frequency wale reh jayengge
+        // min heap --> cuz hume min freq wale elements ko nikalte rehna hai
+        // and then last me jo bachenge woh max freq wale honge
         
-        unordered_map<int, int> mp;
-        for(auto &x :nums){
-            mp[x]++;
-        }
+        vector<int> ans(k, -1);
         
-        // min heap -- > {freq, element}
         
         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
         
+        unordered_map<int, int> mp;
+        for(auto &x : nums){
+            mp[x]++;
+        }
+        
         for(auto &it : mp){
             pq.push({it.second, it.first});
-            
             if(pq.size() > k){
                 pq.pop();
             }
         }
         
-        vector<int> ans;
+        int indx = k-1;
+        
         while(!pq.empty()){
-            auto front = pq.top();
+            ans[indx] = pq.top().second;
+            indx--;
             pq.pop();
-            ans.push_back(front.second);
-        }
+        }        
         
         return ans;
     }
