@@ -1,27 +1,39 @@
 class Solution {
 public:
-    vector<int> findClosestElements(vector<int>& nums, int k, int target) {
-        // 
-        // max heap
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
         
-        priority_queue<pair<int,int> > pq; // maxheap
+        // k suggest usage of heap
         
+        // closest now means -> what to use -> min/max ?
+        
+        // closest means diff should be as low as possible
+        // therefore if we keep getting elements with max diff --> ie max heap
+        
+        // and then end we'll have elements with the least possible diff, cuz 
+        
+        // humne pehle hi max diff wale uda denge
+        
+        
+        priority_queue<pair<int, int>> maxH;
         vector<int> ans;
         
-        for(int i = 0 ; i < nums.size() ; i++){
-            int diff = abs(target - nums[i]);
-            pq.push({diff, nums[i]});
-            if(pq.size() > k){
-                pq.pop();
+        for(auto &p : arr){
+            int diff = abs(p-x);
+            maxH.push({diff, p});
+            
+            if(maxH.size() > k){
+                maxH.pop();
             }
         }
         
-        while(!pq.empty()){
-            auto top = pq.top();
-            pq.pop();
-            ans.push_back(top.second);
+        while(!maxH.empty()){
+            auto topp = maxH.top();
+            ans.push_back(topp.second);
+            maxH.pop();
         }
+        
         sort(ans.begin(), ans.end());
         return ans;
+        
     }
 };
