@@ -2,28 +2,23 @@ class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
         
-      
-        
-        // trivial soln --> Sort the array and return nums[k-1] 
-        // TC - O(nlogn) , SC - O(1)
+        // trival soln --> sort karke answer nikal do --> Tc O(nlogn),   SC - O(1)
         
         
-        // Kth element or "Largest" --> either of them suugest "HEAP"
-        // after heap is decided, which heap(min/max) to use
-        // thererfore "Largest" --> "MIN" Heap is to be used
+        // Optimized soln using heaps
+        // kth largest --> means heaps ... and largest implies the use of "MIN" heap
         
-        // TC - O(nlogk), SC - O(k)
         
-        priority_queue<int, vector<int>, greater<int>> minh;
+        priority_queue<int, vector<int>, greater<int>> minH;
         
-        for(auto x : nums){
-            minh.push(x);
-            if(minh.size() > k){
-                minh.pop();
+        for(auto &x : nums){
+            minH.push(x);
+            if(minH.size() > k){
+                minH.pop();
             }
         }
         
-        return minh.top();
+        return minH.top();
         
     }
 };
