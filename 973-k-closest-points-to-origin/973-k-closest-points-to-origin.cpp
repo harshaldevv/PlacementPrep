@@ -1,40 +1,36 @@
-#define p pair<int, pair<int, int>> 
 class Solution {
 public:
     vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
-        // maxheap 
-        // of  pair<int, pair<int,int>>;
+        // maxheap
         
-        // make max heap
-        priority_queue<p> maxHeap;
+        priority_queue<pair<int, pair<int, int>>> pq;
         
-        //put elements in maxHeap
-        
-        for(auto &elem : points){
-            int x = elem[0];
-            int y = elem[1];
-            long dist = x*x + y*y;
+        for(auto & it : points){
+            int x = it[0];
+            int y = it[1];
+            int dist = x*x + y*y;
             
-            maxHeap.push({dist, {x,y}});
+            pq.push({dist, {x,y}});
             
-            if(maxHeap.size() > k){
-                maxHeap.pop();
+            if(pq.size() > k){
+                pq.pop();
             }
         }
         
         vector<vector<int>> ans;
-        
-        while(!maxHeap.empty()){
-            auto elem = maxHeap.top();
-            maxHeap.pop();
-            
-            int x = elem.second.first;
-            int y = elem.second.second;
-            
-            ans.push_back({x,y});
+        while(!pq.empty()){
+            auto top = pq.top();
+            pq.pop();
+            // cout << top.second.first << " " << top.second.second << endl;
+            // ans.push_back(top.second);
+            int x = top.second.first;
+            int y = top.second.second;
+            vector<int> temp(2, -1);
+            temp[0] = x;
+            temp[1] = y;
+            ans.push_back(temp);
         }
         
         return ans;
     }
-    
 };
