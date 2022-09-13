@@ -25,10 +25,8 @@ public:
             // ans.push_back(top.second);
             int x = top.second.first;
             int y = top.second.second;
-            vector<int> temp(2, -1);
-            temp[0] = x;
-            temp[1] = y;
-            ans.push_back(temp);
+            
+            ans.push_back({x,y});
         }
         
         return ans;
