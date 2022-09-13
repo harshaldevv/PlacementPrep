@@ -11,12 +11,6 @@ public:
             mp[x]++;
         }
         
-        // vector<int> ans;
-        
-        // need a custom comparator cuz If multiple values have 
-        // the same frequency, sort them in decreasing order.
-        
-        // min heap
         sort(nums.begin(), nums.end(), [&mp](auto &a, auto &b) -> bool {
             if(mp[a] == mp[b]){
                 return a > b;
@@ -27,6 +21,6 @@ public:
         } );
                 
             
-            return nums;
+        return nums;
     }
 };
