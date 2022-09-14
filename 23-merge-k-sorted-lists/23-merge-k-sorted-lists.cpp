@@ -8,40 +8,43 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+#define ppl pair<int, pair<int, ListNode*>> 
 class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         
-        // min heap
-        
-        priority_queue<pair<int, ListNode*>, vector<pair<int, ListNode*>>, greater<pair<int, ListNode*>>> pq; // minheap
-        
-        for(auto &x : lists){
-            if(x != nullptr){
-                pq.push({x->val, x});
-            }
-        }
-        
-        
         ListNode *dummy = new ListNode(-1);
+        
         ListNode *ptr = dummy;
         
-        // iterate in the pq
-        while(!pq.empty()){
-            auto front = pq.top();
-            pq.pop();
-            
-            int val = front.first;
-            
-            ListNode *temp = new ListNode(val);
-            ptr->next = temp;
-            ptr = ptr->next;
-            
-            if(front.second->next != nullptr){
-                pq.push({front.second->next->val, front.second->next});
+        
+        // min heap
+        
+        priority_queue<ppl, vector<ppl> , greater<ppl>> pq;
+        
+        for(int i = 0 ; i < lists.size() ; i++){
+            if(lists[i] != nullptr ){
+                auto t = lists[i];
+                cout << "t  val = " << t->val << endl;
+                pq.push({t->val , {i, t}});
             }
         }
         
+        while(!pq.empty()){
+            auto top = pq.top();
+            pq.pop();
+            
+            int e = top.first;
+            int i = top.second.first;
+            auto pointerrr = top.second.second;
+            
+            ptr->next = new ListNode(e);
+            ptr = ptr->next;
+            
+            if(pointerrr->next != nullptr){
+                pq.push({pointerrr->next->val, {i, pointerrr->next}});
+            }
+        }
         
         return dummy->next;
         
