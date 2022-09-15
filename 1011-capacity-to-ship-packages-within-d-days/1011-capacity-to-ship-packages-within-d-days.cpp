@@ -1,18 +1,22 @@
 class Solution {
 public:
-    bool isvalid(int mid, vector<int> &weights, int D){
-        // we wish to wish all weights using a ship whose max capacity = mid 
-        // in D days
+    int check(vector<int> &weights, int W, int days){
+        int d = 1;
         
-        int reqDays = 1;
-        int sum = 0;
-        for(int i = 0 ; i < weights.size() ; i++){
-            sum += weights[i];
-            if(sum > mid){
-                sum = weights[i];
-                reqDays++;
+        int temp = 0;
+        
+        for(int i = 0 ;i < weights.size() ; i++){
+            
+            temp += weights[i];
+            
+            if(temp > W){
+                
+                temp = 0;
+                d++;
+                i--;
             }
-            if(reqDays > D){
+            
+            if(d > days){
                 return false;
             }
         }
@@ -20,23 +24,21 @@ public:
         return true;
     }
     int shipWithinDays(vector<int>& weights, int days) {
-        int n = weights.size();
         
-        int l = 0;
-        int r = 0;
-        
-        for(int i = 0 ; i < n ; i++){
-            l = max(l, weights[i]);
-            r += weights[i];
+        int l = -1, r = 0;
+        for(auto & x : weights){
+            l = max(l, x);
+            r += x;
         }
+        cout << "l = " << l << endl;
+        cout << "r = " << r << endl;
         
-        int ans = -1;
+        int ans = 0;
+        
         while(l<=r){
             int mid = l + (r-l)/2;
-            // cout << "mid = " << mid << endl;
-            // mid represnts the capacity of our probable ship 
-            if(isvalid(mid, weights, days)){
-                // since we gotta decrease/minimise the weight
+            
+            if(check(weights, mid, days)){
                 ans = mid;
                 r = mid -1;
             }
@@ -46,7 +48,6 @@ public:
         }
         
         return ans;
-        
         
     }
 };
