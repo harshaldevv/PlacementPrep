@@ -1,87 +1,49 @@
 class Solution {
 public:
-    int doBinarySearch(int l, int r, int target, vector<int> &nums){
+    
+    int doBinarySearch(vector<int> &nums, int target, int l, int r){
+        // find all X st X < target 
         int start = l;
-        while(l<=r){
+        int ans = 0;
+        
+        while(l <= r){
             
             int mid = l + (r-l)/2;
             
-            if(nums[mid] < target){
-                l = mid +1;
-            }
-            else{
+            if( nums[mid] >= target){
+                
                 r = mid -1;
             }
-            
+            else if(nums[mid]  < target){
+                // ans = mid;
+                l = mid +1;
+            }
         }
         
-        return l - start;
+        return l - start ;
     }
-    
     int triangleNumber(vector<int>& nums) {
+        
+        sort(nums.begin(), nums.end());
         
         int n = nums.size();
         
-        int cnt = 0;
+        int ans = 0;
         
-//         for(int i = 0 ; i < n ; i++){
-//             for(int j = i +1 ; j < n ; j++){
-//                 for(int k = j +1  ; k < n ; k++){
-                    
-//                     int a = nums[i];
-//                     int b = nums[j];
-//                     int c = nums[k];
-                    
-//                     if(a+b > c && b +c > a && a+c > b){
-//                         cnt++;
-//                     }
-//                 }
-//             }
-//         }
-        // Brute --> O(n^3) , SC  - O(1)
-        
-        
-        // Optimized --> O(n^2 * logn) , SC  - O(1)
-        
-//         sort(nums.begin(), nums.end());
-        
-//         for(int i = 0; i < n ; i++){
-//             for(int j = i  +1 ; j < n ; j++){
-//                 int a = nums[i];
-//                 int b = nums[j];
+        for(int i = 0 ; i <  n ; i++){
+            for(int j = i +1 ; j < n ; j++){
                 
-//                 // binary search to find numbers less than a+b
-//                 // if found incremenet cnt
-//                 int temp = doBinarySearch(j+1, n-1, a+b , nums);
-//                 cnt += temp;
-//                 // cout << "temp = " << temp <<endl;
-//             }
-//         }
-        
-//         return cnt;
-        
-        
-        
-        // Best --> O(n^2)
-        
-        sort(nums.begin(), nums.end());
-        for(int k = 2 ; k < n ; k++){
-            
-            int i = 0;
-            int j = k-1;
-            
-            while(i<j){
-                if(nums[i] + nums[j] > nums[k]){
-                    cnt += (j-i);
-                    j--;
-                }
-                else{
-                    i++;
-                }
+                int a = nums[i];
+                int b = nums[j];
+                
+                // c < a + B find
+                // find all c such that c < sum
+                
+                ans += doBinarySearch(nums, a+b, j+1, nums.size() -1);
             }
         }
         
-        return cnt;
+        return ans;
         
     }
 };
