@@ -10,7 +10,8 @@ public:
             }
         }
         
-        return curr +1 ;
+        return curr +1 ; // +1 bcz curr toh indexing ke lie use ho raha hai and zero 
+        // based indexing ha so yeah , isliye 1 based me lane ke lie +1 kar dia
         
     }
 };
