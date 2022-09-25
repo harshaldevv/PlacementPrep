@@ -4,7 +4,7 @@ public:
         
         int curr = 0;
         for(int i = 1 ; i < nums.size() ; i++){
-            if(nums[i] != nums[i-1]){
+            if(nums[i] != nums[curr]){
                 nums[curr+1] = nums[i];
                 curr++;
             }
