@@ -10,6 +10,24 @@
  * };
  */
 class BSTIterator {
+    /*
+    Approach:
+        basically, we need to implement a inorder traversal.
+        we are going to perform iterative DFS for that we need stack
+        we are going to start from the root and keep pushing the left nodes to the stack
+
+        next():
+            we are going to pop the top element from the stack and return it
+            if the popped element has a right child, we are going to push the right child to the stack
+            if the popped element has no right child, we are going to return the popped element
+        hasNext():
+            if the stack is empty, return false
+            else return true
+    
+    
+    HELPFUL LINK = https://leetcode.com/problems/binary-search-tree-iterator/discuss/1965329/MAY-be-you-UNDERSTAND!!
+    */
+    
 public:
     stack<TreeNode*> st;
     
