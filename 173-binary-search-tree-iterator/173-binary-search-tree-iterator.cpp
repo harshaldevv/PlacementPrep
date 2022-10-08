@@ -29,6 +29,9 @@ class BSTIterator {
     */
     
 public:
+    // TC - O(1) 
+    // SC - O(H) 
+    
     stack<TreeNode*> st;
     
     BSTIterator(TreeNode* root) {
@@ -36,6 +39,8 @@ public:
     }
     
     int next() {
+        
+        
         TreeNode* top = st.top();
         st.pop();
         addAllLeft(top->right);
