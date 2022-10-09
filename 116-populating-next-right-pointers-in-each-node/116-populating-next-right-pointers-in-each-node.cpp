@@ -20,44 +20,35 @@ class Solution {
 public:
     Node* connect(Node* root) {
         
-        // code from the populate next pointer 2
-        // this is also => SC - O(1), TC - O(N)
+        if(root == nullptr){
+            return nullptr;
+        }
         
-        Node* parent = root;
-        Node* child = nullptr;
-        Node *childHead = nullptr;
+        Node* p = root;
         
-        
-        while(parent){
+        while(p){
+            Node* nextLevel = p->left;
             
-            while(parent){
-                
-                if(parent->left){
-                    if(childHead == nullptr){
-                        childHead = parent->left;
-                    }
-                    else{
-                        child->next = parent->left;
-                    }
-                    child = parent->left;
-                }
-                
-                if(parent->right){
-                    if(childHead == nullptr){
-                        childHead = parent->right;
-                    }
-                    else{
-                        child->next = parent->right;
-                    }
-                    child = parent->right;
-                }
-                
-                parent = parent->next;
+            if(nextLevel == nullptr){
+                // we've done our job of linking
+                break;
             }
-
-            parent = childHead;
-            childHead = nullptr;
-            child = nullptr;
+            else{
+                
+                while(p){    
+                    p->left->next = p->right;
+                    
+                    if(p->next){
+                        p->right->next = p->next->left;
+                    }
+                    else{
+                        // do nothing
+                        ;
+                    }
+                    p = p->next;
+                }
+            }
+            p = nextLevel;
         }
         
         
