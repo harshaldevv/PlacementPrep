@@ -19,6 +19,9 @@ public:
 class Solution {
 public:
     Node* connect(Node* root) {
+        if(root == nullptr){
+            return nullptr;
+        }
         
         /*
             Understood the concept from here; 
