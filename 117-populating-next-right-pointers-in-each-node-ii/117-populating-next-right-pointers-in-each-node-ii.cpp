@@ -20,128 +20,44 @@ class Solution {
 public:
     Node* connect(Node* root) {
         
-        if(root == nullptr){
-            return nullptr;
-        }
+        Node* parent = root;
+        Node* child = nullptr;
+        Node *childHead = nullptr;
         
-        // Level order traversal TC O(n) but with O(1) space
         
-        // queue<TreeNode*> q;
-        
-        Node *p = root;
-        
-        while(p){
-        
-            Node *nextLevel = NULL;
+        while(parent){
             
-            if(p->left){
-                nextLevel = p->left;
-            }
-            else if(p->right){
-                nextLevel = p->right;
-            }
-            
-            
-            
-            while(p){
+            while(parent){
                 
-                Node *runner = NULL;
-
-                if(p->left){
-                    
-                    //check if nextLevel is null 
-                    // if it is initalise the nextlevel with this "p" child
-                    if(nextLevel == NULL){
-                        nextLevel = p->left;
-                    }
-                    
-                    if(p->right){
-                        p->left->next = p->right;
+                if(parent->left){
+                    if(childHead == nullptr){
+                        childHead = parent->left;
                     }
                     else{
-                        // now basically find a node such that it has either of its child
-                        // Node *runner = p->next;
-                        runner = p->next;
-                        while(runner != nullptr){
-                            if(runner->left != nullptr || runner->right != nullptr){
-                                break;
-                            }
-                            runner = runner->next;
-                        }
-
-                        if(runner != nullptr && runner->left){
-                            p->left->next = runner->left;
-                        }
-                        else if (runner != nullptr && runner->right) {
-                            p->left->next = runner->right;
-                        }
-                        
+                        child->next = parent->left;
                     }
+                    child = parent->left;
                 }
                 
-                if(p->right){
-                    
-                    //check if nextLevel is null 
-                    // if it is initalise the nextlevel with this "p" child
-                    if(nextLevel == NULL){
-                        nextLevel = p->right;
-                    }
-                    
-                    if(runner == NULL){
-                        // find that node jiska koi left ya right child ho
-                        // now basically find a node such that it has either of its child
-                        // Node *runner = p->next;
-                        Node* runner2 = p->next;
-                        // cout << "runner2 --> " << runner2->val << endl;
-                        while(runner2 != nullptr){
-                            if(runner2->left != nullptr || runner2->right != nullptr){
-                                // cout << "runner2 = " << runner2->val << endl;
-                                break;
-                            }
-                            runner2 = runner2->next;
-                        }
-
-                        if( runner2 != nullptr && runner2->left){
-                            p->right->next = runner2->left;
-                        }
-                        else if ( runner2 != nullptr && runner2->right ){
-                            p->right->next = runner2->right;
-                        }
+                if(parent->right){
+                    if(childHead == nullptr){
+                        childHead = parent->right;
                     }
                     else{
-                        // runner null nahi tha
-                        Node *runner2 = runner;
-                        
-                        while(runner2 != nullptr){
-                            if(runner2->left != nullptr || runner2->right != nullptr){
-                                break;
-                            }
-                            runner2 = runner2->next;
-                        }
-
-                        if( runner2 != nullptr && runner2->left){
-                            p->right->next = runner2->left;
-                        }
-                        else if ( runner2 != nullptr && runner2->right ){
-                            p->right->next = runner2->right;
-                        }   
+                        child->next = parent->right;
                     }
+                    child = parent->right;
                 }
                 
-                
-                p = p->next;
-            
-        
+                parent = parent->next;
             }
-            if(nextLevel == nullptr){
-                break;
-            }
-            
-            p = nextLevel;
+
+            parent = childHead;
+            childHead = nullptr;
+            child = nullptr;
         }
         
         
         return root;
-        
     }
 };
