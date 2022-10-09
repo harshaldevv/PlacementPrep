@@ -19,40 +19,42 @@ public:
 class Solution {
 public:
     Node* connect(Node* root) {
+        if(root == nullptr){
+            return nullptr;
+        }
         
-        // TC - O(n)
-        // SC - O(1)
+        queue<Node*> q;
+        q.push(root);
+        // root->next = nullptr;
         
-        Node *p = root;
-        
-        while(p ){
-            Node *nextLevel = p->left;
-            if(nextLevel == nullptr){
-                // it means we have are "p" at the last level
-                // and we've connected the last level 
-                // therefore just break
-                break;
-                
-            }
+        while(!q.empty()){
             
-            while(p){
+            auto sz = q.size();
+            
+            for(int i = 0 ; i < sz ; i++){
                 
-                p->left->next = p->right;
+                auto front = q.front();
+                q.pop();
                 
-                if(p->next){
-                    p->right->next = p->next->left;
+                if( i < sz -1 ){
+                    auto agla = q.front();
+                    front->next = agla;
                 }
                 else{
-                    // p->next= null hai,
-                    // therefore kuch mat karo abhi
-                    ;
+                    front->next = nullptr;
                 }
                 
-                p = p->next;
+                if(front->left){
+                    q.push(front->left);
+                }
+                
+                if(front->right){
+                    q.push(front->right);
+                }
             }
-            p = nextLevel;
         }
         
         return root;
+        
     }
 };
