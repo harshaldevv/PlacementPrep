@@ -19,42 +19,41 @@ public:
 class Solution {
 public:
     Node* connect(Node* root) {
+        
         if(root == nullptr){
             return nullptr;
         }
         
-        queue<Node*> q;
-        q.push(root);
-        // root->next = nullptr;
+        Node* p = root;
         
-        while(!q.empty()){
+        while(p){
+            Node* nextLevel = p->left;
             
-            auto sz = q.size();
-            
-            for(int i = 0 ; i < sz ; i++){
+            if(nextLevel == nullptr){
+                // we've done our job of linking
+                break;
+            }
+            else{
                 
-                auto front = q.front();
-                q.pop();
-                
-                if( i < sz -1 ){
-                    auto agla = q.front();
-                    front->next = agla;
-                }
-                else{
-                    front->next = nullptr;
-                }
-                
-                if(front->left){
-                    q.push(front->left);
-                }
-                
-                if(front->right){
-                    q.push(front->right);
+                while(p){    
+                    p->left->next = p->right;
+                    
+                    if(p->next){
+                        p->right->next = p->next->left;
+                    }
+                    else{
+                        // do nothing
+                        ;
+                    }
+                    p = p->next;
                 }
             }
+            p = nextLevel;
         }
         
+        
         return root;
+        
         
     }
 };
