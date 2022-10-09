@@ -20,6 +20,17 @@ class Solution {
 public:
     Node* connect(Node* root) {
         
+        /*
+            Understood the concept from here; 
+            discuss section couldnt help me visualise the code
+        
+            https://www.youtube.com/watch?v=vy2mnT3TEXQ
+            
+            
+            TC - O(N), SC - O(1) --> this is space optimized than the BFS
+            level order traversal one , as in BFS we used O(N) space.
+        */
+        
         Node* parent = root;
         Node* child = nullptr;
         Node *childHead = nullptr;
