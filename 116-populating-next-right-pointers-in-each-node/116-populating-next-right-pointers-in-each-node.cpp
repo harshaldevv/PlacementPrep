@@ -30,7 +30,11 @@ public:
         
         while(parent){
             
+            // this while loop takes care of vertical traversal
+            
             while(parent){
+                
+                // this while loop takes care of horizontal traversal
                 
                 if(parent->left){
                     if(childHead == nullptr){
@@ -52,10 +56,12 @@ public:
                     child = parent->right;
                 }
                 
-                parent = parent->next;
+                parent = parent->next; // horizontal traversal of parent pointer
             }
 
-            parent = childHead;
+            parent = childHead; // vertical traversal of parent pointer 
+            // parent pointer going one level down
+            
             childHead = nullptr;
             child = nullptr;
         }
