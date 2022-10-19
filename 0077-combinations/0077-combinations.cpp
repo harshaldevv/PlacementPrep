@@ -12,11 +12,11 @@ public:
             return ;
         }
         
-        //exclude (exclude the current number , therefore no decrease in the size of holder ie "k")
+        //exclude (exclude the current number, therefore no decrease in the size of holder ie "k")
         helper(numb +1, holder, ans, n, k);
         
         
-        //include (include the current number , therefore decrease in the size of holder by 1, ie "k = k-1")
+        //include (include the current number, therefore decrease the size of holder by 1, ie "k = k-1")
         holder.push_back(numb);
         helper(numb +1, holder, ans, n, k-1);
         
