@@ -11,9 +11,8 @@ public:
         }
         
         //exclude
-        if(numb <= n){
-            helper(numb +1, holder, ans, n, k);
-        }
+        
+        helper(numb +1, holder, ans, n, k);
         
         
         //include
