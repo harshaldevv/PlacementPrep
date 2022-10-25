@@ -24,7 +24,9 @@ public:
         if(hasNext()){
             auto temp = st.top();
             st.pop();
-            if(temp->right){
+            if(temp->right){ 
+                // if right child exists of the top node, 
+                // apply pushAll function to the right child
                 pushAll(temp->right);
             }
             return temp->val;
