@@ -11,12 +11,13 @@
  */
 class Solution {
 public:
-    bool isSame(TreeNode* p, TreeNode *q){
+    
+    bool check(TreeNode *p, TreeNode *q){
         if(!p && !q){
             return true;
         }
         
-        if(!p && q || p && !q){
+        if(p && !q || !p && q){
             return false;
         }
         
@@ -24,15 +25,15 @@ public:
             return false;
         }
         
-        return isSame(p->right, q->left) && isSame(p->left, q->right);
-        
+        return check(p->right, q->left) && check(p->left, q->right);
     }
+    
     bool isSymmetric(TreeNode* root) {
+        if(root == nullptr){
+            return false;
+        }
         
-        TreeNode *p = root->left;
-        TreeNode *q = root->right;
-        
-        return isSame(p,q);
+        return check(root->left, root->right);
         
     }
 };
