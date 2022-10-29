@@ -11,30 +11,29 @@
  */
 class Solution {
 public:
-    int height (TreeNode* root){
-        if(root == nullptr){
+    
+    int helper(TreeNode* root){
+        if(!root){
             return 0;
         }
         
-        int l = height(root->left);
-        int r = height(root->right);
+        int left = helper(root->left);
+        int right = helper(root->right);
+        int diff = abs(left - right);
         
-        return 1 + max(l,r);
+        if(left == -1 || right == -1 || diff > 1 ){
+            return -1;
+        }
+        
+        return 1 + max(left, right);
         
     }
+    
     bool isBalanced(TreeNode* root) {
         
-        if(root == nullptr){
-            return true;
-        }
-        
-        int left = height(root->left);
-        int right = height(root->right);
-        
-        if(abs(right - left) > 1 ){
-            return false;
-        }
-        return isBalanced(root->left) &&  isBalanced(root->right);
+        // 0 is height of null tree
+        // -1 represents NOT A BALANCED TREE
+        return helper(root) != -1;
         
     }
 };
