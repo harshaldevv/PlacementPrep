@@ -11,26 +11,30 @@
  */
 class Solution {
 public:
+    
     TreeNode* construct(int l, int r, vector<int> &nums){
         if(l>r){
             return NULL;
         }
         
-        int indx = l + (r-l)/2;
-        int rootval = nums[indx];
+        int mid = l + (r-l)/2; // 
         
-        TreeNode *temp = new TreeNode(rootval);
+        int rootval = nums[mid];
         
-        temp->left = construct(l, indx-1, nums);
-        temp->right = construct(indx+1, r, nums);
+        TreeNode* root = new TreeNode(rootval);
         
-        return temp;
+        
+        root->left = construct(l, mid -1, nums);
+        root->right = construct(mid+1, r, nums);
+        
+        return root;
     }
     TreeNode* sortedArrayToBST(vector<int>& nums) {
-        int l = 0;
-        int r = nums.size() -1;
         
-        return construct(l,r, nums);
+        int l = 0;
+        int r = nums.size() -1; // n = nums.size();
+        
+        return construct(l, r, nums);
         
     }
 };
