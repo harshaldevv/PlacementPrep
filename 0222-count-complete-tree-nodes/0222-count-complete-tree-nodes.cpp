@@ -12,6 +12,7 @@
 class Solution {
 public:
     int countNodes(TreeNode* root) {
+        // not your regular level order travesal ques -_-
         
         if(!root){
             return 0;
