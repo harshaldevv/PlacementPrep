@@ -14,6 +14,8 @@ public:
     int countNodes(TreeNode* root) {
         // not your regular level order travesal ques -_-
         
+        // TC - O(logn * logn)
+        
         if(!root){
             return 0;
         }
