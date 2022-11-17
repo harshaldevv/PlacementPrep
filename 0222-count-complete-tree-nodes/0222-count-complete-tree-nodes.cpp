@@ -11,93 +11,33 @@
  */
 class Solution {
 public:
-    int countLeftHeight(TreeNode * root){
-        if(root == nullptr){
-            return 0;
-        }
-        // recursive way --> iterative way bhi likhunga, it wont take up stack space
-        
-        // return 1 + countLeftHeight(root->left); // keep going left
-        
-        int h = 0;
-        while(root){
-            h++;
-            root = root->left;
-        }
-        
-        return h;
-        
-    }
-    
-    int countRightHeight(TreeNode *root){
-        if(root == nullptr){
-            return 0;
-        }
-        // recursive way --> iterative way bhi likhunga, it wont take up stack space
-        
-        // return 1 + countRightHeight(root->right); // keep going right
-        
-        int h = 0;
-        while(root){
-            h++;
-            root = root->right;
-        }
-        
-        return h;
-        
-    }
     int countNodes(TreeNode* root) {
-//         if(root == nullptr){
-//             return 0;
-//         }
-        
-//         int lh = countLeftHeight(root);
-//         int rh = countRightHeight(root);
-        
-//         if(lh == rh){
-//             return (int)pow(2,lh) -1;
-            
-//         }
-        
-//         return 1 + countNodes(root->left) + countNodes(root->right);
-        
-        
-        //17 Nov'22
         
         if(!root){
             return 0;
         }
         
-        
-        int counter = 0;
-        
-        queue<TreeNode*>q;
-        
-        q.push(root);
-        
-        
-        while(!q.empty()){
-            int sz = q.size();
-            
-            counter += sz;
-            
-            while(sz--){
-                auto front = q.front();
-                q.pop();
-                
-                if(front->left){
-                    q.push(front->left);
-                }
-                
-                if(front->right){
-                    q.push(front->right);
-                }
-                
-            }
+        int lh = 0;
+        TreeNode *l = root;
+        while(l){
+            lh++;
+            l = l->left;
         }
         
-        return counter;
+        int rh = 0;
+        TreeNode *r = root;
+        while(r){
+            rh++;
+            r = r->right;
+        }
         
+        if(lh == rh){
+            return pow(2,lh)-1 ;
+        }
+        
+        
+        
+        return 1 + countNodes(root->left) + countNodes(root->right);
         
     }
 };
