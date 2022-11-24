@@ -30,27 +30,28 @@ public:
         //border wale 0s ko exclude karo abhi
         for(int i = 0 ; i < m ; i++){
             if(grid[i][0] == 0) {
-                // left column or right column
+                // left column 
                 doDFS(grid, i, 0, m, n);
             }
         }
         
         for(int i = 0 ; i < m ; i++){
             if(grid[i][n-1] == 0) {
+                 // right column
                 doDFS(grid, i, n-1, m, n);
             }
         }
         
         for(int j = 0; j < n ; j++){
             if(grid[0][j] == 0 ){
-                // first row or last row
+                // first row 
                 doDFS(grid, 0, j, m, n);
             }
         }
         
         for(int j = 0; j < n ; j++){
             if(grid[m-1][j] == 0 ){
-                // first row or last row
+                // last row
                 doDFS(grid, m-1, j, m, n);
             }
         }
