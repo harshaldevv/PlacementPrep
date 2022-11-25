@@ -7,35 +7,54 @@ class Solution {
   public:
     // Function to detect cycle in an undirected graph.
     
-    bool detect(int src, vector<int> adj[], bool vis[]){
+    bool detect(int src, int par, vector<int> adj[], bool vis[]){
+        
+        if(vis[src]){
+            return true; // cycle detected
+        }
+        
         vis[src] = true;
         
-        queue<vector<int>> q;
-        
-        q.push({src, -1});
-        
-        while(!q.empty()){
-            int sz = q.size();
-            while(sz--){
-                auto front = q.front();
-                q.pop();
-                
-                int curr = front[0];
-                int parent = front[1];
-                
-                for(auto &next : adj[curr]){
-                    if(!vis[next]){
-                        vis[next] = true;
-                        q.push({next, curr});
-                    }
-                    else if(next != parent){
-                        return true;
-                    }
+        for(auto &next : adj[src]){
+            if(!vis[next]){
+                if(detect(next, src, adj, vis)){
+                    return true;
                 }
+            }
+            else if(next != par){
+                return true;
             }
         }
         
         return false;
+        
+        
+        // queue<vector<int>> q;
+        
+        // q.push({src, -1});
+        
+        // while(!q.empty()){
+        //     int sz = q.size();
+        //     while(sz--){
+        //         auto front = q.front();
+        //         q.pop();
+                
+        //         int curr = front[0];
+        //         int parent = front[1];
+                
+        //         for(auto &next : adj[curr]){
+        //             if(!vis[next]){
+        //                 vis[next] = true;
+        //                 q.push({next, curr});
+        //             }
+        //             else if(next != parent){
+        //                 return true;
+        //             }
+        //         }
+        //     }
+        // }
+        
+        // return false;
     }
     bool isCycle(int V, vector<int> adj[]) {
         // Code here
@@ -44,7 +63,11 @@ class Solution {
         memset(vis, 0, sizeof(vis));
         for(int i = 0 ; i < V ; i++){
             if(!vis[i]){
-                if(detect(i, adj, vis)){
+                // if(detect(i, adj, vis)){
+                //     return true;
+                // }
+                
+                if(detect(i, -1, adj,vis)){
                     return true;
                 }
             }
