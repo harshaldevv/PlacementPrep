@@ -24,11 +24,11 @@ public:
                 int parent = front[0];
                 int currTime = front[1];
                 
-                t = max(t, currTime + informTime[parent]);
-                
                 for(auto &child : adjList[parent]){    
                     q.push({child, currTime + informTime[parent]} );
                 }
+                
+                t = max(t, currTime + informTime[parent]);
             }
         }
         
