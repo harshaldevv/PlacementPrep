@@ -9,12 +9,15 @@ public:
         
         queue<vector<int>> q;
         int fresh =0 ;
+        bool vis[m][n];
+        memset(vis, 0, sizeof(vis));
         
         for(int i = 0; i < m ; i++){
             for(int j = 0 ; j < n ; j++){
                 if(grid[i][j] == 2)   {
                     
                  // rotten orange
+                    vis[i][j] = true;
                     q.push({i,j});
                  }
                 else if(grid[i][j] == 1){
@@ -42,8 +45,9 @@ public:
                     int newx = currx + dir[k];
                     int newy = curry + dir[k+1];
                     
-                    if(isvalid(newx, newy, m,n) && grid[newx][newy] == 1){
-                        grid[newx][newy] = 2;
+                    if(isvalid(newx, newy, m,n) && !vis[newx][newy] && grid[newx][newy] == 1){
+                        // grid[newx][newy] = 2;
+                        vis[newx][newy] = true;
                         fresh--;
                         q.push({newx, newy});
                     }
