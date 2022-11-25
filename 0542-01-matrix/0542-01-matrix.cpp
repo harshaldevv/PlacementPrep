@@ -17,7 +17,7 @@ public:
             for(int j = 0 ; j < n ; j++){
                 
                 if(grid[i][j] == 0){
-                    q.push({i,j});
+                    q.push({i,j,0}); // x,y, dist
                     vis[i][j] = true;
                 }
             }
@@ -33,6 +33,9 @@ public:
                 
                 int currx = front[0];
                 int curry = front[1];
+                int steps = front[2];
+                
+                ans[currx][curry] = steps;
                 
                 
                 for(int k = 0 ; k <4 ; k++){
@@ -40,9 +43,8 @@ public:
                     int newy = curry + dir[k+1];
                     
                     if(isvalid(newx,newy,m,n) &&  !vis[newx][newy]){
-                        ans[newx][newy] = ans[currx][curry] +1;
                         vis[newx][newy] = true;
-                        q.push({newx, newy});
+                        q.push({newx, newy, steps +1});
                     }
                     
                 }   
