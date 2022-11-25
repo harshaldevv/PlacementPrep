@@ -1,50 +1,60 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+// } Driver Code Ends
 class Solution {
   public:
-  bool dfs(vector<int> adj[], int i, int p, vector<bool> &vis){
-      
-      vis[i] = true;
-      
-      for(auto x : adj[i]){
-          if(x == p){
-              continue;
-          }
-          else if(!vis[x]){
-              if(dfs(adj, x, i, vis)){
-                  return true;
-              }
-          }
-          else{
-              // cycle detected 
-              return true;
-          }
-      }
-      
-      return false;
-  }
     // Function to detect cycle in an undirected graph.
+    
+    bool detect(int src, vector<int> adj[], bool vis[]){
+        vis[src] = true;
+        
+        queue<vector<int>> q;
+        
+        q.push({src, -1});
+        
+        while(!q.empty()){
+            int sz = q.size();
+            while(sz--){
+                auto front = q.front();
+                q.pop();
+                
+                int curr = front[0];
+                int parent = front[1];
+                
+                for(auto &next : adj[curr]){
+                    if(!vis[next]){
+                        vis[next] = true;
+                        q.push({next, curr});
+                    }
+                    else if(next != parent){
+                        return true;
+                    }
+                }
+            }
+        }
+        
+        return false;
+    }
     bool isCycle(int V, vector<int> adj[]) {
         // Code here
-        vector<bool> vis(V, false);
         
+        bool vis[V];
+        memset(vis, 0, sizeof(vis));
         for(int i = 0 ; i < V ; i++){
             if(!vis[i]){
-                if(dfs(adj, i, -1, vis)){
+                if(detect(i, adj, vis)){
                     return true;
                 }
             }
         }
+        
         return false;
     }
-    
-    
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 int main() {
     int tc;
     cin >> tc;
@@ -66,4 +76,5 @@ int main() {
             cout << "0\n";
     }
     return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
