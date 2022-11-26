@@ -1,47 +1,53 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+// } Driver Code Ends
 class Solution
 {
-    void topo(vector<int> adj[], int i, vector<bool> &vis, stack<int> &st){
-        vis[i] = true;
-        
-        for(auto next : adj[i]){
-            if(!vis[next]){
-                topo(adj, next, vis, st);
-            }
-        }
-        
-        st.push(i);
-        return ;
-    }
 	public:
+	
+	void dfs(int &curr, vector<int> adj[], vector<bool> &vis, stack<int> &st){
+	    
+	    
+	    vis[curr] = true;
+	    
+	    for(auto &next : adj[curr]){
+	        if(!vis[next]){
+	            dfs(next, adj, vis, st);
+	        }
+	    }
+	    
+	    st.push(curr);
+	    return ;
+	}
 	//Function to return list containing vertices in Topological order. 
 	vector<int> topoSort(int V, vector<int> adj[]) 
 	{
 	    // code here
-	    vector<bool> vis(V, false);
+	    int n = V;
+	    vector<bool> vis(n, false);
 	    stack<int> st;
 	    
-	    for(int i = 0 ; i < V ; i++){
+	    vector<int> ans;
+	    
+	    
+	    for(int i = 0 ; i < n ; i++){
 	        if(!vis[i]){
-	            topo(adj, i, vis, st);
+	            dfs(i, adj, vis, st);
 	        }
 	    }
-	    
-	    vector<int> ans;
 	    
 	    while(!st.empty()){
 	        ans.push_back(st.top());
 	        st.pop();
 	    }
+	    
 	    return ans;
 	}
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 /*  Function to check if elements returned by user
 *   contains the elements in topological sorted form
@@ -88,4 +94,5 @@ int main() {
     }
     
     return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
