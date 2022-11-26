@@ -28,6 +28,7 @@ public:
         
         vector<int> color(n, -1);
         
+        //DFS method. next will do by BFS way
         
         for(int i = 0 ; i < n ; i++){
             if(color[i] == -1){
