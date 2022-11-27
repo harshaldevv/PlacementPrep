@@ -67,9 +67,6 @@ class Solution{
             }
         }
         
-        // a, ab
-        
-        
         //got our adjList
         
         // do toposort(dfs wali)
@@ -82,6 +79,9 @@ class Solution{
         for(int i = 0 ; i < k ; i++){
             if(!vis2[i]){
                 if(cycledetect(i, vis2, dfsvis, adjList)){
+                    //if cycle is deteced, toh toposort lag nahi payega
+                    // therefore empty string return karo
+                    // kyuki alien dictonary hi invalid hai
                     return "";
                 }
             }
