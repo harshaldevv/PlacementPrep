@@ -3,7 +3,7 @@ public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
         
         unordered_set<string> set;
-        unordered_set<string> vis;
+        // unordered_set<string> vis;
         
         for(auto &x : wordList){
             set.insert(x);
@@ -37,9 +37,10 @@ public:
                     string temp = front;
                     for( char c = 'a' ; c <= 'z' ; c++){
                         temp[i] = c;
-                        if(set.find(temp) != set.end() && vis.find(temp) == vis.end()){
+                        if(set.find(temp) != set.end() ){
+                            // && vis.find(temp) == vis.end()
                             q.push(temp);
-                            vis.insert(temp);    
+                            // vis.insert(temp);    
                         }
                     }
                 }
