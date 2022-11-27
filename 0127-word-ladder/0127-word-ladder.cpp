@@ -37,6 +37,9 @@ public:
                     for( char c = 'a' ; c <= 'z' ; c++){
                         temp[i] = c;
                         if(set.find(temp) != set.end() ){
+                            // i dont require vis array because we wont be taking a visited word again
+                            // therefore we are deleting words from our SET
+                            // therefore we wont visit a same word again.
                             q.push(temp);  
                         }
                     }
