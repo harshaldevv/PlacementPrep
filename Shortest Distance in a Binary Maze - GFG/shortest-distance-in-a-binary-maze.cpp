@@ -10,6 +10,9 @@ using namespace std;
 
 class Solution {
   public:
+  bool isvalid(int &i, int &j, int &n, int &m){
+      return i >=0 && i < n && j >= 0 && j < m;
+  }
     int shortestPath(vector<vector<int>> &grid, pair<int, int> source,
                      pair<int, int> destination) {
         // code here
@@ -56,7 +59,7 @@ class Solution {
                     int newx = currx + dir[k];
                     int newy = curry + dir[k+1];
                     
-                    if(newx >=0 && newx < n && newy >= 0 && newy < m && !vis[newx][newy] && grid[newx][newy] == 1){
+                    if( isvalid(newx, newy, n,m) && !vis[newx][newy] && grid[newx][newy] == 1){
                         vis[newx][newy] = true;
                         q.push({newx, newy});
                     }
