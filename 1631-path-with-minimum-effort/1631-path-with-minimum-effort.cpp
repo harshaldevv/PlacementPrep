@@ -8,7 +8,9 @@ public:
         int n = heights[0].size();
         
         // dijkstra
-        priority_queue<pair<int, pair<int,int>>, vector<pair<int, pair<int,int>>>, greater<pair<int, pair<int,int>>>> pq;
+        // priority_queue<pair<int, pair<int,int>>, vector<pair<int, pair<int,int>>>, greater<pair<int, pair<int,int>>>> pq;
+        
+        priority_queue<vector<int>, vector<vector<int>>, greater<vector<int>>> pq;
         
         
         vector<vector<int>> dist(m, vector<int>(n, INT_MAX));
@@ -17,15 +19,18 @@ public:
         
         vector<int> dir{1,0,-1,0,1};
         
-        pq.push({0,{0,0}}); // dist, x, y
+        pq.push({0,0,0}); // dist, x, y
         // cout << "pq size " << pq.size() << endl;
         while(!pq.empty()){
             auto front = pq.top();
             pq.pop();
             
-            int d = front.first;
-            int x = front.second.first;
-            int y = front.second.second;
+//             int d = front.first;
+//             int x = front.second.first;
+//             int y = front.second.second;
+            int d = front[0];
+            int x = front[1];
+            int y = front[2];
             
             if(x == m-1 && y == n-1){
                 return d;
@@ -43,7 +48,8 @@ public:
                     if(newEffort < dist[newx][newy] ){
                         dist[newx][newy] = newEffort;
                         // cout << "here" << endl;
-                        pq.push({newEffort, {newx, newy}});
+                        // pq.push({newEffort, {newx, newy}});
+                        pq.push({newEffort, newx, newy});
                     }
                 }
             }
