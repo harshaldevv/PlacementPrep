@@ -15,8 +15,8 @@ class Solution {
         queue<vector<int>> q;
         int MOD = 100000;
         q.push({start,0}); // currnumber, steps
-        vector<int> vis(100000, false); // visited array of size 10^5, bcz total
-        // numbers can 
+        vector<int> vis(100000, false); // visited array of size 10^5, bcz start
+        // or end are max of 10^5 
         while(!q.empty()){
             auto sz = q.size();
             while(sz--){
