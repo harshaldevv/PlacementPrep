@@ -17,6 +17,8 @@ class Solution
         vector<vector<int>> MST;
         
         pq.push({0,0, -1}); // wt, node, parent
+        // parent is only needed incase you wish to know the MST
+        // agar bas mst ka weight ka sum chahiye toh bas "wt, node" lete
         
         while(!pq.empty()){
             auto front = pq.top();
