@@ -31,6 +31,7 @@ class Solution
             
             vis[currnode] = true;
             sum += wt;
+            MST.push_back({currnode, parent});
             
             for(auto &next : adj[currnode]){
                 int nextNode = next[0];
