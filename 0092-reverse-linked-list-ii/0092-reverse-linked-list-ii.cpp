@@ -37,19 +37,6 @@ public:
             currNode = nxtNode;
         }
         
-//         while(currNode && currNode->val != right){
-//             nxtNode = currNode->next;
-//             currNode->next = prevNode;
-//             prevNode = currNode;
-//             currNode = nxtNode;
-//         }
-        
-//         //do one more time;
-        
-//         nxtNode = currNode->next;
-//         currNode->next = prevNode;
-//         prevNode = currNode;
-//         currNode = nxtNode;
         
         prev->next = prevNode;
         
