@@ -16,8 +16,8 @@ public:
         
         dummy->next = head;
         
-        ListNode *peeche = dummy;
-        ListNode *aage = head;
+        ListNode *peeche = dummy;  // peeche = before
+        ListNode *aage = head;     // aage = after
         
         
         ListNode *curr = aage;
