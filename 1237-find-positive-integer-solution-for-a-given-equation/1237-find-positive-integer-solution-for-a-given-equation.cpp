@@ -13,61 +13,26 @@
 class Solution {
 public:
     vector<vector<int>> findSolution(CustomFunction& customfunction, int z) {
-        // soln went from O(x*y) to O(xlogy) ---> to O(x+y)
-        vector<vector<int>> v;
         
-        int x = 1;
-        int y = 1000;
+        //hci research
         
-        while ( x <= 1000 && y >0){
-            int myZ = customfunction.f(x,y);
-            if(myZ == z){
-                v.push_back({x,y});
-                x++;
-                y--;
-            }
-            else if(myZ > z){
-                y--;
-            }
-            else{
-                x++;
+         vector<vector<int>> res;
+        for (int x = 1; x <= 1000; x++) {
+            int left = 1, right = 1000;
+            while (left <= right) {
+                int mid = left + (right - left) / 2;
+                int val = customfunction.f(x, mid);
+                if (val == z) {
+                    res.push_back({x, mid});
+                    break;
+                } else if (val < z) {
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
             }
         }
-        return v;
+        return res;
         
-        
-        
-//         vector<vector<int>> v;
-//         for(int i = 1 ; i <= 1000 ; i++){
-            
-//             // do binary search here 
-//             int start = 1;
-            
-//             int end = 1000+1;
-            
-//             if(!v.empty()){  // a teensy bit optimizaiton --> see note  
-//                 // cout << " here " << endl;
-//                 end = v.back()[1] +1;
-//             }
-            
-//             while(start <= end){
-//                 int mid = start + (end-start)/2;
-                
-//                 int myZ = customfunction.f(i,mid);
-//                 if(myZ == z){
-//                     v.push_back({i, mid});
-//                     break;
-//                 }
-//                 else if(myZ > z){
-//                     // go left
-//                     end = mid -1;
-//                 }
-//                 else{
-//                     start = mid +1;
-//                 }
-//             }
-//         }
-        
-//         return v;
     }
 };
