@@ -1,54 +1,43 @@
 class Solution {
 public:
+    
+    typedef long long ll;
+    const ll MOD = 1e9 + 7;
+    
     int countPaths(int n, vector<vector<int>>& roads) {
-        // find "NUMBER" OF SHORTEST PATHS
-        int MOD = 1e9 +7;
-        vector<vector<long long>> adjList[n+1];
         
-        for(int i = 0 ; i < roads.size() ; i++){
-            long long u = roads[i][0];
-            long long v = roads[i][1];
-            long long time = roads[i][2];
-            
-            adjList[u].push_back({v, time});
-            adjList[v].push_back({u, time});
-        }
-        
-        // pehle dijkstra se shortest dist nikal lo
-        // and then BFS se paths nikal do -> doesnt work hehe i knew TLE dega
-        
-        // direct dijkstra lagao and lage haath "ways" found out kro
-        
-        vector<long long> ways(n,0);
-        ways[0] = 1;
-        vector<long long> dist(n, LLONG_MAX);
-        dist[0] = 0;
-        
-        priority_queue<vector<long long>, vector<vector<long long>>, greater<vector<long long>>> pq;
-        pq.push({0, 0}); // dist, node
-        
-        while(!pq.empty()){
-            auto front = pq.top();
-            pq.pop();
-            
-            long long d = front[0];
-            long long currcity = front[1];
-            
-            for(auto &next : adjList[currcity]){
-                long long nextcity = next[0];
-                long long edgeWt = next[1];
-                if( d + edgeWt < dist[nextcity]){
-                    dist[nextcity] = d + edgeWt;
-                    pq.push({ d + edgeWt , nextcity});
-                    ways[nextcity] = ways[currcity]%MOD;
-                }
-                else if(d + edgeWt == dist[nextcity]){
-                    ways[nextcity] += (ways[currcity])%MOD;   
-                }
+        vector<vector<pair<int, int>>> adj(n);
+    for (auto& r : roads) {
+        adj[r[0]].emplace_back(r[1], r[2]);
+        adj[r[1]].emplace_back(r[0], r[2]);
+    }
+    
+    vector<ll> dist(n, LLONG_MAX);
+    vector<ll> cnt(n, 0);
+    vector<bool> vis(n, false);
+    dist[0] = 0;
+    cnt[0] = 1;
+    
+    priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
+    pq.emplace(0, 0);
+    
+    while (!pq.empty()) {
+        int u = pq.top().second;
+        pq.pop();
+        if (vis[u]) continue;
+        vis[u] = true;
+        for (auto& [v, w] : adj[u]) {
+            if (dist[v] > dist[u] + w) {
+                dist[v] = dist[u] + w;
+                cnt[v] = cnt[u];
+                pq.emplace(dist[v], v);
+            } else if (dist[v] == dist[u] + w) {
+                cnt[v] = (cnt[v] + cnt[u]) % MOD;
             }
         }
-        
-        return ways[n-1]%MOD;
+    }
+    
+    return cnt[n-1];
         
     }
 };
