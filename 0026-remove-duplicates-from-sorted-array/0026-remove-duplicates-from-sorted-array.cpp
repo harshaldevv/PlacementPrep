@@ -6,14 +6,11 @@ public:
         int r = 1;
         
         while(r < n){
-            if(nums[r] == nums[l]){
-                r++;
-            }
-            else{
+            if(nums[r] != nums[l]){
                 nums[l+1] = nums[r];
                 l++;
-                r++;
             }
+            r++;
         }
         
         return l+1;
