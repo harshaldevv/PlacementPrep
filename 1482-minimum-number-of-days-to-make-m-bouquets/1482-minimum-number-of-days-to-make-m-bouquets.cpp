@@ -27,7 +27,7 @@ public:
     }
     int minDays(vector<int>& bloomDay, int m, int k) {
         long long l = 1;
-        long long r = INT_MAX-100;
+        long long r = INT_MAX-100; // -100 kyuki integer overflow hua ek jagah xD
         int ans = -1;
         
         
