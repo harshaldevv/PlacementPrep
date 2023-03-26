@@ -1,7 +1,6 @@
 # The Painter's Partition Problem-II
-##  Hard 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Dilpreet wants to paint&nbsp;his dog's home that has&nbsp;<strong>n</strong> boards with&nbsp;different lengths. The length of i<sup>th&nbsp;</sup>board is given by <strong>arr[i]</strong> where <strong>arr[]</strong> is an array of <strong>n</strong> integers. He hired <strong>k</strong> painters for this work and each painter takes <strong>1 unit time to paint 1 unit of the board.&nbsp;</strong></span></p>
+## Hard
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Dilpreet wants to paint&nbsp;his dog's home that has&nbsp;<strong>n</strong> boards with&nbsp;different lengths. The length of i<sup>th&nbsp;</sup>board is given by <strong>arr[i]</strong> where <strong>arr[]</strong> is an array of <strong>n</strong> integers. He hired <strong>k</strong> painters for this work and each painter takes <strong>1 unit time to paint 1 unit of the board.&nbsp;</strong></span></p>
 
 <p><span style="font-size:18px">The problem is to find the minimum time to get this job done if all painters start together with the constraint&nbsp;that any painter will only paint continuous boards, say boards numbered <strong>{2,3,4} </strong>or only board <strong>{1}</strong> or nothing but not boards <strong>{2,4,5}</strong>.</span></p>
 
@@ -45,5 +44,4 @@ Your task is to complete the function <strong>minTime() </strong>which takes the
 1 ≤ n ≤ 10<sup>5</sup><br>
 1 ≤ k ≤ 10<sup>5</sup><br>
 1 ≤ arr[i] ≤ 10<sup>5</sup></span></p>
- <p></p>
-            </div>
+</div>
