@@ -1,22 +1,17 @@
 class Solution {
 public:
-    int check(vector<int> &weights, int W, int days){
-        int d = 1;
+    bool check(int &mid, vector<int> &weights, int &days){
+        int D = 1;
+        int s = 0;
         
-        int temp = 0;
-        
-        for(int i = 0 ;i < weights.size() ; i++){
+        for(auto &x : weights){
+            s += x;
             
-            temp += weights[i];
-            
-            if(temp > W){
-                
-                temp = 0;
-                d++;
-                i--;
+            if(s > mid){
+                D++;
+                s = x;
             }
-            
-            if(d > days){
+            if(D > days){
                 return false;
             }
         }
@@ -25,20 +20,20 @@ public:
     }
     int shipWithinDays(vector<int>& weights, int days) {
         
-        int l = -1, r = 0;
-        for(auto & x : weights){
-            l = max(l, x);
+        int l = 0;
+        int r = 0;
+        
+        int ans = -1;
+        
+        for(auto &x : weights){
+            l = max(l,x);
             r += x;
         }
-        cout << "l = " << l << endl;
-        cout << "r = " << r << endl;
-        
-        int ans = 0;
         
         while(l<=r){
             int mid = l + (r-l)/2;
             
-            if(check(weights, mid, days)){
+            if(check(mid, weights, days)){
                 ans = mid;
                 r = mid -1;
             }
