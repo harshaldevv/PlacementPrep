@@ -3,75 +3,40 @@
  * struct ListNode {
  *     int val;
  *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
 class Solution {
 public:
-    
-    ListNode *getMid(ListNode *head){
-        ListNode *slow = head;
-        ListNode *fast = head;
-        
-        while(fast && fast->next){
+    void reorderList(ListNode* head) {
+        if (!head || !head->next) return;
+
+        // Find the middle of the list
+        ListNode *slow = head, *fast = head;
+        while (fast->next && fast->next->next) {
             slow = slow->next;
             fast = fast->next->next;
         }
-        
-        return slow;
-    }
-    
-    ListNode *reverseLL(ListNode *head){
-        ListNode *curr = head;
-        ListNode *prev = nullptr;
-        ListNode *nxt;
-        
-        while(curr){
-            nxt = curr->next;
+
+        // Reverse the second half of the list
+        ListNode *prev = nullptr, *curr = slow->next;
+        slow->next = nullptr;
+        while (curr) {
+            ListNode *temp = curr->next;
             curr->next = prev;
             prev = curr;
-            curr = nxt;
+            curr = temp;
         }
-        
-        return prev;
-    }
-    
-    void reorderList(ListNode* head) {
-        
-        // get mid
-        // reverse beyond mid
-        
-        ListNode* mid = getMid(head);
-        
-        ListNode *temp = mid->next;
-        mid->next = NULL;
-        
-        ListNode *rev = reverseLL(temp);
-        
-        
-        ListNode *p1 = head;
-        ListNode *p2 = rev;
-        
-        bool flag = true;
-        while(p1 && p2){
-            if(flag){
-                //p1 turn
-                ListNode *after = p1->next;
-                p1->next = p2;
-                p1 = after;
-            }
-            else{
-                ListNode *after = p2->next;
-                p2->next = p1;
-                p2 = after;
-            }
-            
-            flag = !flag;
+
+        // Merge the first half of the list with the reversed second half of the list
+        ListNode *p1 = head, *p2 = prev;
+        while (p2) {
+            ListNode *temp1 = p1->next;
+            ListNode *temp2 = p2->next;
+            p1->next = p2;
+            p2->next = temp1;
+            p1 = temp1;
+            p2 = temp2;
         }
-        
-        return ;
-        
     }
 };
