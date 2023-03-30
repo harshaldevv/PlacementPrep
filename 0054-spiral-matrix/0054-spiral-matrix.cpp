@@ -1,38 +1,52 @@
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
-        //hci research
-        vector<int> result;
-        int m = matrix.size(), n = matrix[0].size();
-        int rowStart = 0, rowEnd = m - 1, colStart = 0, colEnd = n - 1;
-
-        while (rowStart <= rowEnd && colStart <= colEnd) {
-            // Traverse Right
-            for (int i = colStart; i <= colEnd; i++)
-                result.push_back(matrix[rowStart][i]);
-
-            // Traverse Down
-            for (int i = rowStart + 1; i <= rowEnd; i++)
-                result.push_back(matrix[i][colEnd]);
-
-            // Traverse Left
-            if (rowStart < rowEnd) {
-                for (int i = colEnd - 1; i >= colStart; i--)
-                    result.push_back(matrix[rowEnd][i]);
+        int m = matrix.size();
+        int n = matrix[0].size();
+        
+        int rowStart = 0;
+        int rowEnd = m-1;
+        int colStart = 0;
+        int colEnd = n-1;
+        
+        vector<int> ans;
+        
+        while(rowStart <= rowEnd && colStart <= colEnd){
+            // go left to right
+            for(int i = colStart ; i <= colEnd ; i++){
+                ans.push_back(matrix[rowStart][i]);
             }
-
-            // Traverse Up
-            if (colStart < colEnd) {
-                for (int i = rowEnd - 1; i > rowStart; i--)
-                    result.push_back(matrix[i][colStart]);
-            }
-
             rowStart++;
-            rowEnd--;
-            colStart++;
+            
+            if(rowStart > rowEnd){
+                break;
+            }
+            
+            //go up to down
+            for(int i = rowStart ; i <= rowEnd ; i++){
+                ans.push_back(matrix[i][colEnd]);
+            }
             colEnd--;
+            
+            if(colStart > colEnd){
+                break;
+            }
+            
+            // go right to left
+            for(int j = colEnd ; j >= colStart ; j-- ){
+                ans.push_back(matrix[rowEnd][j]);
+            }
+            rowEnd--;
+            
+            //go down to up
+            for(int i = rowEnd ; i >= rowStart ; i--){
+                ans.push_back(matrix[i][colStart]);
+            }
+            
+            colStart++;
         }
-
-        return result;
+        
+        return ans;
+        
     }
 };
