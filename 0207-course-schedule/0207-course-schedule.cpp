@@ -1,53 +1,42 @@
 class Solution {
 public:
-    bool dfs(int &curr, vector<bool> &vis, vector<bool> &dfsvis, vector<int> adjList[]){
-        vis[curr] = true;
-        dfsvis[curr] = true;
-        
-        for(auto &next : adjList[curr]){
-            if(!vis[next]){
-                if(dfs(next, vis, dfsvis, adjList)){
-                    return true;
-                }
-            }
-            else if(dfsvis[next]){
-                return true;
-            }
-        }
-        
-        dfsvis[curr] = false;
-        return false;
-    }
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
         
-        // check if cycle exists -> if yes, return true else false;
+        // hci research 
         
-        int n = numCourses;
         
-        vector<int> adjList[n];
-        for(int i = 0 ; i < prerequisites.size(); i++ ){
-            int pehle = prerequisites[i][1];
-            int baadme = prerequisites[i][0];
-            
-            adjList[pehle].push_back(baadme);
+        vector<int> inDegree(numCourses, 0);
+        vector<vector<int>> adjList(numCourses);
+        queue<int> q;
+        int coursesTaken = 0;
+
+        // Create adjacency list and calculate in-degrees
+        for (auto pre : prerequisites) {
+            adjList[pre[1]].push_back(pre[0]);
+            inDegree[pre[0]]++;
         }
-        
-        
-        vector<bool> vis(n, false);
-        vector<bool> dfsvis(n, false);
-        
-        for(int i = 0 ; i < n ; i++){
-            if(!vis[i]){
-                if(dfs(i, vis, dfsvis, adjList)){
-                    //cycle detection via DFS
-                    return false;
+
+        // Add courses with zero in-degree to queue
+        for (int i = 0; i < numCourses; i++) {
+            if (inDegree[i] == 0) {
+                q.push(i);
+            }
+        }
+
+        // Perform topological sort
+        while (!q.empty()) {
+            int currCourse = q.front();
+            q.pop();
+            coursesTaken++;
+
+            for (auto neighbor : adjList[currCourse]) {
+                inDegree[neighbor]--;
+                if (inDegree[neighbor] == 0) {
+                    q.push(neighbor);
                 }
             }
         }
-        
-        return true;
-        
-        
-        
+
+        return coursesTaken == numCourses;
     }
 };
