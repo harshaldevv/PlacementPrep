@@ -1,46 +1,21 @@
 class Solution {
 public:
-    
-    int getPivot(vector<int> &arr){
-        int n = arr.size();
-        int l = 0;
-        int r = arr.size() -1;
+    int findMin(vector<int>& nums) {
         
-        while(l<=r){
+        //hci research 
+        int left = 0;
+        int right = nums.size() - 1;
+        
+        while (left < right) {
+            int mid = left + (right - left) / 2;
             
-            if(arr[l] <= arr[r]){
-                return l;
-            }
-            
-            int mid = l + (r-l)/2;
-            
-            int prev = (mid -1 + n )%n;
-            int next = (mid +1 )%n;
-            
-            // pivot element would be smaller than both of its neighbours
-            if(arr[mid] <= arr[prev] && arr[mid] <= arr[next]){
-                return mid;
-            }
-            
-            // else now go in the unsorted half
-            if(arr[l] <= arr[mid]){
-                // this half is sorted
-                // go in the unsorted half
-                l = mid +1;
-            }
-            else{
-                r = mid -1;
+            if (nums[mid] > nums[right]) {
+                left = mid + 1;
+            } else {
+                right = mid;
             }
         }
         
-        return -1; // you can return l or return 0 or even return -1 --> all of them work
-    }
-    int findMin(vector<int>& nums) {
-        // rotated sorted array --> means pehle pivot nikalo
-        
-        int piv = getPivot(nums);
-        
-        return nums[piv];
-        
+        return nums[left];
     }
 };
