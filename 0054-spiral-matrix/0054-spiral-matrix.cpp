@@ -19,7 +19,6 @@ public:
             rowStart++;
             
             if(rowStart > rowEnd){
-                // check this before doing right to left
                 break;
             }
             
@@ -28,8 +27,8 @@ public:
                 ans.push_back(matrix[i][colEnd]);
             }
             colEnd--;
+            
             if(colStart > colEnd){
-                // check this before going down to up
                 break;
             }
             
