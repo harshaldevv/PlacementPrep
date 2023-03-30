@@ -1,34 +1,18 @@
 class Solution {
 public:
-    
-    
-    
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        
-        sort(intervals.begin(), intervals.end());
-        
-        vector<int> end = intervals[0];
-        
-        int n = intervals.size();
-        
-        vector<vector<int>> ans;
-        
-        ans.push_back(intervals[0]);
-        
-        for(int i =1 ; i < n ; i++){
-            if(intervals[i][0] <= ans.back()[1]){
-                //merge
-                ans.back()[1] = max(ans.back()[1], intervals[i][1]) ;
-            }
-            else{
-                //push
-                ans.push_back(intervals[i]);
+        //hci research 
+        sort(intervals.begin(), intervals.end()); // sort intervals based on start time
+        vector<vector<int>> merged;
+        for (auto interval : intervals) {
+            if (merged.empty() || interval[0] > merged.back()[1]) {
+                // no overlap with the last interval in merged, add to merged
+                merged.push_back(interval);
+            } else {
+                // overlap with the last interval in merged, merge the two intervals
+                merged.back()[1] = max(merged.back()[1], interval[1]);
             }
         }
-        
-        return ans;
-        
-        
-        
+        return merged;
     }
 };
