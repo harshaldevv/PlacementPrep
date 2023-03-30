@@ -18,13 +18,20 @@ public:
             }
             rowStart++;
             
-            
+            if(rowStart > rowEnd){
+                // check this before doing right to left
+                break;
+            }
             
             //go up to down
             for(int i = rowStart ; i <= rowEnd ; i++){
                 ans.push_back(matrix[i][colEnd]);
             }
             colEnd--;
+            if(colStart > colEnd){
+                // check this before going down to up
+                break;
+            }
             
             
             if(rowStart > rowEnd){
