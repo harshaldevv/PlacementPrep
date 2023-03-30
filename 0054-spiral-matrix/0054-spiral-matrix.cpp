@@ -18,9 +18,7 @@ public:
             }
             rowStart++;
             
-            if(rowStart > rowEnd){
-                break;
-            }
+            
             
             //go up to down
             for(int i = rowStart ; i <= rowEnd ; i++){
@@ -28,16 +26,22 @@ public:
             }
             colEnd--;
             
-            if(colStart > colEnd){
+            
+            if(rowStart > rowEnd){
+                // check this before doing right to left
                 break;
             }
-            
             // go right to left
             for(int j = colEnd ; j >= colStart ; j-- ){
                 ans.push_back(matrix[rowEnd][j]);
             }
             rowEnd--;
             
+            
+            if(colStart > colEnd){
+                // check this before going down to up
+                break;
+            }
             //go down to up
             for(int i = rowEnd ; i >= rowStart ; i--){
                 ans.push_back(matrix[i][colStart]);
