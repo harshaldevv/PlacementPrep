@@ -8,41 +8,41 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+struct compare {
+    bool operator()(const ListNode* l1, const ListNode* l2) {
+        return l1->val > l2->val;
+    }
+};
+
 class Solution {
 public:
+    // HCI RESEARCH
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         
-        ListNode *dummy = new ListNode(-1);
-        ListNode *tempPtr = dummy;
-        
-        //minheap
-        // pair<int, ListNode*>
-        priority_queue<pair<int, ListNode*>, vector<pair<int, ListNode*>>, greater<pair<int, ListNode*>>> pq;
-        
-        for(int i = 0 ; i < lists.size() ; i++){
-            auto p = lists[i];
-            if(p != nullptr){
-                pq.push({p->val, p});    
+        // Initialize the priority queue
+        priority_queue<ListNode*, vector<ListNode*>, compare> pq;
+        for (ListNode* list : lists) {
+            if (list != NULL) {
+                pq.push(list);
             }
-            
-            // cout << "p val = " << p->val << endl;
         }
         
-        while(!pq.empty()){
-            auto top = pq.top();
+        // Initialize the merged list
+        ListNode* dummy = new ListNode(0);
+        ListNode* tail = dummy;
+        
+        // Merge the lists using the priority queue
+        while (!pq.empty()) {
+            ListNode* curr = pq.top();
             pq.pop();
-            int e = top.first;
-            ListNode* ptr = top.second;
-            // cout << ptr->val << " " ;
-            
-            tempPtr->next = ptr;
-            tempPtr = tempPtr->next;
-            
-            if(ptr->next){
-                pq.push({ptr->next->val, ptr->next});
+            tail->next = curr;
+            tail = tail->next;
+            if (curr->next != NULL) {
+                pq.push(curr->next);
             }
         }
         
         return dummy->next;
+        
     }
 };
