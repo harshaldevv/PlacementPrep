@@ -11,26 +11,29 @@
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-        
-        ListNode *p1 = head;
-        ListNode *p2 = head;
-        
-        for(int k = 0 ; k < n ; k++){
-            p1 = p1->next;
+        //hci researhc
+        ListNode* fast = head;
+        ListNode* slow = head;
+
+        // Move the fast pointer n nodes ahead of the slow pointer
+        for (int i = 0; i < n; i++) {
+            fast = fast->next;
         }
-        
-        if(p1 == nullptr){
+
+        // If fast pointer becomes null, remove the first node
+        if (!fast) {
             return head->next;
         }
-        
-        while(p1->next){
-            p1 = p1->next;
-            p2 = p2->next;
+
+        // Move both pointers until fast pointer reaches the end
+        while (fast->next) {
+            fast = fast->next;
+            slow = slow->next;
         }
-        
-        p2->next = p2->next->next;
-        
+
+        // Remove the nth node from the end
+        slow->next = slow->next->next;
+
         return head;
-        
     }
 };
