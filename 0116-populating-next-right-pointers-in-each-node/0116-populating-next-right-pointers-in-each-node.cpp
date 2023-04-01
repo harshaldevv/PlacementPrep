@@ -19,50 +19,40 @@ public:
 class Solution {
 public:
     Node* connect(Node* root) {
-        
-        if(root == nullptr){
-            return root;
+        // better code bhi likha hai, check in submissions
+        if(!root){
+        return root;
         }
-        
-        Node *parent = root ;
-        Node *child = nullptr;
-        Node *childHead = nullptr;
-        
-        while(parent){
-            
-            while(parent){
-                // horizontal traversal
-                
-                if(parent->left){
-                    if(!childHead){
-                        childHead = parent->left;
-                    }
-                    else{
-                        child->next = parent->left;
-                    }
-                    child = parent->left;
+    
+        queue<Node*> q;
+
+        q.push(root);
+
+        while(!q.empty()){
+            auto sz = q.size();
+
+            while(sz--){
+                Node* front = q.front();
+                q.pop();
+
+                if(sz > 0){
+                    Node* frontRight = q.front();
+                    front->next = frontRight;
                 }
                 
-                if(parent->right){
-                    if(!childHead){
-                        childHead = parent->right;
-                    }
-                    else{
-                        child->next = parent->right;
-                    }
-                    child = parent->right;
+                
+                if(front->left){
+                    q.push(front->left);
                 }
-                
-                parent = parent->next;
-                
+
+                if(front->right){
+                    q.push(front->right);
+                }
             }
-            
-            parent = childHead;
-            
-            childHead = NULL;
-            child = NULL;
         }
-        
+
+
+
         return root;
         
     }
