@@ -9,41 +9,32 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+
 class Solution {
 public:
-    
-    TreeNode* merge(TreeNode *p, TreeNode *q){
+    TreeNode* mergeTrees(TreeNode* root1, TreeNode* root2) {
         
-        if(!p && q){
-            return q;
+        if(!root1 && !root2){
+            return NULL;
+        }
+        else if(!root1 && root2){
+            return root2;
+        }
+        else if(root1 && !root2){
+            return root1;
+        }
+        else{
+            root1->val += root2->val;
         }
         
-        if(p && !q){
-            return p;
-        }
+        TreeNode* leftt = mergeTrees(root1->left, root2->left );
+        TreeNode* rightt = mergeTrees(root1->right, root2->right );
         
+        root1->left = leftt;
+        root1->right = rightt;
         
-        if(!p && !q){
-            
-            return nullptr;
-            
-        }
-        
-        p->val += q->val;
-        
-        p->left = merge(p->left, q->left);
-        p->right = merge(p->right, q->right);
-        
-        return p;
-        
-    }
-    TreeNode* mergeTrees(TreeNode* p, TreeNode* q) {
-        
-        
-        
-        return merge(p,q);
-        
-        // return p;
+        return root1;
         
     }
 };
