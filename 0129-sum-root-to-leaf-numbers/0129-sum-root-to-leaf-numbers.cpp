@@ -17,13 +17,13 @@ public:
             return 0;
         }
         
-        if(root->left == NULL && root->right == NULL){
-            return sum = sum*10 + root->val;
-        }
-        
 
         sum *= 10;
         sum += root->val;
+        
+        if(root->left == NULL && root->right == NULL){
+            return sum;
+        }
         
         int left = solve(root->left, sum);
         int right = solve(root->right, sum);
