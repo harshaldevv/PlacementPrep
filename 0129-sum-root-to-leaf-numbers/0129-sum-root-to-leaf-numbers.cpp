@@ -12,36 +12,33 @@
 class Solution {
 public:
     
-    int solve(TreeNode* root, int s){
-        
-        if(root == nullptr){
+    int solve(TreeNode* root, int sum){
+        if(!root){
             return 0;
         }
         
-        
-        s = s*10 + root->val;
-        
-        if(!root->left && !root->right){
-            return s;
+        if(root->left == NULL && root->right == NULL){
+            return sum = sum*10 + root->val;
         }
         
-        return solve( root->left , s ) + solve( root->right, s );
+
+        sum *= 10;
+        sum += root->val;
         
+        int left = solve(root->left, sum);
+        int right = solve(root->right, sum);
         
-        // return s;
+        return left + right;
+        
         
     }
-    
     int sumNumbers(TreeNode* root) {
         
-        if(root == nullptr){
+        if(!root){
             return 0;
         }
-        
-        int s = 0;
-         return solve(root, s);
-        
-        // return s;
+        int ans = 0;
+        return solve(root, ans);
         
     }
 };
