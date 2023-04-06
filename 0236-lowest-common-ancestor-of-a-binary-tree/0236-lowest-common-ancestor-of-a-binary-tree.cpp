@@ -9,48 +9,42 @@
  */
 class Solution {
 public:
-    TreeNode *LCA(TreeNode* p, TreeNode* q, TreeNode* root){
-        
-        if(!root){
-            return root;
-        }    
-        
-        if(root == p){
-            // cout << "allo" << endl;
-            // cout << "p = " << root->val << endl;
-            return p;
-        }
-        
-        if(root == q){
-            // cout << "hereee" << endl;
-            // cout << "q = " << root->val << endl;
-            return q;
-        }
-        
-        
-        TreeNode* left = LCA(p,q, root->left);
-        TreeNode* right = LCA(p,q, root->right);
-        
     
-        if(left && right){
-            // cout << "hi"<<endl;
+    TreeNode *LCA(TreeNode* root, TreeNode* p, TreeNode* q){
+        if(!root){
+            return NULL;
+        }
+        
+        if(!p && !q){
+            return NULL;
+        }
+        
+        if(!p || !q){
+            return NULL;
+        }
+        
+        if(root == p || root == q){
             return root;
         }
-        else if(!left && right){
-            return right;
+        
+        
+        TreeNode *left = LCA(root->left, p, q);
+        TreeNode *right = LCA(root->right, p, q);
+        
+        if(left && right){
+            return root;
+        }
+        else if(left && !right){
+            return left;
         }
         else{
-            return left;
+            return right;
         }
         
     }
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         
-        if(!root){
-            return root;
-        }
-        
-        return LCA(p,q, root);
+        return LCA(root, p, q);
         
     }
 };
