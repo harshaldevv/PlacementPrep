@@ -11,27 +11,40 @@
  */
 class Solution {
 public:
-    
-    bool solve(TreeNode* root, int &tar, int s){
-        if(root == nullptr){
+    bool helper(TreeNode* root, int &target, int sum){
+        if(!root){
             return false;
         }
-        
-        s += root->val;
-        
-        // cout << s << endl;
-    
-        if(!root->left && !root->right){
-            if(s == tar){
+
+        sum += root->val;
+       
+        if(sum == target ){
+            if(!root->left && !root->right){
                 return true;
             }
         }
         
-        return (solve(root->left, tar, s) || solve(root->right, tar, s));
+        bool left = helper(root->left, target, sum);
+        bool right = helper(root->right, target, sum);
+        
+        if(left || right){
+            return true;
+        }
+        else{
+            return false;
+        }
+        
+        
     }
-    bool hasPathSum(TreeNode* root, int tar) {
-        int s = 0;
-        return solve(root, tar, s);
+    bool hasPathSum(TreeNode* root, int target) {
+        
+        if(!root){
+            return false;
+        }
+        
+        int sum = 0;
+        
+        return helper(root, target, sum);
         
     }
 };
