@@ -11,46 +11,32 @@
  */
 class Solution {
 public:
-    // pre order -> root, left, right
-    // inorder -> left, root, right
-    
-    
-    // post order -> left, right, root
-    // inorder -> left, root, right
-    
-    TreeNode* createTree(vector<int> &in, int instart, int inend, vector<int> &post, int poststart, int postend, unordered_map<int, int> &mp ){
-        if(instart > inend || poststart > postend){
+    TreeNode *makeTree(int l, int r, vector<int> &inorder, int l1, int r1, vector<int> &postorder, unordered_map<int, int> &mp){
+        if(l>r || l1 > r1){
             return NULL;
         }
         
-        int rootval = post[postend];
+        int rootval = postorder[r1];
+        TreeNode *root = new TreeNode(rootval);
+        
         int indx = mp[rootval];
+        int leftLength = indx - l;
         
-        TreeNode* root = new TreeNode(rootval);
-        
-        int blah =  indx - instart ; // left
-        
-        
-        root->left = createTree(in, instart, indx -1, post,  poststart, poststart + blah -1, mp);
-        root->right = createTree(in, indx+1, inend, post,  poststart + blah, postend-1, mp);
-                
-        
-        
+        root->left = makeTree(l, indx -1, inorder, l1, l1 + leftLength -1, postorder, mp);
+        root->right = makeTree(indx+1, r, inorder, l1+leftLength , r1-1, postorder, mp);
+    
         return root;
         
     }
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
-        
         int n = inorder.size();
+        unordered_map<int, int > mp;
         
-        unordered_map<int, int> mp;
-        for(int i = 0 ; i < n ; i++){
-            int x = inorder[i];
-            mp[x] = i;
+        for(int i = 0; i < n ; i++){
+            mp[inorder[i]] = i; 
         }
         
-        return createTree(inorder, 0, n-1, postorder, 0, n-1, mp);
+        return makeTree(0, n-1, inorder, 0, n-1, postorder, mp);
         
-    
     }
 };
