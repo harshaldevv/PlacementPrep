@@ -12,46 +12,43 @@
 class BSTIterator {
 public:
     stack<TreeNode*> st;
-    
-    BSTIterator(TreeNode* root) {    
+    BSTIterator(TreeNode* root) {
+        //clear stack
         while(!st.empty()){
             st.pop();
         }
-        pushAll(root);
-    }
-    
-    int next() {
-        if(hasNext()){
-            auto temp = st.top();
-            st.pop();
-            if(temp->right){ 
-                // if right child exists of the top node, 
-                // apply pushAll function to the right child
-                pushAll(temp->right);
-            }
-            return temp->val;
-        }
-        
-        return -1;
+        addAllLeft(root);
         
     }
-    
-    bool hasNext() {
-        
-        return !st.empty();
-        
-    }
-    void pushAll(TreeNode * root){
-        if(root == nullptr){
-            return ;
-        }
-        
+    void addAllLeft(TreeNode* root){
+        // 7,3
         while(root){
             st.push(root);
             root = root->left;
         }
         
         return ;
+    }
+    
+    int next() {
+        auto top = st.top();
+        st.pop();
+        if(top->right){
+            addAllLeft(top->right);
+        }
+        return top->val;
+        
+    }
+    
+    bool hasNext() {
+        
+        if(st.size() > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+        
     }
 };
 
