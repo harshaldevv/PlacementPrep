@@ -12,17 +12,18 @@
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-        
-        // hci research
-        if (root == nullptr) {
-            return nullptr;
+        if(!root){
+            return root;
         }
-        TreeNode* right = invertTree(root->right);
-        TreeNode* left = invertTree(root->left);
-        root->left = right;
-        root->right = left;
+        
+        TreeNode* newLeft = invertTree(root->right);
+        TreeNode* newRight = invertTree(root->left);
+        
+        root->left = newLeft;
+        root->right = newRight;
+        
         return root;
+        
+        
     }
 };
-
-
