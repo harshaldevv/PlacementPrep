@@ -1,54 +1,67 @@
 class Solution {
 public:
-    bool isValid(int &i, int &j, int &m, int &n){
-        return i >=0 && i < m && j >=0 && j < n;
+    bool isvalid(int i, int j, int m, int n){
+        if(i < 0 || j < 0 || i >= m || j >= n){
+            return false;
+        }
+        return true;
     }
-    void doDFS(vector<vector<int>> &grid, int i, int j, int &m, int &n){
-        if(!isValid(i,j,m,n) || grid[i][j] != 1){
-            // either not valid coordinates or visited already
+    void dfs(int x, int y, vector<vector<int>> &grid, vector<vector<bool>> &vis){
+        if(!isvalid(x,y, grid.size(), grid[0].size())){
             return ;
         }
         
-        grid[i][j] = 2;
+        if(vis[x][y]){
+            return ;
+        }
         
-        vector<int> dir{1,0,-1,0,1};
+        vis[x][y] = true;
         
-        for(int k =0 ; k <4 ; k++){
-            doDFS(grid, i + dir[k], j + dir[k+1], m,n);
+        vector<int> dir{-1,0,1,0,-1};
+        
+        for(int i = 0 ; i < 4 ; i++){
+            int newx = x + dir[i];
+            int newy = y + dir[i+1];
+            
+            if(isvalid(newx, newy, grid.size(), grid[0].size()) && grid[newx][newy] == 1 && !vis[newx][newy]){
+                dfs(newx, newy, grid, vis);
+            }
         }
         
         return ;
-        
-        
     }
     int numEnclaves(vector<vector<int>>& grid) {
+        
+        // border wale 1s se dfs
+        
         int m = grid.size();
         int n = grid[0].size();
         
-        //mark visited to all the 1s that are at the boundary and those 1s that are connected to such
-        // 1s (jo boundary pe 1s hai)
-        
-        int ans = 0;
+        vector<vector<bool>> vis(m, vector<bool>(n, false));
         
         for(int i = 0 ; i < m ; i++){
             for(int j = 0 ; j < n ; j++){
-                if(i == 0 || i== m-1 || j == 0 || j == n-1){
-                    if(grid[i][j] == 1){
-                        doDFS(grid, i, j, m, n);
+                if(i == 0 || i == m-1 || j == 0 || j == n-1){
+                    if(grid[i][j] == 1 && !vis[i][j]){
+                        dfs(i,j, grid, vis);
                     }
                 }
             }
         }
         
+        
+        int ans = 0;
         for(int i = 0 ; i < m ; i++){
-            for(int j = 0 ; j <n ; j++){
-                if(grid[i][j] == 1){
+            for(int j = 0 ; j < n ; j++){
+                if(grid[i][j] == 1 && !vis[i][j]){
                     ans++;
                 }
             }
         }
         
         return ans;
+        
+        
         
     }
 };
