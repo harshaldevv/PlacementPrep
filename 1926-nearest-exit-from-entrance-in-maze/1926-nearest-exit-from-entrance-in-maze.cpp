@@ -1,60 +1,67 @@
 class Solution {
 public:
-    bool isvalid(int &i, int &j, int &m, int &n){
-        return i>=0 && i< m && j >= 0 && j < n;
+    bool isvalid(int i, int j, int m, int n){
+        return i>=0 && i < m && j >=0 && j < n;
     }
-    bool isborder(int &i, int &j,int &m, int &n){
-        return (i == 0 || i == m-1 ||j == 0 || j == n-1);
-    }
-    int nearestExit(vector<vector<char>>& grid, vector<int>& entrance) {
-        // "+" -> wall
-        // "." -> empty
+    bool isValidExit(int cx, int cy, int x, int y, vector<vector<char>> &grid){
         int m = grid.size();
         int n = grid[0].size();
+        // cout << "here = " << cx << " " << cy << endl;
+        if(grid[cx][cy] != '.'){
+            return false;
+        }
         
-        //bfs
-        int ox = entrance[0];
-        int oy = entrance[1];
+        if(cx == 0 || cx == m-1 || cy == 0 || cy == n-1){
+            // border found
+            if(cx != x || cy != y){
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    int nearestExit(vector<vector<char>>& maze, vector<int>& entrance) {
+        int m = maze.size();
+        int n = maze[0].size();
         
         
-        vector<vector<bool>> vis(m, vector<bool>(n, false));
-        vector<int> dir{1,0,-1,0,1};
-        
+        int x = entrance[0];
+        int y = entrance[1];
         
         queue<vector<int>> q;
-        q.push({ox,oy});
-        vis[ox][oy] = true;
+        q.push({x,y, 0});
         
-        int steps = 0;
+        vector<vector<bool>> vis(m, vector<bool>(n, false));
+        
+        vis[x][y] = true;
+        
+        vector<int> dir{1,0,-1,0,1};
+        
         while(!q.empty()){
             int sz = q.size();
-            steps++;
-            
             while(sz--){
+                auto front = q.front(); q.pop();
+                int cx = front[0];
+                int cy = front[1];
+                int d = front[2];
                 
-                auto front = q.front();
-                q.pop();
-                int currx = front[0];
-                int curry = front[1];
+                if(isValidExit(cx, cy, x,y, maze)){
+                    return d; 
+                }
                 
                 for(int k = 0 ; k < 4 ; k++){
-                    int newx = currx + dir[k];
-                    int newy = curry + dir[k+1];
+                    int newx = cx + dir[k];
+                    int newy = cy + dir[k+1];
                     
-                    if(isvalid(newx,newy,m,n) && !vis[newx][newy] && grid[newx][newy] == '.'){
-                        
-                        if(isborder(newx, newy, m,n)){
-                            return steps;
-                        }
-                        
+                    if(isvalid(newx, newy, m, n) && !vis[newx][newy] && maze[newx][newy] == '.'){
+                        q.push({newx, newy, d+1});
                         vis[newx][newy] = true;
-                        q.push({newx, newy});
                     }
                 }
             }
         }
         
         return -1;
-
+        
     }
 };
