@@ -1,38 +1,61 @@
 class Solution {
 public:
-    void helper(int numb, vector<int> &holder, vector<vector<int>> &ans, int n, int k){
-        if(k == 0){
-            // this condn helps me to get my answer 
+    void helper(vector<int> &nums, vector<int> &holder, vector<vector<int>> &ans, int k, int i, int n){
+        if(holder.size() == k){
             ans.push_back(holder);
             return ;
         }
         
-        if(numb > n){
-            // stopping condition for further recursions
+        if(i >= n){
             return ;
         }
+        //exclude
+        helper(nums, holder, ans, k, i+1, n);
         
-        //exclude (exclude the current number, therefore no decrease in the size of holder ie "k")
-        helper(numb +1, holder, ans, n, k);
+        //include
+        holder.push_back(nums[i]);
+        helper(nums, holder, ans, k , i+1, n);
         
-        
-        //include (include the current number, therefore decrease the size of holder by 1, ie "k = k-1")
-        holder.push_back(numb);
-        helper(numb +1, holder, ans, n, k-1);
-        
+        //backtrack
         holder.pop_back();
         
+        return ;
         
-        return;
+    }
+    
+    void helper2(int k, int n, int curr, vector<int> &holder, vector<vector<int>> &ans){
+        if(holder.size() == k){
+            ans.push_back(holder);
+        }
         
+        
+        for(int i = curr ; i <= n ; i++){
+            holder.push_back(i);
+            helper2(k, n, i+1, holder, ans);
+            holder.pop_back();
+        }
+        
+        return ;
     }
     vector<vector<int>> combine(int n, int k) {
         
+//         vector<int> temp;
+//         for(int i = 1 ; i <= n ; i++){
+//             temp.push_back(i);
+//         }
+        
+//         vector<vector<int>> ans;
+//         vector<int> holder;
+//         int i = 0;
+//         helper(temp, holder, ans, k, i, n);
+        
+//         return ans;
+        
         vector<vector<int>> ans;
         vector<int> holder;
-        helper(1, holder, ans, n, k);
-        return ans;
+        helper2(k, n, 1, holder, ans);
         
+        return ans;
         
     }
 };
