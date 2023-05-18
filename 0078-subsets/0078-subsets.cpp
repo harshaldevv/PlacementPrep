@@ -1,37 +1,33 @@
 class Solution {
 public:
     
-    void helper(vector<int> &holder, int indx, vector<vector<int>> &ans, vector<int> &nums){
-        
-        if(indx >= nums.size()){
+    void helper(vector<int> &nums , int start, int &end, vector<int> &holder, vector<vector<int>> &ans){
+        if(start >= end){
+            //put in ans
             ans.push_back(holder);
             return ;
         }
         
-        // at every number i have 2 choice , to include or to exclude
-        
         //exclude
-        helper(holder, indx +1, ans, nums);
+        helper(nums, start+1, end, holder, ans);
         
         //include
-        holder.push_back(nums[indx]);
-        helper(holder, indx +1, ans, nums); //recurse
+        holder.push_back(nums[start]);
+        helper(nums, start+1, end, holder, ans);
         
-        
-        holder.pop_back(); // back track
-        
-        return;
-        
-        
-        
+        //backtrack
+        holder.pop_back();
     }
     vector<vector<int>> subsets(vector<int>& nums) {
         
         vector<vector<int>> ans;
         int i = 0;
-        vector<int> holder;
         
-        helper(holder, i, ans, nums);
+        vector<int> holder;
+        int n = nums.size();
+        
+        helper(nums, i, n, holder, ans);
+        
         
         return ans;
         
