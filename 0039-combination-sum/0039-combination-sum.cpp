@@ -1,45 +1,43 @@
 class Solution {
 public:
     
-    void helper(int indx, int sum, vector<int> &holder, vector<vector<int>> &ans, vector<int> &nums, int &target){
-        
-        if(sum > target){
+    void helper(vector<int> &nums, int &target, vector<vector<int>> &ans, vector<int> &holder, int i, int &n, int &sum){
+        if(sum > target || i >= n){
             return ;
         }
         
         if(sum == target){
             ans.push_back(holder);
-            return;
-        }
-        
-        if(indx >= nums.size()){
             return ;
         }
         
         //exclude
-        helper(indx +1, sum, holder, ans, nums, target);
+        helper(nums, target, ans, holder, i+1, n, sum);
         
-        // include
-        sum += nums[indx];
-        holder.push_back(nums[indx]);
-        helper(indx, sum, holder, ans, nums, target);
-        
+        //include
+        sum += nums[i];
+        holder.push_back(nums[i]);
+        helper(nums, target, ans, holder, i, n, sum);
         
         //backtrack
-        sum-=nums[indx];
+        sum-=nums[i];
         holder.pop_back();
         
         return ;
-    }
-    vector<vector<int>> combinationSum(vector<int>& candi, int target) {
-        int sum = 0;
         
-        int i = 0;
+    }
+    vector<vector<int>> combinationSum(vector<int>& nums, int target) {
         
         vector<vector<int>> ans;
-        vector<int> holder;
         
-        helper(i, sum, holder, ans, candi, target);
+        vector<int> holder;
+        int i = 0;
+        int n = nums.size();
+        
+        
+        int sum = 0;
+        
+        helper(nums, target, ans, holder, i, n , sum);
         
         return ans;
         
