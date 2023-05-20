@@ -1,64 +1,94 @@
 class Solution {
 public:
-    bool isvalid(vector<vector<char>> &board, int r , int c, char numb){
-        
-        
-        int ROW = r/3;
-        int COL = c/3;
-        
-        // grid check (third condition)
-        for(int  i = 0 ; i < 3 ; i++){
-            for(int j = 0 ; j < 3 ; j++){
-                int tx = 3*ROW + i;
-                int ty = 3*COL + j;
-                
-                if(board[tx][ty] == numb){
-                    return false;
-                }
-            }
-        }
+    bool checker(vector<vector<char>>& board, int n, char &ch, int r, int c){
+        int R = (r/3) * 3;
+        int C = (c/3) *3;
         
         // row check
-        
         for(int j = 0 ; j < 9 ; j++){
-            if(board[r][j] == numb){
+            if(board[r][j] == ch){
                 return false;
             }
         }
         
         // col check
-        
         for(int i = 0 ; i < 9 ; i++){
-            if(board[i][c] == numb){
+            if(board[i][c] == ch){
                 return false;
             }
         }
         
+//         int i = r;
+//         int j = c;
+//         //row check
+//         while(j--){
+//             if(board[i][j] == ch){
+//                 return false;
+//             }
+//         }
+//         cout << "here";
+//         i = r;
+//         j = c;
         
+//         //col check
+//         while(i--){
+//             if(board[i][j] == ch){
+//                 return false;
+//             }
+//         }
+        
+        
+        // // check in the 3x3 box pehle
+        // // this works too
+        // for(int p = R; p < R+3 ; p++){
+        //     for(int q = C ;  q < C+3 ; q++){
+        //         if(board[p][q] == ch){
+        //             return false;
+        //         }
+        //     }
+        // }
+        
+        // check in the 3x3 box pehle
+        for(int p = 0; p < 3 ; p++){
+            for(int q = 0 ;  q < 3 ; q++){
+                if(board[R + p][C + q] == ch){
+                    return false;
+                }
+            }
+        }
         
         return true;
     }
-    
-    bool solve (vector<vector<char>> &board){
+    bool helper(vector<vector<char>>& board, int n){
         
-        
-        for(int i =0 ; i < 9 ; i++){
-            for(int j = 0 ; j < 9 ; j++){
+        for(int i = 0 ; i < n ; i++){
+            for(int j = 0 ; j < n ; j++){
                 if(board[i][j] == '.'){
-                    for(char x = '1' ; x <= '9' ;x++){
-                        if(isvalid(board, i, j, x)){
-                            // cout << "x = " << x << endl;
-                            board[i][j] = x;
+                    for(char c = '1' ; c <= '9' ; c++){
+                        
+                        if(checker(board, n, c, i, j)){
+                            board[i][j] = c;
                             
-                            bool completed = solve(board);
-                            
-                            if(completed){
+                            if(helper(board, n)){
+                                //since we only want one valid ans
+                                // isliye we return true as soon as we know we 
+                                // solve the board once
                                 return true;
+                                
+                                // had we require all possible solutions
+                                // hum if hata de bas likhte "helper(board,n)"
                             }
-                            board[i][j] = '.';
+                            else{
+                                //backtrack
+                               board[i][j] = '.'; 
+                            }
+                            
+                            //backtrack
+                            // board[i][j] = '.';
                         }
                     }
                     
+                    //exhausted all numbers, toh ab return false kardo
                     return false;
                 }
             }
@@ -68,7 +98,9 @@ public:
     }
     void solveSudoku(vector<vector<char>>& board) {
         
-        solve(board);
+        int n = board.size();
+        
+        helper(board, n);
         
         return ;
         
