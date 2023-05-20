@@ -1,78 +1,81 @@
 class Solution {
 public:
-    bool check(int R, int C, vector<string> &board, int n){
+    bool checker(vector<string> board, int row, int col, int &n){
+        //going left
+        int i = row;
+        int j = col;
         
-        
-        // going left
-        for(int j = C ; j >= 0; j--){
-            if(board[R][j] == 'Q'){
+        while(j--){
+            if(board[i][j] == 'Q'){
                 return false;
             }
         }
         
-        // going up -left
+        j = col;
         
-        int i = R;
-        int j = C;
-        
-        while( i >= 0 && j >= 0){
-            if (board[i][j] == 'Q'){
+        //going up left
+        while(i >= 0 && j >=0){
+            if(board[i][j] == 'Q'){
                 return false;
             }
             i--;
             j--;
         }
         
-        
-        // going down-left
-        
-        i = R;
-        j = C;
-        
-        while(i < n && j >= 0){
-            if (board[i][j] == 'Q'){
+        i = row;
+        j = col;
+        //going down left
+        while(i< n && j>=0){
+            if(board[i][j] == 'Q'){
                 return false;
             }
             i++;
             j--;
-            
         }
         
         return true;
     }
-    void solve(int col, vector<string> &board, vector<vector<string>> &ans, int n){
+    bool helper(vector<string> board, int col, int &n, vector<vector<string>> &ans){
         if(col >= n){
-            
             ans.push_back(board);
-            return ;
+            return true;
         }
         
-        
-        
-        for(int r = 0 ; r < n ; r++){
-            if(check(r, col, board, n)){
-                // cout << "here" << endl;
-                board[r][col] = 'Q';
-                solve(col +1, board, ans, n);
-                board[r][col] = '.';
+        for(int i = 0 ; i < n; i++){
+            //check/find a valid posn
+            
+            if(checker(board, i, col, n)){
+                
+                board[i][col] = 'Q';
+                // queen in valid posn.
+                
+                bool temp = helper(board, col+1, n, ans);
+                
+                //backtrack
+                board[i][col] = '.';
             }
+            
         }
         
-        return;
+        return true;
+        
     }
     vector<vector<string>> solveNQueens(int n) {
+        
+        string s = "";
+        for(int i = 0 ; i < n ; i++){
+            s+= ".";
+        }
+
+        vector<string> board(n, s);
+        
         vector<vector<string>> ans;
         
-        string  s = "";
-        for(int i =0 ; i < n ; i++){
-            s += ".";
-        }
-        
-        vector<string> board(n,s);
-        
-        solve(0, board, ans, n);
+        helper(board, 0, n, ans);
         
         return ans;
+        
+        
         
     }
 };
