@@ -1,9 +1,7 @@
 class Solution {
 public:
     bool checker(vector<vector<char>>& board, int n, char &ch, int r, int c){
-        int R = (r/3) * 3;
-        int C = (c/3) *3;
-        
+             
         // row check
         for(int j = 0 ; j < 9 ; j++){
             if(board[r][j] == ch){
@@ -18,25 +16,10 @@ public:
             }
         }
         
-//         int i = r;
-//         int j = c;
-//         //row check
-//         while(j--){
-//             if(board[i][j] == ch){
-//                 return false;
-//             }
-//         }
-//         cout << "here";
-//         i = r;
-//         j = c;
         
-//         //col check
-//         while(i--){
-//             if(board[i][j] == ch){
-//                 return false;
-//             }
-//         }
-        
+        int R = (r/3) * 3;
+        int C = (c/3) * 3;
+
         
         // // check in the 3x3 box pehle
         // // this works too
