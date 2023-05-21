@@ -7,6 +7,9 @@ public:
         else if(i == 1){
             return max(nums[0], nums[1]);
         }
+        else if(i<0){
+            return 0;
+        }
         
         if(dp[i] != -1){
             return dp[i];
