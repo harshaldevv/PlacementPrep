@@ -35,45 +35,33 @@ public:
             return 0;
         }
         
-        // dp[0][0] = 1;
         
-        //filling the row
-        for(int i = 0 ; i < n ; i++){
-            cout << "i = " << i << " ; ";
-            if(grid[0][i] == 1){
-                cout << "hrer";
-                dp[0][i] = 0;
-                cout << "hrersdsds";
-                break;
-            }
-            else{
-                dp[0][i] = 1;
-            }
-        }
         
-        //filling the col
         for(int i = 0 ; i < m ; i++){
-            // cout << "j = " << i << " ; ";
-            if(grid[i][0] == 1){
-                dp[i][0] = 0;
-                break;
-            }
-            else{
-                dp[i][0] = 1;
-            }
-        }
-        
-        
-        
-        
-        for(int i = 1 ; i < m ; i++){
-            for(int j = 1 ; j < n ; j++){
+            for(int j = 0 ; j < n ; j++){
                 if(grid[i][j] == 1){
                     dp[i][j] = 0;
                 }
-                else{
-                    dp[i][j] = dp[i-1][j] + dp[i][j-1];
+                else if(i == 0 & j == 0 ){
+                    dp[i][j] = 1;
                 }
+                else{
+                    int up = 0;
+                    int left = 0;
+                    
+                    if(i > 0){
+                        up = dp[i-1][j];
+                    }
+                    
+                    if(j > 0){
+                        left =  dp[i][j-1];
+                    }
+                    
+                    dp[i][j] =  up + left;
+                    
+                }
+                
+                // cout << "dp[" << i << ", " << j << "] = " << dp[i][j] << endl;
             }
         }
     
