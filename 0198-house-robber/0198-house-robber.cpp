@@ -15,8 +15,8 @@ public:
             return dp[i];
         }
         
-        int left = f(i-1, nums, dp);
-        int right = f(i-2, nums, dp) + nums[i];
+        int left = f(i-1, nums, dp); //not pick
+        int right = f(i-2, nums, dp) + nums[i]; //pick + cant take adjacent (n-1), isliye we take n-2
         
         return dp[i] =  max(left, right);
         
