@@ -26,9 +26,9 @@ class Solution{
         }
         
         
-        if(nums[0] >= 0 && nums[0] <= s ){
-            dp[0][nums[0]]  = true;    
-        }
+        
+        dp[0][nums[0]]  = true;    
+        
         
         
         for(int i = 1 ; i < n ; i++){
