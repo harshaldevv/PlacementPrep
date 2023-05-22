@@ -16,7 +16,7 @@ class Solution{
             s+=x;
         }
         
-        bool dp[n][s+1000];
+        bool dp[n][s+1];
         memset(dp, false, sizeof(dp));
         
         // cout << "s = " << s << endl;
