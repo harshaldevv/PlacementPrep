@@ -26,9 +26,7 @@ class Solution{
         }
         
         
-        
         dp[0][nums[0]]  = true;    
-        
         
         
         for(int i = 1 ; i < n ; i++){
