@@ -41,9 +41,40 @@ public:
         }
         
         int ss = s/2;
-        vector<vector<int>> dp(n, vector<int>(ss+1, -1));
+        // vector<vector<int>> dp(n, vector<int>(ss+1, -1));
         
-        return f(n-1, ss, nums, dp);
+        // return f(n-1, ss, nums, dp);
+        
+        // tabulation
+        // vector<vector<int>> dp(n, vector<int>(ss+1, -1));
+        
+        bool dp[n][ss+200];
+        memset(dp, false, sizeof(dp));
+        
+        for(int i = 0 ; i < n ; i++){
+            dp[i][0] = false;
+        }
+        
+        dp[0][nums[0]] = true;
+        
+        for(int i = 1 ; i < n ; i++){
+            for(int j = 1 ; j <= ss; j++){
+                bool notTake = dp[i-1][j];
+                
+                bool take = false;
+                
+                if( j >= nums[i]){
+                    take = dp[i-1][j-nums[i]];
+                }
+                
+                dp[i][j] = notTake || take;
+            }
+        }
+        
+        
+        return dp[n-1][ss];
+        
+        
         
     }
 };
