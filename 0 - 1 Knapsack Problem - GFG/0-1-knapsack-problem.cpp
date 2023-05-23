@@ -34,9 +34,46 @@ class Solution{
         
         return dp[i][j] =  max(take, notTake);
     }
+    
     int knapSack(int W, int wt[], int val[], int n) { 
-        vector<vector<int>> dp(n+1, vector<int>(W+1, -1));
-        return f(n-1, W, wt, val, n, dp);
+        // vector<vector<int>> dp(n+1, vector<int>(W+1, -1));
+        // return f(n-1, W, wt, val, n, dp);
+        
+        
+        int dp[n][W+1];
+        memset(dp, 0, sizeof(dp));
+        
+        for(int i = 0 ; i < n ; i++){
+            dp[i][0] = 0;
+        }
+        
+        for(int j = 0 ; j <= W; j++){
+            int i = 0;
+            if(j >= wt[i]){
+                dp[i][j] = val[i];
+            }
+        }
+        
+        
+        for(int i = 1 ; i < n ; i++){
+            for(int j = 1 ; j <= W ; j++){
+                
+                int notTake = dp[i-1][j] + 0;
+        
+                int take = 0;
+                
+                if( j >= wt[i]){
+                    // cout << "here" << endl;
+                    take = dp[i-1][j - wt[i]] + val[i];
+                }
+                
+                dp[i][j] =  max(take, notTake);
+                
+            }
+        }
+        
+        
+        return dp[n-1][W];
     //   // Your code here
     //   int t[n+1][W+1];
        
