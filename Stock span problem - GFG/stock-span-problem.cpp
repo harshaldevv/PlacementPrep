@@ -10,33 +10,83 @@ class Solution
 {
     public:
     //Function to calculate the span of stockâ€™s price for all n days.
-    vector <int> calculateSpan(int price[], int n)
+    vector <int> calculateSpan(int nums[], int n)
     {
-        // NGL basically
-        vector<int> ans;
-        stack<pair<int, int>> st;
+       
         
+        vector<int> v(n);
+        vector<int> ans(n);
+        stack<vector<int>> st;
+        //ngl
         for(int i = 0 ; i < n ; i++){
-            while(!st.empty() && st.top().first <= price[i]){
+            while(!st.empty() && st.top()[0] <= nums[i]){
                 st.pop();
             }
             
             if(st.empty()){
-                ans.push_back(i-(-1));
+                v[i] = -1;
             }
             else{
-                ans.push_back(i - st.top().second);
+                v[i] = st.top()[1];
             }
             
-            pair<int, int> p(price[i], i);
-            st.push(p);
+            ans[i] = i - v[i];
+            
+            st.push({nums[i], i});
         }
+        
         
         return ans;
         
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        // // NGL basically
+        // vector<int> ans;
+        // stack<pair<int, int>> st;
+        
+        // for(int i = 0 ; i < n ; i++){
+        //     while(!st.empty() && st.top().first <= price[i]){
+        //         st.pop();
+        //     }
+            
+        //     if(st.empty()){
+        //         ans.push_back(i-(-1));
+        //     }
+        //     else{
+        //         ans.push_back(i - st.top().second);
+        //     }
+            
+        //     pair<int, int> p(price[i], i);
+        //     st.push(p);
+        // }
+        
+        // return ans;
+        
+        
+        
+        // NEECHE WALA IS MUCH BETTER IN TERMS OF UNDERSTANDING
         
         
         
