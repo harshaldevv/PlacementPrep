@@ -80,11 +80,7 @@ public:
                 }
             }
             
-            // cout << "h--" << endl;
-            // for(auto &x : h){
-            //     cout << x << " ";
-            // }
-            // cout << endl;
+            
             int temp = MAH(h);
 
             ans = max(temp, ans);
