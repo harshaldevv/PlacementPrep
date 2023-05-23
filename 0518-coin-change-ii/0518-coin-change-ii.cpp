@@ -32,9 +32,43 @@ public:
         
         int n = coins.size();
         
-        vector<vector<int>> dp(n+1, vector<int>(amount+1, -1));
-        return f(n-1, amount, coins, dp);
+        // vector<vector<int>> dp(n+1, vector<int>(amount+1, -1));
+        // return f(n-1, amount, coins, dp);
         
+        int dp[n][amount+1];
+        memset(dp, 0, sizeof(dp));
+        
+        for(int i = 0 ; i < n ; i++){
+            dp[i][0] = 0;
+        }
+        
+        vector<int> nums = coins;
+        for(int j = 0 ; j <= amount ; j++){
+            if(j%nums[0] == 0){
+                dp[0][j] =  1;
+            }
+            else{
+                dp[0][j] =  0;
+            }
+        }
+        
+        
+        for(int i = 1 ; i < n ; i++){
+            for(int j = 0 ; j <= amount ; j++){
+                
+                int nottake = dp[i-1][j];
+                int take = 0;
+
+                if(j >= nums[i]){
+                    take =  dp[i][j - nums[i]];
+                }
+                
+                dp[i][j] = take + nottake;
+                
+            }
+        }
+        
+        return dp[n-1][amount];
         
         
 //         int  n = coins.size();
