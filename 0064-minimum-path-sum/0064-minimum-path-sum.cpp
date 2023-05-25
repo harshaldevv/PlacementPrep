@@ -23,15 +23,12 @@ public:
         // vector<vector<int>> dp(m+1, vector<int> (n+1, -1));
         // return f(m-1, n-1, grid, dp);
         
-        vector<vector<int>> dp(m+1, vector<int> (n+1, INT_MAX));
-        
-        //basecase
-        dp[0][0] = grid[0][0];
-        
+        //tabulation
+        vector<vector<int>> dp(m+1, vector<int> (n+1, -1));
         for(int i = 0 ; i < m ; i++){
             for(int j = 0 ; j < n ; j++){
                 if(i == 0 && j == 0){
-                    dp[0][0] = grid[0][0];
+                    dp[i][j] = grid[0][0];
                 }
                 else{
                     int up = INT_MAX;
@@ -51,6 +48,38 @@ public:
         }
         
         return dp[m-1][n-1];
+        
+//         //tabulation with space optimisation
+        
+//         vector<int> curr(n, 0);
+//         vector<int> prev(n, 0);
+        
+//         for(int i = 0 ; i < m ; i++){
+//             for(int j = 0 ; j < n ; j++){
+//                 if(i == 0 && j == 0){
+//                     curr[j] = grid[0][0];
+//                 }
+//                 else{
+                    
+//                     int up = INT_MAX;
+//                     int left = INT_MAX;
+                    
+//                     if( i >= 1){
+//                         up = prev[j];
+//                     }
+                    
+//                     if(j >= 1){
+//                         left = curr[j-1];
+//                     }
+                    
+//                     curr[j] = min(up, left) + grid[i][j];
+//                 }
+//             }
+            
+//             prev = curr;
+//         }
+        
+//         return prev[n-1];
         
         
     }
