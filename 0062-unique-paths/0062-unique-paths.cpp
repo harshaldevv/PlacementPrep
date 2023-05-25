@@ -51,6 +51,7 @@ public:
         
 //         return dp[m-1][n-1];
         
+        //space optimisation
         vector<int> prev(n, 1);  // 1D array for the previous row
         vector<int> curr(n, 1);  // 1D array for the current row
         
