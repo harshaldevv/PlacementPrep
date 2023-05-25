@@ -1,21 +1,42 @@
 class Solution {
 public:
     bool isValid(string s) {
-        // hci research
         stack<char> st;
-        unordered_map<char, char> pairs = {{')', '('}, {']', '['}, {'}', '{'}};
         
-        for (char c : s) {
-            if (pairs.count(c)) {
-                if (st.empty() || st.top() != pairs[c]) {
+        unordered_map<char, char> mp;
+        mp['('] = ')';
+        mp['{'] = '}';
+        mp['['] = ']';
+        
+        for(int i = 0 ; i < s.size() ; i++){
+            
+            if(st.empty() && (s[i] == ')' || s[i] == ']' || s[i] == '}')){
+                return false;
+            }
+            
+            
+            if(s[i] == '(' || s[i] == '{' || s[i] == '[' ){
+                st.push(s[i]);
+            }
+            else{
+                char a = s[i];
+                char b = st.top();
+                
+                if(a == ')' && b == '('  || a == '}' && b == '{' || a == ']' && b == '['){
+                    st.pop();
+                }
+                else{
                     return false;
                 }
-                st.pop();
-            } else {
-                st.push(c);
             }
         }
         
-        return st.empty();
+        if(st.size() > 0){
+            return false;
+        }
+        
+        
+        return true;
+        
     }
 };
