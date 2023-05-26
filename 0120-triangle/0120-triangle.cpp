@@ -58,7 +58,6 @@ public:
         
         for(int i = n-2 ; i >=0 ; i--){
             for(int j = i ; j >= 0 ; j--){
-         
                     int down = next[j];
                     int dia = next[j+1];
 
