@@ -24,10 +24,11 @@ public:
         // return f(0,0, triangle, n, dp);
         
         
+        //tabulation done
+        // we go from n-1 to 0 (in tabulation) as we went from 0 to n-1 in memoization.
         vector<vector<int>> dp(n+1, vector<int>(n+1, -1));
-        
         for(int i = n-1 ; i >=0 ; i--){
-            for(int j = 0 ; j <= i ; j++){
+            for(int j = i ; j >= 0 ; j--){
                 if(i == n-1){
                     dp[i][j] = triangle[i][j];
                 }
