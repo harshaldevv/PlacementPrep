@@ -40,8 +40,9 @@ public:
         int m = grid.size();
         int n = grid[0].size();
         
+        
+        vector<vector<vector<int>>> dp(m+1, vector<vector<int>>(n+1, vector<int>(n+1, -1))); //mine
 
-        vector < vector < vector < int >>> dp(m+1, vector < vector < int >> (n+1, vector < int> (n+1, -1)));
         return f(0,0, n-1, grid, m, n, dp);
         
     }
