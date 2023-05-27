@@ -1,31 +1,26 @@
 class Solution {
 public:
-    bool f(int i, int j, vector<int> &nums, vector<vector<int>> &dp ){
-        // cout << i << " , " << j << endl;
-        
-        if(j == 0){
+    int f(int i, int tar, vector<int> &nums, vector<vector<int>> &dp){
+        if(tar == 0){
             return true;
         }
         
-        if(i == 0 ){
-            return nums[i] == j;
+        if(i == 0){
+            return nums[i] == tar;
         }
         
-        if(dp[i][j] != -1){
-            return dp[i][j];
+        if(dp[i][tar] != -1){
+            return dp[i][tar];
         }
         
+        bool nottake = f(i-1, tar, nums, dp);
         
-        bool notTake = f(i-1, j, nums, dp);
-
         bool take = false;
-        
-        if(j >= nums[i]){
-            take = f(i-1, j - nums[i], nums, dp);
+        if(tar >= nums[i]){
+            take = f(i-1, tar - nums[i], nums, dp);
         }
         
-        return dp[i][j] = take | notTake;
-        
+        return dp[i][tar] =  take | nottake;
     }
     bool canPartition(vector<int>& nums) {
         
@@ -33,48 +28,16 @@ public:
         
         int s = 0;
         for(auto &x : nums){
-            s+=x;
+            s+= x;
         }
         
-        if(s%2 !=0){
+        if(s%2 != 0){
             return false;
         }
         
-        int ss = s/2;
-        // vector<vector<int>> dp(n, vector<int>(ss+1, -1));
         
-        // return f(n-1, ss, nums, dp);
-        
-        // tabulation
-        // vector<vector<int>> dp(n, vector<int>(ss+1, -1));
-        
-        bool dp[n][ss+200];
-        memset(dp, false, sizeof(dp));
-        
-        for(int i = 0 ; i < n ; i++){
-            dp[i][0] = false;
-        }
-        
-        dp[0][nums[0]] = true;
-        
-        for(int i = 1 ; i < n ; i++){
-            for(int j = 1 ; j <= ss; j++){
-                bool notTake = dp[i-1][j];
-                
-                bool take = false;
-                
-                if( j >= nums[i]){
-                    take = dp[i-1][j-nums[i]];
-                }
-                
-                dp[i][j] = notTake || take;
-            }
-        }
-        
-        
-        return dp[n-1][ss];
-        
-        
+        vector<vector<int>> dp(n+1, vector<int> (s/2 +1, -1));
+        return f(n-1, s/2, nums, dp);
         
     }
 };
