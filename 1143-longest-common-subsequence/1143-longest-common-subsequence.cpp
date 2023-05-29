@@ -39,7 +39,7 @@ public:
             for(int j = 1 ; j <= n2 ; j++){
                 
                 if(s1[i-1] == s2[j-1]){
-                    ans += s1[i-1]; // for printing the LCS
+                    // ans += s1[i-1]; // for printing the LCS
                     dp[i][j] = 1 + dp[i-1][j-1];
                 }
                 else{
@@ -50,7 +50,32 @@ public:
                 }   
             }
         }
-        cout << ans << endl;
+        // cout << ans << endl; // this works too but ig issi case me karega
+        
+        //for prinitng the answer string
+        
+        int i = n1;
+        int j = n2;
+        
+        while(i>0 && j > 0){
+            if(s1[i-1] == s2[j-1]){
+                //matched
+                ans += s1[i-1];
+                i--;
+                j--;
+            }
+            else if(dp[i-1][j] > dp[i][j-1]){
+                i--;
+            }
+            else{
+                j--;
+            }
+        }
+        
+        reverse(ans.begin(), ans.end());
+        
+        cout << "ans = " << ans << endl ;
+            
         return dp[n1][n2];
         
         
