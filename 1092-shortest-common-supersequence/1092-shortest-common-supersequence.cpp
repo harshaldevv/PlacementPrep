@@ -1,81 +1,65 @@
 class Solution {
 public:
-    
-    string getLCS(string &X, string &Y, int n, int m){
-        int t[n+1][m+1];
+    string shortestCommonSupersequence(string s1, string s2) {
         
-        memset(t, 0, sizeof(t));
+        int n1 = s1.size();
+        int n2 = s2.size();
         
-        // initlaize first row and col with zero
+        vector<vector<int>> dp(n1+1, vector<int>(n2+1, 0));
         
-        for(int i =1 ; i < n+1 ; i++){
-            for(int j = 1; j <m+1 ; j++){
-                if(X[i-1] == Y[j-1]){
-                    t[i][j] = 1 + t[i-1][j-1];
+        // dp[0][j] = 0, dp[i][0] = 0
+        
+        for(int i = 1 ; i <= n1 ; i++){
+            for(int j = 1 ; j <= n2 ; j++){
+                if(s1[i-1] == s2[j-1]){
+                    dp[i][j] = 1 + dp[i-1][j-1];
                 }
                 else{
-                    t[i][j] = max(t[i-1][j], t[i][j-1]);
+                    dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
                 }
             }
         }
         
-        // return t[n][m];
+        // lcs aa gaya
+        int lcs = dp[n1][n2];
+        // cout << "lcs = " <<  lcs << endl;
+        int scs_len = n1+n2 - lcs;
+        // cout << "scs len = " <<  scs_len << endl;
         
-        
-        int i = n;
-        int j = m;
-        
+        int i = n1;
+        int j = n2;
         string ans = "";
         
         while(i>0 && j >0){
-            if(X[i-1] == Y[j-1]){
-                ans.push_back(X[i-1]);
+            if(s1[i-1] == s2[j-1]){
+                ans += s1[i-1];
                 i--;
                 j--;
             }
+            else if(dp[i-1][j] > dp[i][j-1]){
+                ans += s1[i-1] ;
+                i--;
+            }
             else{
-                if(t[i-1][j] > t[i][j-1]){
-                    ans.push_back(X[i-1]);
-                    i--;
-                }
-                else{
-                    ans.push_back(Y[j-1]);
-                    j--;
-                }
+                ans += s2[j-1];
+                j--;
             }
         }
         
-        // characters in s1 still left
+        cout << ans <<endl;
         while(i>0){
-            ans.push_back(X[i-1]);
+            ans += s1[i-1];
             i--;
         }
         
         while(j>0){
-            ans.push_back(Y[j-1]);
+            ans += s2[j-1];
             j--;
         }
         
         reverse(ans.begin(), ans.end());
         
-        
         return ans;
-        
-        
-    }
-    
-    string shortestCommonSupersequence(string str1, string str2) {
-        
-        int n = str1.size();
-        int m = str2.size();
-        
-        // return m+n-LCS; --> basic idea --> str1 + str2 - LCS(str1, str2);
-        
-        string ans = getLCS(str1, str2, n,m);
-        
-        return ans;
-        
-        
         
     }
 };
