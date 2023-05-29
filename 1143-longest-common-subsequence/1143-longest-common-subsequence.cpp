@@ -34,11 +34,12 @@ public:
         // base case -> if either of the string's length is 0, toh ans = 0
         // ie dp[0][j] = 0 and dp[i][0] = 0 
         // we've already handled this by initialising dp with 0
-        
+        string ans = "";
         for(int i = 1 ; i <= n1 ; i++){
             for(int j = 1 ; j <= n2 ; j++){
                 
                 if(s1[i-1] == s2[j-1]){
+                    ans += s1[i-1]; // for printing the LCS
                     dp[i][j] = 1 + dp[i-1][j-1];
                 }
                 else{
@@ -49,7 +50,7 @@ public:
                 }   
             }
         }
-        
+        cout << ans << endl;
         return dp[n1][n2];
         
         
