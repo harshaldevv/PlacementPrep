@@ -7,6 +7,9 @@ public:
         int n2 = nums2.size();
         
         vector<vector<int>> dp(n1+1, vector<int>(n2+1, 0));
+        //base case handled via our dp array ki intialisation
+        // dp[0][j]= 0 and dp[i][0] = 0 for all i and j
+        
         int ans = 0;
         for(int i =1 ; i<= n1 ; i++){
             for(int j =1 ; j <= n2 ; j++){
