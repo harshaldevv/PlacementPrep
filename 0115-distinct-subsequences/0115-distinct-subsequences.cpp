@@ -29,25 +29,52 @@ public:
         // vector<vector<int>> dp(n1+1, vector<int>(n2+1, -1));
         // return f(n1 -1 , n2 - 1 , s, t, dp);
         
-        //tabulation
-        vector<vector<unsigned int>> dp(n1+1, vector<unsigned int>(n2+1, 0));
+//         //tabulation
+//         vector<vector<unsigned int>> dp(n1+1, vector<unsigned int>(n2+1, 0));
+        
+//         for(int i = 0 ; i <= n1 ; i++){
+//             dp[i][0] = 1;
+//         }
+        
+//         for(int i = 1 ; i <= n1 ; i++){
+//             for(int j =1 ; j <= n2 ; j++){
+//                 if(s[i-1] == t[j-1]){
+//                     dp[i][j] = dp[i-1][j-1] + dp[i-1][j];
+//                 }
+//                 else{
+//                     dp[i][j] =  dp[i-1][j];
+//                 }
+//             }
+//         }
+        
+//         return dp[n1][n2];
+        
+        
+        //tabulation with space optimisation
+        // vector<vector<unsigned int>> dp(n1+1, vector<unsigned int>(n2+1, 0));
+        
+        vector<unsigned int> prev(n2+1, 0);
+        vector<unsigned int> curr(n2+1, 0);
         
         for(int i = 0 ; i <= n1 ; i++){
-            dp[i][0] = 1;
+            prev[0] = 1;
+            curr[0] = 1;
         }
         
         for(int i = 1 ; i <= n1 ; i++){
             for(int j =1 ; j <= n2 ; j++){
                 if(s[i-1] == t[j-1]){
-                    dp[i][j] = dp[i-1][j-1] + dp[i-1][j];
+                    curr[j] = prev[j-1] + prev[j];
                 }
                 else{
-                    dp[i][j] =  dp[i-1][j];
+                    curr[j] =  prev[j];
                 }
             }
+            
+            prev = curr;
         }
         
-        return dp[n1][n2];
+        return prev[n2];
         
     }
 };
