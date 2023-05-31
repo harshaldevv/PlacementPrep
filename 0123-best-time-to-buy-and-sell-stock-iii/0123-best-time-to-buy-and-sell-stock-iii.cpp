@@ -15,13 +15,13 @@ public:
         
         if(youcanbuy){
             // buy, not buy
-            int buy = -prices[i] + f(i+1, false, count+1, prices, dp);
+            int buy = -prices[i] + f(i+1, false, count, prices, dp);
             int notbuy = f(i+1, true, count, prices, dp);
             return dp[i][youcanbuy][count] = max(buy, notbuy);
         }
         else{
             //sell, notsell
-            int sell = +prices[i] + f(i+1, true, count, prices, dp);
+            int sell = +prices[i] + f(i+1, true, count+1, prices, dp);
             int notsell  = f(i+1, false, count, prices, dp);
             return dp[i][youcanbuy][count] = max(sell, notsell);
         }
@@ -30,7 +30,10 @@ public:
         
         int n = prices.size();
         
-        // max buy 2 times
+        // max sell 2 times -> baaki agar koi submissin dekhe toh max 2 times "buy" likha hoga
+        // woh galat hai -> max allowed selling is "2" times only
+        // bcase any transaction is COMPLETE only when SELL is done.
+        
         // bool youcanbuy = true;
         // vector<vector<vector<int>>> dp(n+1, vector<vector<int>>(3, vector<int>(3, -1)));
         // return f(0, youcanbuy, 0, prices, dp);
