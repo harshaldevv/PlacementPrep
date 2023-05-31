@@ -24,10 +24,34 @@ public:
     int maxProfit(vector<int>& prices) {
         
         int n = prices.size();
-        bool youcanbuy = true;
+        // bool youcanbuy = true;
+        // vector<vector<int>> dp(n+1, vector<int>(2+1, -1));
+        // return f(0, youcanbuy, prices, dp);
         
-        vector<vector<int>> dp(n+1, vector<int>(2+1, -1));
-        return f(0, youcanbuy, prices, dp);
+        
+        //tabulation
+        vector<vector<int>> dp(n+2, vector<int>(3, 0));
+        cout << "here " << endl;
+        
+        for(int i = n-1; i >= 0 ; i--){
+            for(int j = 0 ; j <=1 ; j++){
+                
+                if(j){
+                    int notbuy = dp[i+1][true];
+                    int buy = -prices[i] + dp[i+1][false];
+                    dp[i][j]  = max(buy, notbuy);
+                }
+                else{
+                    int notsell = dp[i+1][false];
+                    int sell = dp[i+2][true] + prices[i];
+                    dp[i][j]  = max(sell, notsell);
+                }
+                
+            }
+        }
+        
+        return dp[0][1];
+        
         
     }
 };
