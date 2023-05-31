@@ -36,7 +36,7 @@ public:
         // vector<vector<int>> dp(n+1, vector<int>(2, -1));        
         // return f(0, prices, youcanBuy, dp);
         
-        
+        // tabulation
         vector<vector<int>> dp(n+1, vector<int>(2, 0));        
         for(int i = n-1 ; i >=0 ; i--){
             for(int j = 0 ; j <= 1 ; j++){
