@@ -68,10 +68,37 @@ public:
         // could have been used in Best Time to Buy and Sell Stock III
         
         
-        vector<vector<int>> dp(n+1, vector<int>(2*k +1, -1));
-        return func(0, 0, k, prices, dp);
+        // vector<vector<int>> dp(n+1, vector<int>(2*k +1, -1));
+        // return func(0, 0, k, prices, dp);
         
         //this works like a charm
+        
+        // now doing tabulation
+        
+        vector<vector<int>> dp(n+1, vector<int>(2*k +1, 0));
+        
+        //base case already done via our initialisation of "0"
+        
+        for(int i = n-1 ; i >=0 ; i--){
+            for(int j = 2*k -1 ; j >=0 ; j--){
+                
+                if(j%2 == 0){
+                    //buy allowed -->now you can either buy or not
+                    int buy = -prices[i] + dp[i+1][j +1];
+                    int notbuy = dp[i+1][j];
+                    dp[i][j] = max(buy, notbuy);
+                }
+                else{
+                    int sell = +prices[i] + dp[i+1][j+1];
+                    int notsell = dp[i+1][j];
+                    dp[i][j] = max(sell, notsell);
+                }
+            }
+        }
+        
+        return dp[0][0];
+        
+        
         
         
         
