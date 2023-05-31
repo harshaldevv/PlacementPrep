@@ -67,49 +67,49 @@ public:
 //         Compare two consecutive days and if you are making a profit, 
 //         just buy on 1st day and sell on 2nd day
 //         */
-//         int ans = 0;
-//         for(int i = 1 ; i < n ;i++){
-//             if(prices[i] >= prices[i-1]){
-//                 ans += prices[i] - prices[i-1];
-//             }
-//         }
-        
-//         return ans;
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        // tabulation with space optimization
-        vector<int> after(2, 0);        
-        vector<int> curr (2, 0);
-        
-        for(int i = n-1 ; i >=0 ; i--){
-            for(int j = 0 ; j <= 1 ; j++){
-                
-                if(j){
-                    //two options -> buy or not buy
-                    int notBuy = after[true];
-                    int iBuy = -prices[i] + after[false];
-                    curr[j] = max(notBuy, iBuy);
-                }
-                else{
-                    //sell or not sell
-                    int notsell = after[false];
-                    int sell = prices[i] + after[true];
-                    curr[j] = max(sell, notsell);
-                }  
+        int ans = 0;
+        for(int i = 1 ; i < n ;i++){
+            if(prices[i] >= prices[i-1]){
+                ans += prices[i] - prices[i-1];
             }
-            
-            after = curr;
         }
         
-        return curr[1];
+        return ans;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+//         // tabulation with space optimization
+//         vector<int> after(2, 0);        
+//         vector<int> curr (2, 0);
+        
+//         for(int i = n-1 ; i >=0 ; i--){
+//             for(int j = 0 ; j <= 1 ; j++){
+                
+//                 if(j){
+//                     //two options -> buy or not buy
+//                     int notBuy = after[true];
+//                     int iBuy = -prices[i] + after[false];
+//                     curr[j] = max(notBuy, iBuy);
+//                 }
+//                 else{
+//                     //sell or not sell
+//                     int notsell = after[false];
+//                     int sell = prices[i] + after[true];
+//                     curr[j] = max(sell, notsell);
+//                 }  
+//             }
+            
+//             after = curr;
+//         }
+        
+//         return curr[1];
         
         
         
