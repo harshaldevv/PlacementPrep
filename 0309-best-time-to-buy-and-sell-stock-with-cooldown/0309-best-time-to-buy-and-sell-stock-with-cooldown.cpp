@@ -31,7 +31,6 @@ public:
         
         //tabulation
         vector<vector<int>> dp(n+2, vector<int>(3, 0));
-        cout << "here " << endl;
         
         for(int i = n-1; i >= 0 ; i--){
             for(int j = 0 ; j <=1 ; j++){
