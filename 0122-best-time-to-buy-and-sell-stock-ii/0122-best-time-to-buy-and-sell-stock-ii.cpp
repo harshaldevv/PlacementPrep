@@ -36,28 +36,28 @@ public:
         // vector<vector<int>> dp(n+1, vector<int>(2, -1));        
         // return f(0, prices, youcanBuy, dp);
         
-        // tabulation
-        vector<vector<int>> dp(n+1, vector<int>(2, 0));        
-        for(int i = n-1 ; i >=0 ; i--){
-            for(int j = 0 ; j <= 1 ; j++){
+//         // tabulation
+//         vector<vector<int>> dp(n+1, vector<int>(2, 0));        
+//         for(int i = n-1 ; i >=0 ; i--){
+//             for(int j = 0 ; j <= 1 ; j++){
                 
-                if(j){
-                    //two options -> buy or not buy
-                    int notBuy = dp[i+1][true];
-                    int iBuy = -prices[i] + dp[i+1][false];
-                    dp[i][j] = max(notBuy, iBuy);
-                }
-                else{
-                    //sell or not sell
-                    int notsell = dp[i+1][false];
-                    int sell = prices[i] + dp[i+1][true];
+//                 if(j){
+//                     //two options -> buy or not buy
+//                     int notBuy = dp[i+1][true];
+//                     int iBuy = -prices[i] + dp[i+1][false];
+//                     dp[i][j] = max(notBuy, iBuy);
+//                 }
+//                 else{
+//                     //sell or not sell
+//                     int notsell = dp[i+1][false];
+//                     int sell = prices[i] + dp[i+1][true];
 
-                    dp[i][j] = max(sell, notsell);
-                }  
-            }
-        }
+//                     dp[i][j] = max(sell, notsell);
+//                 }  
+//             }
+//         }
         
-        return dp[0][1];
+//         return dp[0][1];
         
         
 //         /*
@@ -75,6 +75,48 @@ public:
 //         }
         
 //         return ans;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        // tabulation with space optimization
+        vector<int> after(2, 0);        
+        vector<int> curr (2, 0);
+        
+        for(int i = n-1 ; i >=0 ; i--){
+            for(int j = 0 ; j <= 1 ; j++){
+                
+                if(j){
+                    //two options -> buy or not buy
+                    int notBuy = after[true];
+                    int iBuy = -prices[i] + after[false];
+                    curr[j] = max(notBuy, iBuy);
+                }
+                else{
+                    //sell or not sell
+                    int notsell = after[false];
+                    int sell = prices[i] + after[true];
+                    curr[j] = max(sell, notsell);
+                }  
+            }
+            
+            after = curr;
+        }
+        
+        return curr[1];
+        
+        
+        
+        
+        
+        
+        
         
     }
 };
