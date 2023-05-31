@@ -73,9 +73,35 @@ public:
         
         //this works like a charm
         
-        // now doing tabulation
         
-        vector<vector<int>> dp(n+1, vector<int>(2*k +1, 0));
+//         // now doing tabulation
+//         vector<vector<int>> dp(n+1, vector<int>(2*k +1, 0));
+        
+//         //base case already done via our initialisation of "0"
+        
+//         for(int i = n-1 ; i >=0 ; i--){
+//             for(int j = 2*k -1 ; j >=0 ; j--){
+                
+//                 if(j%2 == 0){
+//                     //buy allowed -->now you can either buy or not
+//                     int buy = -prices[i] + dp[i+1][j +1];
+//                     int notbuy = dp[i+1][j];
+//                     dp[i][j] = max(buy, notbuy);
+//                 }
+//                 else{
+//                     int sell = +prices[i] + dp[i+1][j+1];
+//                     int notsell = dp[i+1][j];
+//                     dp[i][j] = max(sell, notsell);
+//                 }
+//             }
+//         }
+        
+//         return dp[0][0];
+        
+        
+        // now doing tabulation with space optimization
+        vector<int> after(2*k +1, 0);
+        vector<int> curr(2*k +1, 0);
         
         //base case already done via our initialisation of "0"
         
@@ -84,19 +110,21 @@ public:
                 
                 if(j%2 == 0){
                     //buy allowed -->now you can either buy or not
-                    int buy = -prices[i] + dp[i+1][j +1];
-                    int notbuy = dp[i+1][j];
-                    dp[i][j] = max(buy, notbuy);
+                    int buy = -prices[i] + after[j +1];
+                    int notbuy = after[j];
+                    curr[j] = max(buy, notbuy);
                 }
                 else{
-                    int sell = +prices[i] + dp[i+1][j+1];
-                    int notsell = dp[i+1][j];
-                    dp[i][j] = max(sell, notsell);
+                    int sell = +prices[i] + after[j+1];
+                    int notsell = after[j];
+                    curr[j] = max(sell, notsell);
                 }
             }
+            
+            after = curr;
         }
         
-        return dp[0][0];
+        return curr[0];
         
         
         
