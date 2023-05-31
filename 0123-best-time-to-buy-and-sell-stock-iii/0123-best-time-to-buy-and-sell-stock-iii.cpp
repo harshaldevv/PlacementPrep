@@ -1,6 +1,7 @@
 class Solution {
 public:
     int f(int i, bool youcanbuy, int count, vector<int> &prices, vector<vector<vector<int>>> &dp){
+        // count = buy ka count
         if(i==prices.size()){
             return 0;
         }
@@ -29,10 +30,7 @@ public:
     int maxProfit(vector<int>& prices) {
         
         int n = prices.size();
-        
-        // max sell 2 times -> baaki agar koi submissin dekhe toh max 2 times "buy" likha hoga
-        // woh galat hai -> max allowed selling is "2" times only
-        // bcase any transaction is COMPLETE only when SELL is done.
+        // max 2 buys allowed
         
 //         bool youcanbuy = true;
 //         vector<vector<vector<int>>> dp(n+1, vector<vector<int>>(3, vector<int>(3, -1)));
