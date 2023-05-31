@@ -37,7 +37,7 @@ public:
         
         //tabulation
         
-        vector<vector<vector<int>>> dp(n+1, vector<vector<int>>(4, vector<int>(4, -1)));
+        vector<vector<vector<int>>> dp(n+1, vector<vector<int>>(3, vector<int>(4, -1)));
         
         //base case
         dp[n][0][0] = 0;
