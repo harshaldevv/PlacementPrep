@@ -32,7 +32,11 @@ public:
         
         // max buy 2 times
         bool youcanbuy = true;
-        vector<vector<vector<int>>> dp(n+1, vector<vector<int>>(5, vector<int>(5, -1)));
+        vector<vector<vector<int>>> dp(n+1, vector<vector<int>>(3, vector<int>(3, -1)));
         return f(0, youcanbuy, 0, prices, dp);
+        
+        //tabulation
+        
+        // vector<vector<vector<int>>> dp(n+1, vector<vector<int>>(5, vector<int>(5, -1)));
     }
 };
