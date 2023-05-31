@@ -29,24 +29,48 @@ public:
         // return f(0, -1, nums, dp);
         
         
-        // tabulation
-        vector<vector<int>> dp(n+1, vector<int>(n+1, 0));
+//         // tabulation
+//         vector<vector<int>> dp(n+1, vector<int>(n+1, 0));
+//         for(int i = n-1 ; i >=0 ; i--){
+//             for(int j = n-1 ; j>= -1 ; j--){
+                
+//                 int nottake = dp[i+1][j+1];
+        
+//                 int take = 0;
+
+//                 if(j == -1 || nums[i] > nums[j]){
+//                     take = 1 + dp[i+1][i+1];
+//                 }
+                
+//                 dp[i][j+1] = max(take, nottake);   
+//             }
+//         }
+        
+//         return dp[0][0];
+        
+        
+        // tabulation with space optimisation
+        
+        vector<int> ahead(n+1, 0);
+        vector<int> curr(n+1, 0);
+        
         for(int i = n-1 ; i >=0 ; i--){
             for(int j = n-1 ; j>= -1 ; j--){
                 
-                int nottake = dp[i+1][j+1];
+                int nottake = ahead[j+1];
         
                 int take = 0;
 
                 if(j == -1 || nums[i] > nums[j]){
-                    take = 1 + dp[i+1][i+1];
+                    take = 1 + ahead[i+1];
                 }
                 
-                dp[i][j+1] = max(take, nottake);   
+                curr[j+1] = max(take, nottake);   
             }
+            ahead = curr;
         }
         
-        return dp[0][0];
+        return ahead[0];
         
         
     }
