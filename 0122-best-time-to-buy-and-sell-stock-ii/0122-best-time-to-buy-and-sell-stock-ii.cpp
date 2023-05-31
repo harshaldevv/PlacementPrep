@@ -34,6 +34,13 @@ public:
         
 //         return f(0, prices, youcanBuy, dp);
         
+        
+        /*
+        There is a classical saying in the stock market - "Buy the Dip".
+        Same concept you need to apply here
+        Compare two consecutive days and if you are making a profit, 
+        just buy on 1st day and sell on 2nd day
+        */
         int ans = 0;
         for(int i = 1 ; i < n ;i++){
             if(prices[i] >= prices[i-1]){
