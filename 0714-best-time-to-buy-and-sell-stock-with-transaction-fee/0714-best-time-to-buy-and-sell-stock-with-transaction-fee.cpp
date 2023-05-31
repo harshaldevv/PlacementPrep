@@ -32,8 +32,39 @@ public:
         // vector<vector<int>> dp(n+1, vector<int>(3, -1));
         // return f(0, youcanbuy, prices, fees, dp);
         
-        //tabulation
-        vector<vector<int>> dp(n+1, vector<int>(3, 0));
+//         //tabulation
+//         vector<vector<int>> dp(n+1, vector<int>(3, 0));
+//         // i -> 0 to n-1 --> here n-1 to 0;
+//         // 1 --> 0 to 1
+        
+//         for(int i = n-1 ; i>= 0; i--){
+//             for(int j = 0 ; j <= 1 ; j++){
+                
+//                 if(j){
+//                     //buy, not buy
+//                     int buy = -prices[i] - fees + dp[i+1][false];
+//                     int notbuy = dp[i+1][true];
+                    
+//                     dp[i][j] = max(buy, notbuy);
+//                 }
+//                 else{
+//                     //sell, not sell
+//                     int sell = +prices[i] + dp[i+1][true];
+//                     int notsell = dp[i+1][false];
+
+//                     dp[i][j] = max(sell, notsell);
+//                 }
+                
+//             }
+//         }
+        
+//         return dp[0][1];
+        
+        
+        //tabulation with space optimisation
+        vector<int> after(3, 0);
+        vector<int> curr(3, 0);
+        
         // i -> 0 to n-1 --> here n-1 to 0;
         // 1 --> 0 to 1
         
@@ -42,23 +73,24 @@ public:
                 
                 if(j){
                     //buy, not buy
-                    int buy = -prices[i] - fees + dp[i+1][false];
-                    int notbuy = dp[i+1][true];
+                    int buy = -prices[i] - fees + after[false];
+                    int notbuy = after[true];
                     
-                    dp[i][j] = max(buy, notbuy);
+                    curr[j] = max(buy, notbuy);
                 }
                 else{
                     //sell, not sell
-                    int sell = +prices[i] + dp[i+1][true];
-                    int notsell = dp[i+1][false];
+                    int sell = +prices[i] + after[true];
+                    int notsell = after[false];
 
-                    dp[i][j] = max(sell, notsell);
-                }
-                
+                    curr[j] = max(sell, notsell);
+                } 
             }
+            
+            after = curr;
         }
         
-        return dp[0][1];
+        return after[1];
         
         
         
