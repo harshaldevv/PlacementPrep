@@ -37,28 +37,30 @@ public:
         
         
         //tabulation
-        vector<vector<int>> dp(n+1, vector<int>(2, 0));
+        vector<int> curr (2, 0);
+        vector<int> next (2, 0);
         
         for(int i = n-1 ; i >=0 ; i--){
             for(int j = 0 ; j <= 1 ; j++){
                 if(j){
                     // buy, not buy
-                    int buy = -prices[i] + dp[i+1][false];
-                    int notbuy = dp[i+1][true];
+                    int buy = -prices[i] + next[false];
+                    int notbuy = next[true];
 
-                    dp[i][j] = max(buy, notbuy);
+                    curr[j] = max(buy, notbuy);
                 }
                 else{
                     // sell, not sell
-                    int sell = +prices[i] + dp[i+1][true];
-                    int notsell = dp[i+1][false];
+                    int sell = +prices[i] + next[true];
+                    int notsell = next[false];
                     
-                    dp[i][j] = max(sell, notsell);
+                    curr[j] = max(sell, notsell);
                 }
             }
+            next = curr;
         }
         
-        return dp[0][true];
+        return next[true];
         
         
     }
