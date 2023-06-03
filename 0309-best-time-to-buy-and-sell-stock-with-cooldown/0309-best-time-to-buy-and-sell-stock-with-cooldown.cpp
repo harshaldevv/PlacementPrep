@@ -28,8 +28,34 @@ public:
         int n = prices.size();
         
         
-        vector<vector<int>> dp(n+1, vector<int>(2, -1));
-        return f(0, true, prices, dp);
+        // vector<vector<int>> dp(n+1, vector<int>(2, -1));
+        // return f(0, true, prices, dp);
+        
+        
+        vector<vector<int>> dp(n+2, vector<int>(3, 0));
+        
+        for(int i = n-1 ; i >= 0 ; i--){
+            for(int j = 0 ; j <= 1 ; j++){
+                if(j){
+                    //buy, not buy
+                    int buy = -prices[i] +  dp[i+1][false];
+                    int notbuy = dp[i+1][true];
+                    dp[i][j] = max(buy, notbuy);
+                }
+                else{
+                    //sell
+                    // sell, not sell
+                    
+                    int notsell = dp[i+1][false];
+                    int sell = +prices[i] + dp[i+2][true];   
+    
+                
+                    dp[i][j] =  max(sell, notsell);
+                }
+            }
+        }
+        
+        return dp[0][true];
         
     }
 };
