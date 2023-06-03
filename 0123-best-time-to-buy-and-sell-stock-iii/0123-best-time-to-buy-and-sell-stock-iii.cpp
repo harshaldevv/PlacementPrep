@@ -71,33 +71,64 @@ public:
         // return ff(0, transactionCounter, prices, dp);
         
 
-        //do tabulation wala code.
+//         //do tabulation wala code.
         
-        vector<vector<int>> dp(n+1, vector<int>(5, 0));
+//         vector<vector<int>> dp(n+1, vector<int>(5, 0));
+//         for(int i = n -1 ; i >= 0 ; i--){
+//             for(int j = 3 ; j>=0 ; j--){
+                
+                
+//                 if(j%2 == 0){
+//                     //buy
+//                     // buy, not buy
+//                     int buy = -prices[i] + dp[i+1][j+1];
+//                     int notbuy = dp[i+1][j];
+//                     dp[i][j] =  max(buy, notbuy);
+//                 }
+//                 else{
+//                     //sell
+//                     // sell, not sell
+//                     int sell = +prices[i] + dp[i+1][j+1];
+//                     int notsell = dp[i+1][j];
+
+//                     dp[i][j] =  max(sell, notsell);
+//                 }
+                
+//             }
+//         }
+        
+//         return dp[0][0];
+        
+        
+        // tabulation with space optimisation
+        
+        vector<int> ahead (5, 0);
+        vector<int> curr (5, 0);
+        
         for(int i = n -1 ; i >= 0 ; i--){
             for(int j = 3 ; j>=0 ; j--){
-                
                 
                 if(j%2 == 0){
                     //buy
                     // buy, not buy
-                    int buy = -prices[i] + dp[i+1][j+1];
-                    int notbuy = dp[i+1][j];
-                    dp[i][j] =  max(buy, notbuy);
+                    int buy = -prices[i] + ahead[j+1];
+                    int notbuy = ahead[j];
+                    curr[j] =  max(buy, notbuy);
                 }
                 else{
                     //sell
                     // sell, not sell
-                    int sell = +prices[i] + dp[i+1][j+1];
-                    int notsell = dp[i+1][j];
+                    int sell = +prices[i] + ahead[j+1];
+                    int notsell = ahead[j];
 
-                    dp[i][j] =  max(sell, notsell);
+                    curr[j] =  max(sell, notsell);
                 }
-                
             }
+            
+            ahead = curr;
         }
         
-        return dp[0][0];
+        return ahead[0];
         
         
     }
