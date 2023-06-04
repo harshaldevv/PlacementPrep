@@ -24,9 +24,35 @@ public:
         
         sort(cuts.begin(), cuts.end());
         
-        vector<vector<int>> dp(sz+2, vector<int>(sz+2, -1));
+//         vector<vector<int>> dp(sz+2, vector<int>(sz+2, -1));
+//         return f(1, sz, cuts, dp);
         
-        return f(1, sz, cuts, dp);
+        
+        //tabulation
+        vector<vector<int>> dp(sz+2, vector<int>(sz+2, 0));
+        
+        for(int i = sz ; i>=1 ; i--){
+            for(int j = 1 ; j <= sz ; j++){
+                if(i>j){
+                    continue;
+                }
+                else{
+                    int ans = 1e9;
+                    
+                    for(int k = i ; k <= j ; k++){
+                        int temp = cuts[j+1] - cuts[i-1] + dp[i][k-1] + dp[k+1][j];
+                        ans = min(ans, temp);
+                    }
+
+                    dp[i][j] = ans;
+                    
+                }
+            }
+        }
+        
+        
+        return dp[1][sz];
+        
         
     }
 };
