@@ -11,16 +11,25 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        //hci research
+        if(head == nullptr){
+            return head;
+        }
         
-        ListNode* prev = nullptr;
         ListNode* curr = head;
-        while (curr != nullptr) {
-            ListNode* next = curr->next;
+        ListNode* prev = nullptr;
+        ListNode* nxt = curr->next;
+        
+        while(nxt != NULL){
             curr->next = prev;
             prev = curr;
-            curr = next;
+            curr = nxt;
+            nxt = nxt->next; 
+            
         }
+        curr->next = prev;
+        prev = curr;
+        curr = nxt;
+        
         return prev;
         
     }
