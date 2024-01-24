@@ -10,29 +10,47 @@
  */
 class Solution {
 public:
-    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-        //hci research
-        ListNode* dummy = new ListNode(0);
-        ListNode* tail = dummy;
-
-        while (l1 && l2) {
-            if (l1->val <= l2->val) {
-                tail->next = l1;
-                l1 = l1->next;
-            } else {
-                tail->next = l2;
-                l2 = l2->next;
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        
+        if(!list1){
+            return list2;
+        }
+        
+        if(!list2){
+            return list1;
+        }
+        
+        ListNode* dummyHead = new ListNode(-1);
+        ListNode* ptr = dummyHead;
+        
+        ListNode* p1 = list1;
+        ListNode* p2 = list2;
+        
+        while(p1 && p2){
+            
+            if(p1->val <= p2->val){
+                ptr->next = p1;
+                p1 = p1->next;
             }
-            tail = tail->next;
+            else{
+                ptr->next = p2;
+                p2 = p2->next;
+            }
+            ptr = ptr->next;
+            
         }
-
-        if (l1) {
-            tail->next = l1;
-        } else {
-            tail->next = l2;
+        
+        if(!p1){
+            ptr->next = p2;
         }
-
-        return dummy->next;
+        
+        if(!p2){
+            ptr->next = p1;
+        }
+        
+        return dummyHead->next;
+        
+        
         
     }
 };
