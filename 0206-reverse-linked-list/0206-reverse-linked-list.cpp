@@ -19,16 +19,12 @@ public:
         ListNode* prev = nullptr;
         ListNode* nxt = curr->next;
         
-        while(nxt != NULL){
+        while(curr != NULL){
+            nxt = curr->next; 
             curr->next = prev;
             prev = curr;
-            curr = nxt;
-            nxt = nxt->next; 
-            
+            curr = nxt;   
         }
-        curr->next = prev;
-        prev = curr;
-        curr = nxt;
         
         return prev;
         
