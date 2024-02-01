@@ -8,9 +8,9 @@ public:
         while(l<=r){
             int mid = l + (r-l)/2;
             
-            if(nums[l] <= nums[r]){
-                return l;
-            }
+            // if(nums[l] <= nums[r]){
+            //     return l;
+            // }
             
             int leftIndex = (mid-1+n)%n;
             int rightIndex = (mid+1)%n;
@@ -18,14 +18,21 @@ public:
             if(nums[mid] <= nums[leftIndex] && nums[mid] <= nums[rightIndex]){
                 return mid;
             }
-            else if(nums[l] <= nums[mid]){
-                // left half sorted, go in right half (unsorted)
-                l = mid +1;
-            }
-            else{
-                // right half sorted, go in left half (unsorted)
+            else if(nums[mid] <= nums[r]){
                 r = mid -1;
             }
+            else{
+                l = mid +1;
+            }
+            
+            // else if(nums[l] <= nums[mid]){
+            //     // left half sorted, go in right half (unsorted)
+            //     l = mid +1;
+            // }
+            // else{
+            //     // right half sorted, go in left half (unsorted)
+            //     r = mid -1;
+            // }
         }
         
         return 0;
