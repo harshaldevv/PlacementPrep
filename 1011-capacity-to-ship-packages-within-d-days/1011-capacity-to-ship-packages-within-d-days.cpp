@@ -1,48 +1,53 @@
 class Solution {
 public:
-    bool check(int &mid, vector<int> &weights, int &days){
-        int D = 1;
-        int s = 0;
-        
-        for(auto &x : weights){
-            s += x;
-            
-            if(s > mid){
-                D++;
-                s = x;
-            }
-            if(D > days){
-                return false;
+    
+    int check(int &weightOfShip, vector<int> &nums, int &D){
+        int d = 1;
+        int shipLoad = 0;
+        for(int i = 0 ; i < nums.size() ; i++){
+            shipLoad += nums[i];
+            if(shipLoad > weightOfShip){
+                d++;
+                shipLoad = nums[i];
             }
         }
         
-        return true;
+        return d;
     }
+    
     int shipWithinDays(vector<int>& weights, int days) {
         
-        int l = 0;
+        int n = weights.size();
+        
+        int l = INT_MIN;
         int r = 0;
         
         int ans = -1;
         
-        for(auto &x : weights){
-            l = max(l,x);
-            r += x;
+        for(int i = 0 ; i < n ; i++ ){
+            l = max(l, weights[i]);
+            r += weights[i];
         }
         
         while(l<=r){
-            int mid = l + (r-l)/2;
+            int mid = l + (r-l)/2; // our SHIP WEIGHT
             
-            if(check(mid, weights, days)){
+            int tempDays = check(mid, weights, days);
+            
+            if(tempDays <= days){
                 ans = mid;
-                r = mid -1;
+                // go left as we want lesser weight, as our shipment is succesful
+                // in <= days, so we need a tighter bound aka lesser weight
+                r = mid-1;
             }
-            else{
-                l = mid +1;
+            else if(tempDays > days){
+                //weight is less,
+                // increase weight
+                l = mid+1;
             }
         }
         
         return ans;
-        
+    
     }
 };
