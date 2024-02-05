@@ -1,22 +1,19 @@
 class Solution {
 public:
-    int firstUniqChar(string s) {
+    int firstUniqChar(string &s) {
+        vector<int> freq(26);
         
-        // twice traversal
-        unordered_map<char, int> mp;
-        for(int i = 0 ; i < s.size(); i++){
-            mp[s[i]]++;
+        for(auto &x : s){
+            freq[x-'a']++;
         }
+        
         for(int i = 0 ; i < s.size() ; i++){
-            if(mp[s[i]] == 1){
+            auto x = s[i];
+            if(freq[x-'a'] == 1){
                 return i;
             }
         }
         return -1;
-        
-        
-        // single traversal
-        
         
     }
 };
