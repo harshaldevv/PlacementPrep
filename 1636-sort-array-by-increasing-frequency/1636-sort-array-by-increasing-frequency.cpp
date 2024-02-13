@@ -15,39 +15,59 @@ public:
     
     vector<int> frequencySort(vector<int>& nums) {
         
-        // minheap with custom comp
+        // array custom sort
         
         unordered_map<int, int> mp;
-        
-        
         for(auto &x : nums){
             mp[x]++;
         }
-        
-        
-        priority_queue<pair<int, int>, vector<pair<int, int>>, Compare> pq;
-        
-        
-        for(auto &x : mp){
-            int f = x.second;
-            int numb = x.first;
+
+        sort(nums.begin(), nums.end(), [&](auto &a, auto &b)->bool{
             
-            pq.push({f, numb});
-        }
-        
-        vector<int> ans;
-        
-        while(!pq.empty()){
-            auto t = pq.top();
-            pq.pop();
-            int f = t.first;
-            int numb = t.second;
-            while(f--){
-                ans.push_back(numb);    
+            if(mp[a] == mp[b]){
+                return a > b;
             }
-        }
+            else{
+                return mp[a] < mp[b];
+            }
+            
+        });
         
-        return ans;
+        return nums;
+        
+//         // minheap with custom comp
+        
+//         unordered_map<int, int> mp;
+        
+        
+//         for(auto &x : nums){
+//             mp[x]++;
+//         }
+        
+        
+//         priority_queue<pair<int, int>, vector<pair<int, int>>, Compare> pq;
+        
+        
+//         for(auto &x : mp){
+//             int f = x.second;
+//             int numb = x.first;
+            
+//             pq.push({f, numb});
+//         }
+        
+//         vector<int> ans;
+        
+//         while(!pq.empty()){
+//             auto t = pq.top();
+//             pq.pop();
+//             int f = t.first;
+//             int numb = t.second;
+//             while(f--){
+//                 ans.push_back(numb);    
+//             }
+//         }
+        
+//         return ans;
         
     }
 };
