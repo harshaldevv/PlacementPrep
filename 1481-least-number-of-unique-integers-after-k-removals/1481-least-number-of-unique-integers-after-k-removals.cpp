@@ -19,24 +19,12 @@ public:
         
         int n = v.size();
         int ans = mp.size();
-        
         int t = k;
         
-        int i = 0;
-        
-        while (i < n ){
-            // cout << "t = " << t << endl;
-            // cout << "v[i][0] = " <<v[i][0] << endl;
-            // cout << "t - v[i][0] = " << t - v[i][0] << endl;
-            // cout << "ans = " << ans << endl;
-            // cout << "v[i][1] = " << v[i][1] << endl;
-            // cout << endl;
+        for(int i = 0 ; i < n ; i++){
             if(t - v[i][0] >0){
                 t-= v[i][0];
-                ans--;
-                
-                i++;
-                
+                ans--;     
             }
             else if(t - v[i][0]  == 0){
                 ans--;
