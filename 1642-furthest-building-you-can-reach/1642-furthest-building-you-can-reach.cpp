@@ -16,7 +16,8 @@ public:
                 bricks -=diff;
                 pq.push(diff);
                 
-                
+                // if bricks become negetive then there were not enough bricks. 
+                // So add a ladder in place of the step where most bricks were used
                 if(bricks < 0){
                     // here use ladder
                     bricks += pq.top();
