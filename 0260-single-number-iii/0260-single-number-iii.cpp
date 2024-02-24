@@ -42,9 +42,15 @@ public:
             if( (x & 1<<index) ==0){
                 // ith bit is not set 
                 second ^= x;
+                // xor isliye kyuki -> baaki numbers duplicate hai
+                // so woh apne hat jayenge xor karte karte and 
+                // ek hi aisa number bachega jiski index-th bit set NAHI hai
             }
             else{
                 first ^= x;
+                // xor isliye kyuki -> baaki numbers duplicate hai
+                // so woh apne hat jayenge xor karte karte and 
+                // ek hi aisa number bachega jiski index-th bit set hai
             }
         }
         
