@@ -11,29 +11,40 @@
  */
 class Solution {
 public:
-    void helper(TreeNode* root, map<int, map<int, multiset<int>>> &mp, int col, int row){
-        if(!root){
-            return ;
-        }
-        
-        mp[col][row].insert(root->val);
-        
-        helper(root->left, mp, col-1, row+1);
-        helper(root->right, mp, col+1, row+1);
-        
-        return ;
-    }
     vector<vector<int>> verticalTraversal(TreeNode* root) {
         
-        // via dfs
         vector<vector<int>> ans;
-        if(!root){
+        
+        if(root == nullptr){
             return ans;
         }
         
         map<int, map<int, multiset<int>>> mp;
         
-        helper(root, mp, 0,0); // col, row
+        
+        queue<pair<TreeNode*, pair<int, int>>> q;
+        q.push({root, {0, 0}});
+        
+        while(!q.empty()){
+            int sz = q.size();
+            while(sz--){
+                auto front = q.front();
+                q.pop();
+                auto nodee = front.first;
+                auto col = front.second.first;
+                auto row = front.second.second;
+                
+                mp[col][row].insert(nodee->val);
+                
+                if(nodee->left){
+                    q.push({nodee->left, {col-1, row+1}});
+                }
+                
+                if(nodee->right){
+                    q.push({nodee->right, {col+1, row+1}});
+                }
+            }
+        }
         
         for(auto&it : mp){
             vector<int> temp;
@@ -46,6 +57,7 @@ public:
         }
         
         return ans;
+        
         
     }
 };
