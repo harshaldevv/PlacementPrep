@@ -11,20 +11,39 @@
  */
 class Solution {
 public:
-    
-    int helper(TreeNode* root){
-        if(!root){
-            return 0;
-        }
-        
-        return 1 + max(helper(root->left), helper(root->right));
-    }
     int maxDepth(TreeNode* root) {
         
         if(!root){
             return 0;
         }
         
-        return helper(root);
+        int ans = 0;
+        
+        queue<pair<TreeNode*, int>> q;
+        q.push({root, 1});
+        
+        while(!q.empty()){
+            int sz = q.size();
+            while(sz--){
+                auto front = q.front();
+                q.pop();
+                auto nodee = front.first;
+                int h = front.second;
+                
+                ans = max(h, ans);
+                
+                if(nodee->left){
+                    q.push({nodee->left, h+1});
+                }
+                
+                if(nodee->right){
+                    q.push({nodee->right, h+1});
+                }
+            }
+        }
+        
+        return ans;
+        
+        
     }
 };
