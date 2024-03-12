@@ -11,13 +11,20 @@
  */
 class Solution {
 public:
-    int maxDepth(TreeNode* root) {
-        // hci research
-         if (root == NULL) {
+    
+    int helper(TreeNode* root){
+        if(!root){
             return 0;
         }
-        int left_depth = maxDepth(root->left);
-        int right_depth = maxDepth(root->right);
-        return max(left_depth, right_depth) + 1;
+        
+        return 1 + max(helper(root->left), helper(root->right));
+    }
+    int maxDepth(TreeNode* root) {
+        
+        if(!root){
+            return 0;
+        }
+        
+        return helper(root);
     }
 };
