@@ -22,8 +22,7 @@ public:
         while(!q.empty()){
             int sz = q.size();
             int left = q.front().second;
-            int right = q.back().second;
-            
+            int right = q.back().second; // THIS is amazing -> learned something new
             width = max(width, right - left +1); // max width at a level
             
             while(sz--){
