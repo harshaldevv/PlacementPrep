@@ -15,46 +15,30 @@ public:
         if(!root){
             return 0;
         }
-        queue<TreeNode*> q;
-        q.push(root);
         
-        int h = 0;
+        int lh = helper(root->left);
+        int rh = helper(root->right);
         
-        while(!q.empty()){
-            int sz = q.size();
-            while(sz--){
-                auto front = q.front();
-                q.pop();
-                
-                if(front->left){
-                    q.push(front->left);
-                }
-                
-                if(front->right){
-                    q.push(front->right);
-                }
-                
-            }
-            
-            h++;
+        if(lh == -1 || rh == -1){
+            return -1;
         }
         
-        return h;
+        if(abs(lh-rh) > 1){
+            return -1;
+        }
+        else{
+            return max(lh, rh) +1;
+        }
     }
     bool isBalanced(TreeNode* root) {
         
-        if(!root){
-            return true;
+        int ans = helper(root);
+        
+        if(ans == -1){
+            return false;
         }
         
-        if(!root->left && !root->right){
-            return true;
-        }
-        
-        int leftH = helper(root->left);
-        int rightH = helper(root->right);
-        
-        return abs(leftH - rightH) <= 1 && isBalanced(root->left) && isBalanced(root->right);
+        return true;
         
     }
 };
