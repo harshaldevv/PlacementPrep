@@ -11,44 +11,50 @@
  */
 class Solution {
 public:
-    
     int helper(TreeNode* root){
         if(!root){
             return 0;
         }
+        queue<TreeNode*> q;
+        q.push(root);
         
-        int left = helper(root->left);
-        int right = helper(root->right);
-        int diff = abs(left - right);
+        int h = 0;
         
-        if(left == -1 || right == -1 || diff > 1 ){
-            return -1;
+        while(!q.empty()){
+            int sz = q.size();
+            while(sz--){
+                auto front = q.front();
+                q.pop();
+                
+                if(front->left){
+                    q.push(front->left);
+                }
+                
+                if(front->right){
+                    q.push(front->right);
+                }
+                
+            }
+            
+            h++;
         }
         
-        return 1 + max(left, right);
-        
-        // This function basically counts the height of the tree 
-        // incase the tree breaks the "balanced" nature of itself
-        // we return -1 to specially indicate that the balanced nature has 
-        // been broken and this is not a balanced tree 
-        // and no further computations should be done
-        
+        return h;
     }
-    
     bool isBalanced(TreeNode* root) {
         
-        // 0 is height of null tree
-        // -1 represents NOT A BALANCED TREE
+        if(!root){
+            return true;
+        }
         
-        return helper(root) != -1;
+        if(!root->left && !root->right){
+            return true;
+        }
         
-        /*
-        The checkBalance function actually calculates the height of the given tree. 
-        And while calculating the height it just compares the height of left and right subtree. 
-        If it comes greater than 1 then the answer is marked as false, 
-        because it is not balanced. 
-        The return thing is because it is returning the height of the tree.
-        */
+        int leftH = helper(root->left);
+        int rightH = helper(root->right);
+        
+        return abs(leftH - rightH) <= 1 && isBalanced(root->left) && isBalanced(root->right);
         
     }
 };
