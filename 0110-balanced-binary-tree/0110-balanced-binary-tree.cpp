@@ -11,6 +11,7 @@
  */
 class Solution {
 public:
+    
     int helper(TreeNode* root){
         if(!root){
             return 0;
@@ -23,21 +24,24 @@ public:
             return -1;
         }
         
-        if(abs(lh-rh) > 1){
-            return -1;
+        if(abs(lh - rh ) <= 1){
+            return max(lh, rh) +1;
         }
         else{
-            return max(lh, rh) +1;
+            return -1;
         }
     }
     bool isBalanced(TreeNode* root) {
+        
+        if(!root){
+            return true;
+        }
         
         int ans = helper(root);
         
         if(ans == -1){
             return false;
         }
-        
         return true;
         
     }
