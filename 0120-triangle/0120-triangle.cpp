@@ -1,72 +1,31 @@
 class Solution {
 public:
-    
-    int f(int i, int j, vector<vector<int>> &t, int &n, vector<vector<int>> &dp){
-        cout << "i,j " << i << " , " << j << endl;
-        if(i == n-1){
-            return t[i][j];
+    int helper(int i, int j, int rowMax, int colMax, vector<vector<int>> &triangle, vector<vector<int>> &dp ){
+        
+        if( i < 0 || i > rowMax || j < 0 || j > colMax){
+            return INT_MAX;
+        }
+        
+        if(i == rowMax){
+            return dp[i][j] = triangle[i][j];
         }
         
         if(dp[i][j] != -1){
             return dp[i][j];
         }
         
-        int down = f(i+1, j, t, n, dp);
-        int dia = f(i+1, j+1, t, n, dp);
+        int down1 = helper(i+1, j, rowMax, colMax, triangle, dp);
+        int down2 = helper(i+1, j+1, rowMax, colMax, triangle, dp);
+        // int down3 = helper(i+1, j-1, rowMax, colMax, triangle);
         
-        return dp[i][j] = (min(down, dia) + t[i][j]);
-        
+        return dp[i][j] =  triangle[i][j] + min(down1, down2);
     }
     int minimumTotal(vector<vector<int>>& triangle) {
-        int n = triangle.size();
         
-        // vector<vector<int>> dp(n+1, vector<int>(n+1, -1));
-        // return f(0,0, triangle, n, dp);
-        
-        
-//         //tabulation done
-//         // we go from n-1 to 0 (in tabulation) as we went from 0 to n-1 in memoization.
-//         vector<vector<int>> dp(n+1, vector<int>(n+1, -1));
-//         for(int i = n-1 ; i >=0 ; i--){
-//             for(int j = i ; j >= 0 ; j--){
-//                 if(i == n-1){
-//                     dp[i][j] = triangle[i][j];
-//                 }
-//                 else{
-//                     int down = dp[i+1][j];
-//                     int dia = dp[i+1][j+1];
-
-//                     dp[i][j] = min(down, dia) + triangle[i][j];
-                    
-//                 }
-//             }
-//         }
-        
-//         return dp[0][0];
-        
-        
-        //tabulation with space optimisation 
-        // we go from n-1 to 0 (in tabulation) as we went from 0 to n-1 in memoization.
-        // vector<vector<int>> dp(n+1, vector<int>(n+1, -1));
-        
-        vector<int> next(n, 0);
-        vector<int> curr(n, 0);
-        
-        for(int i = 0 ; i < n ; i++){
-            next[i] = triangle[n-1][i];
-        }
-        
-        for(int i = n-2 ; i >=0 ; i--){
-            for(int j = i ; j >= 0 ; j--){
-                    int down = next[j];
-                    int dia = next[j+1];
-
-                    curr[j] = min(down, dia) + triangle[i][j];
-            }   
-            next = curr;
-        }
-        
-        return next[0];
+        int m = triangle.size();
+        int n = triangle[triangle.size() -1].size();
+        vector<vector<int>> dp(m+1, vector<int>(n+1, -1));
+        return helper(0,0, m-1, n-1, triangle, dp);
         
     }
 };
