@@ -11,24 +11,29 @@
  */
 class Solution {
 public:
+    int counter = 0;
+    int ans = -1;
+    void inorder(TreeNode* root, int k){
+        if(!root){
+            return ;
+        }
+        
+        inorder(root->left, k);
+        counter++;
+        if(counter == k){
+            ans = root->val;
+            return;
+        }
+        inorder(root->right, k);
+        
+        return ;
+    }
     int kthSmallest(TreeNode* root, int k) {
         
-        //hci research
-        stack<TreeNode*> st;
-        while (root != nullptr || !st.empty()) {
-            while (root != nullptr) {
-                st.push(root);
-                root = root->left;
-            }
-            root = st.top();
-            st.pop();
-            k--;
-            if (k == 0) {
-                return root->val;
-            }
-            root = root->right;
-        }
-        return -1;
+       inorder(root, k);
+        
+        return ans;
+        
         
     }
 };
