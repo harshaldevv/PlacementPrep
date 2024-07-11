@@ -13,32 +13,37 @@ class Solution {
 public:
     void flatten(TreeNode* root) {
         
-        while(root){
-            TreeNode *left = root->left;
-            TreeNode *right = root->right;
-            
+        TreeNode* ptr = root;
+        if(!root){
+            return ;
+        }
 
-            if(left){
-                
-                TreeNode* runner = left;
-                
-                while(runner && runner->right){
-                    runner = runner->right;
+        while(ptr){
+            if(ptr && ptr->left){
+                TreeNode* runner = ptr->left;
+
+                while(runner){
+                    if(runner->right){
+                        runner = runner->right;
+                    }
+                    else if(runner->left){
+                        runner = runner->left;
+                    }
+                    else{
+                        break;
+                    }
                 }
-
-                runner->right = right; 
-
-                root->left = nullptr;
-                root->right = left;
                 
+
+                runner->right = ptr->right;
+                ptr->right = ptr->left;
+                ptr->left = nullptr;
+
             }
             
-            root = root->right;
-            cout << endl;
-
+            ptr = ptr->right;
         }
         
-        return ;
         
     }
 };
