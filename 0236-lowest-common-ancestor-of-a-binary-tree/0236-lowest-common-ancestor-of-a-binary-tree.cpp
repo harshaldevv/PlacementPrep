@@ -9,28 +9,37 @@
  */
 class Solution {
 public:
-    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+    TreeNode* helper(TreeNode* root, TreeNode* p, TreeNode* q) {
         if(!root){
             return nullptr;
         }
         
-        if(root == p || root== q){
+        if(root == p || root == q){
             return root;
         }
         
-        TreeNode* left = lowestCommonAncestor(root->left, p, q);
-        TreeNode* right = lowestCommonAncestor(root->right, p, q);
+        TreeNode* lefty = helper(root->left, p, q);
+        TreeNode* righty = helper(root->right, p, q);
         
-        if(left && right){
+        if(lefty && righty){
             return root;
         }
-        else if(left && !right){
-            return left;
+        else if(!lefty){
+            return righty;
         }
         else{
-            return right;
+            return lefty;;
         }
         
+        
+    }
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        
+        if(!root){
+            return nullptr;
+        }
+        
+        return helper(root, p, q);
         
     }
 };
