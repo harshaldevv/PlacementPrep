@@ -11,34 +11,33 @@
  */
 class Solution {
 public:
-        //hci research
-    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        // Create a hash map to store the indices of the nodes in the inorder traversal
-        unordered_map<int, int> inorder_map;
-        for (int i = 0; i < inorder.size(); i++) {
-            inorder_map[inorder[i]] = i;
-        }
-        // Build the tree recursively
-        return buildTreeRecursive(preorder, inorder, inorder_map, 0, preorder.size() - 1, 0, inorder.size() - 1);
-
-    }
-    
-    TreeNode* buildTreeRecursive(vector<int>& preorder, vector<int>& inorder, unordered_map<int, int>& inorder_map, int preorder_start, int preorder_end, int inorder_start, int inorder_end) {
-        // Base case: empty range
-        if (preorder_start > preorder_end) {
+    TreeNode* f(int prestart, int  preend, vector<int> &preorder, int instart, int inend, vector<int> &inorder, unordered_map<int, int> &inorder_map){
+        
+        if(prestart > preend || instart > inend){
             return nullptr;
         }
-        // Create the root node
-        TreeNode* root = new TreeNode(preorder[preorder_start]);
-        // Find the index of the root node in the inorder traversal
-        int inorder_root = inorder_map[root->val];
-        // Compute the size of the left subtree
-        int left_subtree_size = inorder_root - inorder_start;
-        // Recursively build the left subtree
-        root->left = buildTreeRecursive(preorder, inorder, inorder_map, preorder_start + 1, preorder_start + left_subtree_size, inorder_start, inorder_root - 1);
-        // Recursively build the right subtree
-        root->right = buildTreeRecursive(preorder, inorder, inorder_map, preorder_start + left_subtree_size + 1, preorder_end, inorder_root + 1, inorder_end);
-        // Return the root node
+        
+        
+        int rootval = preorder[prestart];
+        int inorder_index = inorder_map[rootval];
+        int leftside = inorder_index - instart;
+        
+        TreeNode* root = new TreeNode(rootval);
+        
+        root->left =  f(prestart +1, prestart + leftside , preorder, instart, inorder_index-1, inorder, inorder_map);
+        root->right = f(prestart + leftside + 1, preend, preorder, inorder_index+1, inend, inorder, inorder_map);
+        
         return root;
+        
+    }
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        
+        unordered_map<int, int> inorder_map;
+        for(int i = 0; i < inorder.size() ; i++){
+            inorder_map[inorder[i]] = i;
+        }
+        
+        return f(0, preorder.size() -1, preorder, 0, inorder.size() -1, inorder, inorder_map);
+        
     }
 };
