@@ -11,35 +11,37 @@
  */
 class Solution {
 public:
-    void helper(TreeNode* root, int sum, int &target, vector<int> temp, vector<vector<int>> &ans){
+    void f(TreeNode* root, int target, int sum, vector<int> temp, vector<vector<int>> &ans){
         if(!root){
             return ;
         }
-        
         sum += root->val;
-        temp.push_back(root->val);
-        
-        if(sum == target && !root->left && !root->right){
-            ans.push_back(temp);
+        if(root && !root->left && !root->right){
+            // child node
+            if(sum == target){
+                temp.push_back(root->val);
+                ans.push_back(temp);
+            }
+            return;
         }
+    
+        temp.push_back(root->val);
+        f(root->left, target, sum, temp, ans);
         
-        // go left
-        helper(root->left, sum, target, temp, ans);
-        
-        // go right
-        helper(root->right, sum, target, temp, ans);
-        
-        
+        f(root->right, target, sum, temp, ans);
         temp.pop_back();
+        
+        return ;
+        
     }
-    vector<vector<int>> pathSum(TreeNode* root, int target) {
-        
+    vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
         vector<vector<int>> ans;
-        
+        if(!root){
+            return ans;
+        }
         vector<int> temp;
         int sum = 0;
-        helper(root, sum, target, temp, ans);
-        
+        f(root, targetSum, sum, temp, ans);
         return ans;
         
     }
