@@ -11,45 +11,44 @@
  */
 class Solution {
 public:
-    TreeNode* first = NULL;
-    TreeNode* second = NULL;
-    TreeNode* prev = new TreeNode(INT_MIN);
     
+    TreeNode* first = nullptr;
+    TreeNode* second = nullptr;
+    TreeNode* prev = nullptr;
+    vector<int> ans;
     void inorder(TreeNode* root){
         if(!root){
             return ;
         }
-        
+                
         inorder(root->left);
         
-        // do work here
-        
-        if(first == NULL && root->val < prev->val){
+
+        if(first == nullptr && prev && prev->val >= root->val){
             //first violation
             first = prev;
         }
         
-        if(first != NULL && root->val < prev->val){
-            //second violation found
+        if(first != nullptr && prev && prev->val >= root->val){
+            //second violation
             second = root;
         }
         
-        prev = root;
         
+        prev = root;
 
         inorder(root->right);
         
+        
         return ;
     }
+    
+    
     void recoverTree(TreeNode* root) {
-        first= NULL;
-        second = NULL;
+        
         inorder(root);
         
         swap(first->val, second->val);
-        
-        
-        return ;
         
     }
 };
