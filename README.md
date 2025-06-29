@@ -53,4 +53,24 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0347-top-k-frequent-elements](https://github.com/harshaldevv/PlacementPrep/tree/master/0347-top-k-frequent-elements) |
+## String
+|  |
+| ------- |
+| [0257-binary-tree-paths](https://github.com/harshaldevv/PlacementPrep/tree/master/0257-binary-tree-paths) |
+## Backtracking
+|  |
+| ------- |
+| [0257-binary-tree-paths](https://github.com/harshaldevv/PlacementPrep/tree/master/0257-binary-tree-paths) |
+## Tree
+|  |
+| ------- |
+| [0257-binary-tree-paths](https://github.com/harshaldevv/PlacementPrep/tree/master/0257-binary-tree-paths) |
+## Depth-First Search
+|  |
+| ------- |
+| [0257-binary-tree-paths](https://github.com/harshaldevv/PlacementPrep/tree/master/0257-binary-tree-paths) |
+## Binary Tree
+|  |
+| ------- |
+| [0257-binary-tree-paths](https://github.com/harshaldevv/PlacementPrep/tree/master/0257-binary-tree-paths) |
 <!---LeetCode Topics End-->
