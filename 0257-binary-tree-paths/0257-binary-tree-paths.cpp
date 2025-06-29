@@ -11,30 +11,30 @@
  */
 class Solution {
 public:
-    void helper(TreeNode* root, string s, vector<string> &ans){
+    vector<string> ans;
+    void f(TreeNode* root, string st){
         if(!root){
             return ;
         }
-        
-        if(root->left == nullptr && root->right == nullptr){
+
+        st += to_string(root->val);
+
+        if(root && !root->left && !root->right){
             // leaf node
-            s += to_string(root->val);
-            ans.push_back(s);
-            return;
+            ans.push_back(st);
+            return ;
         }
-    
-        s += to_string(root->val);
-        s += "->";
-        helper(root->left, s , ans);    
-        helper(root->right, s , ans);
-        
-        return;
+
+        f(root->left, st + "->");
+        f(root->right, st + "->");
+
+        return ;
+
     }
     vector<string> binaryTreePaths(TreeNode* root) {
-        
+        ans.clear();
         string s = "";
-        vector<string> ans;
-        helper(root, s, ans);
+        f(root, s);
         return ans;
         
     }
