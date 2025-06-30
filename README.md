@@ -11,6 +11,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0347-top-k-frequent-elements](https://github.com/harshaldevv/PlacementPrep/tree/master/0347-top-k-frequent-elements) |
 | [0594-longest-harmonious-subsequence](https://github.com/harshaldevv/PlacementPrep/tree/master/0594-longest-harmonious-subsequence) |
 | [1621-number-of-subsequences-that-satisfy-the-given-sum-condition](https://github.com/harshaldevv/PlacementPrep/tree/master/1621-number-of-subsequences-that-satisfy-the-given-sum-condition) |
+| [2614-maximum-count-of-positive-integer-and-negative-integer](https://github.com/harshaldevv/PlacementPrep/tree/master/2614-maximum-count-of-positive-integer-and-negative-integer) |
 ## Hash Table
 |  |
 | ------- |
@@ -36,6 +37,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0169-majority-element](https://github.com/harshaldevv/PlacementPrep/tree/master/0169-majority-element) |
 | [0347-top-k-frequent-elements](https://github.com/harshaldevv/PlacementPrep/tree/master/0347-top-k-frequent-elements) |
 | [0594-longest-harmonious-subsequence](https://github.com/harshaldevv/PlacementPrep/tree/master/0594-longest-harmonious-subsequence) |
+| [2614-maximum-count-of-positive-integer-and-negative-integer](https://github.com/harshaldevv/PlacementPrep/tree/master/2614-maximum-count-of-positive-integer-and-negative-integer) |
 ## Two Pointers
 |  |
 | ------- |
@@ -45,6 +47,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [1621-number-of-subsequences-that-satisfy-the-given-sum-condition](https://github.com/harshaldevv/PlacementPrep/tree/master/1621-number-of-subsequences-that-satisfy-the-given-sum-condition) |
+| [2614-maximum-count-of-positive-integer-and-negative-integer](https://github.com/harshaldevv/PlacementPrep/tree/master/2614-maximum-count-of-positive-integer-and-negative-integer) |
 ## Heap (Priority Queue)
 |  |
 | ------- |
