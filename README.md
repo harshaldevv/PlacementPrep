@@ -65,18 +65,29 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0110-balanced-binary-tree](https://github.com/harshaldevv/PlacementPrep/tree/master/0110-balanced-binary-tree) |
+| [0114-flatten-binary-tree-to-linked-list](https://github.com/harshaldevv/PlacementPrep/tree/master/0114-flatten-binary-tree-to-linked-list) |
 | [0257-binary-tree-paths](https://github.com/harshaldevv/PlacementPrep/tree/master/0257-binary-tree-paths) |
 | [0543-diameter-of-binary-tree](https://github.com/harshaldevv/PlacementPrep/tree/master/0543-diameter-of-binary-tree) |
 ## Depth-First Search
 |  |
 | ------- |
 | [0110-balanced-binary-tree](https://github.com/harshaldevv/PlacementPrep/tree/master/0110-balanced-binary-tree) |
+| [0114-flatten-binary-tree-to-linked-list](https://github.com/harshaldevv/PlacementPrep/tree/master/0114-flatten-binary-tree-to-linked-list) |
 | [0257-binary-tree-paths](https://github.com/harshaldevv/PlacementPrep/tree/master/0257-binary-tree-paths) |
 | [0543-diameter-of-binary-tree](https://github.com/harshaldevv/PlacementPrep/tree/master/0543-diameter-of-binary-tree) |
 ## Binary Tree
 |  |
 | ------- |
 | [0110-balanced-binary-tree](https://github.com/harshaldevv/PlacementPrep/tree/master/0110-balanced-binary-tree) |
+| [0114-flatten-binary-tree-to-linked-list](https://github.com/harshaldevv/PlacementPrep/tree/master/0114-flatten-binary-tree-to-linked-list) |
 | [0257-binary-tree-paths](https://github.com/harshaldevv/PlacementPrep/tree/master/0257-binary-tree-paths) |
 | [0543-diameter-of-binary-tree](https://github.com/harshaldevv/PlacementPrep/tree/master/0543-diameter-of-binary-tree) |
+## Linked List
+|  |
+| ------- |
+| [0114-flatten-binary-tree-to-linked-list](https://github.com/harshaldevv/PlacementPrep/tree/master/0114-flatten-binary-tree-to-linked-list) |
+## Stack
+|  |
+| ------- |
+| [0114-flatten-binary-tree-to-linked-list](https://github.com/harshaldevv/PlacementPrep/tree/master/0114-flatten-binary-tree-to-linked-list) |
 <!---LeetCode Topics End-->
