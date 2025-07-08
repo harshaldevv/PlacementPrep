@@ -7,6 +7,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0016-3sum-closest](https://github.com/harshaldevv/PlacementPrep/tree/master/0016-3sum-closest) |
+| [0123-best-time-to-buy-and-sell-stock-iii](https://github.com/harshaldevv/PlacementPrep/tree/master/0123-best-time-to-buy-and-sell-stock-iii) |
 | [0169-majority-element](https://github.com/harshaldevv/PlacementPrep/tree/master/0169-majority-element) |
 | [0198-house-robber](https://github.com/harshaldevv/PlacementPrep/tree/master/0198-house-robber) |
 | [0347-top-k-frequent-elements](https://github.com/harshaldevv/PlacementPrep/tree/master/0347-top-k-frequent-elements) |
@@ -113,6 +114,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Dynamic Programming
 |  |
 | ------- |
+| [0123-best-time-to-buy-and-sell-stock-iii](https://github.com/harshaldevv/PlacementPrep/tree/master/0123-best-time-to-buy-and-sell-stock-iii) |
 | [0198-house-robber](https://github.com/harshaldevv/PlacementPrep/tree/master/0198-house-robber) |
 | [0518-coin-change-ii](https://github.com/harshaldevv/PlacementPrep/tree/master/0518-coin-change-ii) |
 <!---LeetCode Topics End-->
