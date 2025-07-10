@@ -67,6 +67,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## String
 |  |
 | ------- |
+| [0115-distinct-subsequences](https://github.com/harshaldevv/PlacementPrep/tree/master/0115-distinct-subsequences) |
 | [0257-binary-tree-paths](https://github.com/harshaldevv/PlacementPrep/tree/master/0257-binary-tree-paths) |
 ## Backtracking
 |  |
@@ -115,6 +116,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Dynamic Programming
 |  |
 | ------- |
+| [0115-distinct-subsequences](https://github.com/harshaldevv/PlacementPrep/tree/master/0115-distinct-subsequences) |
 | [0123-best-time-to-buy-and-sell-stock-iii](https://github.com/harshaldevv/PlacementPrep/tree/master/0123-best-time-to-buy-and-sell-stock-iii) |
 | [0198-house-robber](https://github.com/harshaldevv/PlacementPrep/tree/master/0198-house-robber) |
 | [0518-coin-change-ii](https://github.com/harshaldevv/PlacementPrep/tree/master/0518-coin-change-ii) |
