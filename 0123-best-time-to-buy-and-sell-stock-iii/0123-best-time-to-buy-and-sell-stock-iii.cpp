@@ -1,51 +1,37 @@
 class Solution {
 public:
-
-    int maxProfit(vector<int>& prices) {
-        int n = prices.size();
-        
-        // vector<vector<vector<int>>> dp(n+1, vector<vector<int>>(2, vector<int>(3, 0))); // 
-        // j and k wale ko badha kar dia mene for no reason to avoid out of bounds error;
-
-        // n-1 to 0
-        // false to true
-        // 0 to 3
-
-        vector<vector<int>> curr(2, vector<int>(4, 0));
-        vector<vector<int>> next(2, vector<int>(4, 0));
-
-        for(int i = n-1 ;i >=0; i--){
-            for(int j = 0 ; j<= 1; j++){
-                for(int k = 0 ; k <= 3 ; k++){
-                    
-                    bool canBuy = j;
-
-                    if(k == 0){
-                        curr[j][k] = 0;
-                    }
-                    else{
-                        if(canBuy){
-                            // true hai , can buy
-                            int buy =  -prices[i] + next[false][k-1]; // buy
-                            int skip  = next[true][k]; // skip
-                            curr[canBuy][k] = max(buy, skip);
-                        }
-                        else{
-                            // cannot buy
-                            // hold or sell
-                            int hold = next[false][k]; // hold
-                            int sell = +prices[i] + next[true][k]; // sell
-
-                            curr[canBuy][k] = max(hold, sell);
-                        }
-                    }
-                }
-                next = curr;
-            }
+    int f(int i, bool canbuy, int k, vector<int> &prices, vector<vector<vector<int>>> &dp){
+        if( i >= prices.size() || k == 0){
+            return 0;
         }
 
-        return curr[true][3];
+        int j = canbuy;
 
+        if(dp[i][j][k] != -1){
+            return dp[i][j][k];
+        }
+
+        if(canbuy){
+            // i can buy -> so i have 2 options -> buy or skip
+            int buy  = -prices[i] + f(i+1, false, k, prices, dp);
+            int skip = f(i+1, true, k, prices, dp);
+
+            return dp[i][j][k] = max(buy, skip);
+        }
+        else{
+            // i cant buy -> so i have 2 options -> skip or sell
+            int skip = f(i+1, false, k, prices, dp);
+            int sell = +prices[i] + f(i+1, true, k-1, prices, dp); // decrement k because ONE TRANSACTION IS COMPLETE
+
+            return dp[i][j][k] =  max(skip, sell);
+        }
+    }
+    int maxProfit(vector<int>& prices) {
+
+        int n = prices.size();
+        int k = 2;
+        vector<vector<vector<int>>> dp(n+1, vector<vector<int>> (3, vector<int>(k+1, -1)));
+        return f(0, true, k, prices, dp);
         
     }
 };
