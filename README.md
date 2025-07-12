@@ -15,6 +15,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0594-longest-harmonious-subsequence](https://github.com/harshaldevv/PlacementPrep/tree/master/0594-longest-harmonious-subsequence) |
 | [0714-best-time-to-buy-and-sell-stock-with-transaction-fee](https://github.com/harshaldevv/PlacementPrep/tree/master/0714-best-time-to-buy-and-sell-stock-with-transaction-fee) |
 | [1621-number-of-subsequences-that-satisfy-the-given-sum-condition](https://github.com/harshaldevv/PlacementPrep/tree/master/1621-number-of-subsequences-that-satisfy-the-given-sum-condition) |
+| [2497-maximum-matching-of-players-with-trainers](https://github.com/harshaldevv/PlacementPrep/tree/master/2497-maximum-matching-of-players-with-trainers) |
 | [2614-maximum-count-of-positive-integer-and-negative-integer](https://github.com/harshaldevv/PlacementPrep/tree/master/2614-maximum-count-of-positive-integer-and-negative-integer) |
 ## Hash Table
 |  |
@@ -35,6 +36,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0347-top-k-frequent-elements](https://github.com/harshaldevv/PlacementPrep/tree/master/0347-top-k-frequent-elements) |
 | [0594-longest-harmonious-subsequence](https://github.com/harshaldevv/PlacementPrep/tree/master/0594-longest-harmonious-subsequence) |
 | [1621-number-of-subsequences-that-satisfy-the-given-sum-condition](https://github.com/harshaldevv/PlacementPrep/tree/master/1621-number-of-subsequences-that-satisfy-the-given-sum-condition) |
+| [2497-maximum-matching-of-players-with-trainers](https://github.com/harshaldevv/PlacementPrep/tree/master/2497-maximum-matching-of-players-with-trainers) |
 ## Counting
 |  |
 | ------- |
@@ -47,6 +49,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | ------- |
 | [0016-3sum-closest](https://github.com/harshaldevv/PlacementPrep/tree/master/0016-3sum-closest) |
 | [1621-number-of-subsequences-that-satisfy-the-given-sum-condition](https://github.com/harshaldevv/PlacementPrep/tree/master/1621-number-of-subsequences-that-satisfy-the-given-sum-condition) |
+| [2497-maximum-matching-of-players-with-trainers](https://github.com/harshaldevv/PlacementPrep/tree/master/2497-maximum-matching-of-players-with-trainers) |
 ## Binary Search
 |  |
 | ------- |
@@ -125,4 +128,5 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0714-best-time-to-buy-and-sell-stock-with-transaction-fee](https://github.com/harshaldevv/PlacementPrep/tree/master/0714-best-time-to-buy-and-sell-stock-with-transaction-fee) |
+| [2497-maximum-matching-of-players-with-trainers](https://github.com/harshaldevv/PlacementPrep/tree/master/2497-maximum-matching-of-players-with-trainers) |
 <!---LeetCode Topics End-->
