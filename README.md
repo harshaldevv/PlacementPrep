@@ -11,6 +11,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0169-majority-element](https://github.com/harshaldevv/PlacementPrep/tree/master/0169-majority-element) |
 | [0198-house-robber](https://github.com/harshaldevv/PlacementPrep/tree/master/0198-house-robber) |
 | [0347-top-k-frequent-elements](https://github.com/harshaldevv/PlacementPrep/tree/master/0347-top-k-frequent-elements) |
+| [0455-assign-cookies](https://github.com/harshaldevv/PlacementPrep/tree/master/0455-assign-cookies) |
 | [0518-coin-change-ii](https://github.com/harshaldevv/PlacementPrep/tree/master/0518-coin-change-ii) |
 | [0594-longest-harmonious-subsequence](https://github.com/harshaldevv/PlacementPrep/tree/master/0594-longest-harmonious-subsequence) |
 | [0714-best-time-to-buy-and-sell-stock-with-transaction-fee](https://github.com/harshaldevv/PlacementPrep/tree/master/0714-best-time-to-buy-and-sell-stock-with-transaction-fee) |
@@ -34,6 +35,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0016-3sum-closest](https://github.com/harshaldevv/PlacementPrep/tree/master/0016-3sum-closest) |
 | [0169-majority-element](https://github.com/harshaldevv/PlacementPrep/tree/master/0169-majority-element) |
 | [0347-top-k-frequent-elements](https://github.com/harshaldevv/PlacementPrep/tree/master/0347-top-k-frequent-elements) |
+| [0455-assign-cookies](https://github.com/harshaldevv/PlacementPrep/tree/master/0455-assign-cookies) |
 | [0594-longest-harmonious-subsequence](https://github.com/harshaldevv/PlacementPrep/tree/master/0594-longest-harmonious-subsequence) |
 | [1621-number-of-subsequences-that-satisfy-the-given-sum-condition](https://github.com/harshaldevv/PlacementPrep/tree/master/1621-number-of-subsequences-that-satisfy-the-given-sum-condition) |
 | [2497-maximum-matching-of-players-with-trainers](https://github.com/harshaldevv/PlacementPrep/tree/master/2497-maximum-matching-of-players-with-trainers) |
@@ -48,6 +50,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0016-3sum-closest](https://github.com/harshaldevv/PlacementPrep/tree/master/0016-3sum-closest) |
+| [0455-assign-cookies](https://github.com/harshaldevv/PlacementPrep/tree/master/0455-assign-cookies) |
 | [1621-number-of-subsequences-that-satisfy-the-given-sum-condition](https://github.com/harshaldevv/PlacementPrep/tree/master/1621-number-of-subsequences-that-satisfy-the-given-sum-condition) |
 | [2497-maximum-matching-of-players-with-trainers](https://github.com/harshaldevv/PlacementPrep/tree/master/2497-maximum-matching-of-players-with-trainers) |
 ## Binary Search
@@ -127,6 +130,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Greedy
 |  |
 | ------- |
+| [0455-assign-cookies](https://github.com/harshaldevv/PlacementPrep/tree/master/0455-assign-cookies) |
 | [0714-best-time-to-buy-and-sell-stock-with-transaction-fee](https://github.com/harshaldevv/PlacementPrep/tree/master/0714-best-time-to-buy-and-sell-stock-with-transaction-fee) |
 | [2497-maximum-matching-of-players-with-trainers](https://github.com/harshaldevv/PlacementPrep/tree/master/2497-maximum-matching-of-players-with-trainers) |
 <!---LeetCode Topics End-->
