@@ -135,4 +135,12 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0455-assign-cookies](https://github.com/harshaldevv/PlacementPrep/tree/master/0455-assign-cookies) |
 | [0714-best-time-to-buy-and-sell-stock-with-transaction-fee](https://github.com/harshaldevv/PlacementPrep/tree/master/0714-best-time-to-buy-and-sell-stock-with-transaction-fee) |
 | [2497-maximum-matching-of-players-with-trainers](https://github.com/harshaldevv/PlacementPrep/tree/master/2497-maximum-matching-of-players-with-trainers) |
+## Math
+|  |
+| ------- |
+| [0866-rectangle-overlap](https://github.com/harshaldevv/PlacementPrep/tree/master/0866-rectangle-overlap) |
+## Geometry
+|  |
+| ------- |
+| [0866-rectangle-overlap](https://github.com/harshaldevv/PlacementPrep/tree/master/0866-rectangle-overlap) |
 <!---LeetCode Topics End-->
