@@ -17,6 +17,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0714-best-time-to-buy-and-sell-stock-with-transaction-fee](https://github.com/harshaldevv/PlacementPrep/tree/master/0714-best-time-to-buy-and-sell-stock-with-transaction-fee) |
 | [1621-number-of-subsequences-that-satisfy-the-given-sum-condition](https://github.com/harshaldevv/PlacementPrep/tree/master/1621-number-of-subsequences-that-satisfy-the-given-sum-condition) |
 | [2497-maximum-matching-of-players-with-trainers](https://github.com/harshaldevv/PlacementPrep/tree/master/2497-maximum-matching-of-players-with-trainers) |
+| [2536-determine-if-two-events-have-conflict](https://github.com/harshaldevv/PlacementPrep/tree/master/2536-determine-if-two-events-have-conflict) |
 | [2614-maximum-count-of-positive-integer-and-negative-integer](https://github.com/harshaldevv/PlacementPrep/tree/master/2614-maximum-count-of-positive-integer-and-negative-integer) |
 ## Hash Table
 |  |
@@ -75,6 +76,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | ------- |
 | [0115-distinct-subsequences](https://github.com/harshaldevv/PlacementPrep/tree/master/0115-distinct-subsequences) |
 | [0257-binary-tree-paths](https://github.com/harshaldevv/PlacementPrep/tree/master/0257-binary-tree-paths) |
+| [2536-determine-if-two-events-have-conflict](https://github.com/harshaldevv/PlacementPrep/tree/master/2536-determine-if-two-events-have-conflict) |
 ## Backtracking
 |  |
 | ------- |
