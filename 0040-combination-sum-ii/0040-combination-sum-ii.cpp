@@ -1,49 +1,45 @@
 class Solution {
 public:
-    
-    void helper(vector<int> &nums, vector<vector<int>> &ans, vector<int> &holder, int start, int end, int sum, bool prev, int target){
-        
+    void f(int i, int sum, vector<int> &holder, vector<vector<int>> &ans, int target, vector<int> &nums){
         if(sum == target){
             ans.push_back(holder);
             return ;
         }
-        
-        if(start >= end || sum > target || nums[start] > target){
+
+        if(i >= nums.size()  || sum > target){
             return ;
         }
-        
-        //exclude
-        helper(nums, ans, holder, start+1, end, sum, false, target);
-        
-        //if i ignore a number, then dont pick it up EVER
-        int i = start;
-        if(i>0 && nums[i] == nums[i-1] && !prev){
-            return ;
-        }
-        
-        //include
-        holder.push_back(nums[start]);
-        helper(nums, ans, holder, start+1, end, sum+nums[start], true, target);
-        
-        //backtrack
+
+        // pick
+        // pick it once and then skip all the duplicates
+        holder.push_back(nums[i]);
+        f(i+1, sum + nums[i], holder, ans, target, nums);
+
+        // backtrack
         holder.pop_back();
+
+        while( i < nums.size() -1 && nums[i] == nums[i+1]){
+            i++;
+        }
+
+        // now skipped all duplicates
+        // aka do the not pick case
+        f(i+1, sum, holder, ans, target, nums);
+
         return ;
     }
-    
     vector<vector<int>> combinationSum2(vector<int>& nums, int target) {
-        
-        sort(nums.begin(), nums.end());
-        
-        vector<vector<int>> ans;
-        vector<int> holder;
-        
-        bool prev = false;
-        
-        int i = 0;
+
+        // since i need to skip duplicate elements in this to avoid duplicate subsets in the answer
+        // so i will sort it
+
+        sort(nums.begin(),nums.end());
+
         int sum = 0;
+        vector<int> holder;
+        vector<vector<int>> ans;
         
-        helper(nums, ans, holder, i, nums.size(), sum, prev,  target);
-        
+        f(0, sum, holder, ans, target, nums);
         return ans;
         
     }
