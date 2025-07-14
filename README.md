@@ -8,6 +8,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | ------- |
 | [0016-3sum-closest](https://github.com/harshaldevv/PlacementPrep/tree/master/0016-3sum-closest) |
 | [0036-valid-sudoku](https://github.com/harshaldevv/PlacementPrep/tree/master/0036-valid-sudoku) |
+| [0037-sudoku-solver](https://github.com/harshaldevv/PlacementPrep/tree/master/0037-sudoku-solver) |
 | [0040-combination-sum-ii](https://github.com/harshaldevv/PlacementPrep/tree/master/0040-combination-sum-ii) |
 | [0046-permutations](https://github.com/harshaldevv/PlacementPrep/tree/master/0046-permutations) |
 | [0123-best-time-to-buy-and-sell-stock-iii](https://github.com/harshaldevv/PlacementPrep/tree/master/0123-best-time-to-buy-and-sell-stock-iii) |
@@ -26,6 +27,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0036-valid-sudoku](https://github.com/harshaldevv/PlacementPrep/tree/master/0036-valid-sudoku) |
+| [0037-sudoku-solver](https://github.com/harshaldevv/PlacementPrep/tree/master/0037-sudoku-solver) |
 | [0169-majority-element](https://github.com/harshaldevv/PlacementPrep/tree/master/0169-majority-element) |
 | [0347-top-k-frequent-elements](https://github.com/harshaldevv/PlacementPrep/tree/master/0347-top-k-frequent-elements) |
 | [0594-longest-harmonious-subsequence](https://github.com/harshaldevv/PlacementPrep/tree/master/0594-longest-harmonious-subsequence) |
@@ -85,6 +87,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Backtracking
 |  |
 | ------- |
+| [0037-sudoku-solver](https://github.com/harshaldevv/PlacementPrep/tree/master/0037-sudoku-solver) |
 | [0040-combination-sum-ii](https://github.com/harshaldevv/PlacementPrep/tree/master/0040-combination-sum-ii) |
 | [0046-permutations](https://github.com/harshaldevv/PlacementPrep/tree/master/0046-permutations) |
 | [0131-palindrome-partitioning](https://github.com/harshaldevv/PlacementPrep/tree/master/0131-palindrome-partitioning) |
@@ -156,4 +159,5 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0036-valid-sudoku](https://github.com/harshaldevv/PlacementPrep/tree/master/0036-valid-sudoku) |
+| [0037-sudoku-solver](https://github.com/harshaldevv/PlacementPrep/tree/master/0037-sudoku-solver) |
 <!---LeetCode Topics End-->
