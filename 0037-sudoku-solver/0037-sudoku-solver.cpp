@@ -1,91 +1,96 @@
 class Solution {
 public:
-    bool checker(vector<vector<char>>& board, int n, char &ch, int r, int c){
-             
-        // row check
-        for(int j = 0 ; j < 9 ; j++){
-            if(board[r][j] == ch){
-                return false;
-            }
-        }
-        
-        // col check
-        for(int i = 0 ; i < 9 ; i++){
-            if(board[i][c] == ch){
-                return false;
-            }
-        }
-        
-        
-        int R = (r/3) * 3;
-        int C = (c/3) * 3;
+    bool rowCheck(char &c, vector<vector<char>> &board, int &row, int &col){
 
-        
-        // // check in the 3x3 box pehle
-        // // this works too
-        // for(int p = R; p < R+3 ; p++){
-        //     for(int q = C ;  q < C+3 ; q++){
-        //         if(board[p][q] == ch){
-        //             return false;
-        //         }
-        //     }
-        // }
-        
-        // check in the 3x3 box pehle
-        for(int p = 0; p < 3 ; p++){
-            for(int q = 0 ;  q < 3 ; q++){
-                if(board[R + p][C + q] == ch){
-                    return false;
+        for(int j = 0 ; j < 9 ; j++){
+            if(board[row][j] == c){
+                // found
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+    
+    bool colCheck(char &c, vector<vector<char>> &board, int &row, int &col){
+
+        for(int i = 0 ; i < 9 ; i++){
+            if(board[i][col] == c){
+                // found
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+    
+    bool subBoxCheck(char &c, vector<vector<char>> &board, int &row, int &col){
+
+        int x = (row/3)*3;
+        int y = (col/3)*3;
+
+        for(int i = 0 ; i < 3 ; i++){
+            for(int j = 0; j < 3 ; j++){
+                int newX = x+i;
+                int newY = y+j;
+
+                if(board[newX][newY] == c){
+                    // found
+                    return true;
                 }
             }
         }
-        
-        return true;
+
+        return false;
     }
-    bool helper(vector<vector<char>>& board, int n){
-        
-        for(int i = 0 ; i < n ; i++){
-            for(int j = 0 ; j < n ; j++){
+
+    bool isAllowed(char &c, vector<vector<char>> &board, int &row, int &col){
+
+        // check function to allow char c at i,j position on the board
+
+        bool isFoundInRow    =   rowCheck(c, board, row, col);
+        bool isFoundInCol    =   colCheck(c, board, row, col);
+        bool isFoundInSubBox =   subBoxCheck(c, board, row, col);
+
+        return !isFoundInRow && !isFoundInCol && !isFoundInSubBox;
+
+    }
+
+    bool solve(vector<vector<char>>& board){
+        int m = board.size();     // 9
+        int n = board[0].size();  // 9
+
+        for(int i = 0 ; i < m ; i++){
+            for(int j = 0 ; j < n; j++){
                 if(board[i][j] == '.'){
+                    // empty found
                     for(char c = '1' ; c <= '9' ; c++){
-                        
-                        if(checker(board, n, c, i, j)){
+                        if(isAllowed(c, board, i, j)){
                             board[i][j] = c;
-                            
-                            if(helper(board, n)){
-                                //since we only want one valid ans
-                                // isliye we return true as soon as we know we 
-                                // solve the board once
+                            // recurse
+                            if(solve(board)){
                                 return true;
-                                
-                                // had we require all possible solutions
-                                // hum if hata de bas likhte "helper(board,n)"
                             }
-                            else{
-                                //backtrack
-                               board[i][j] = '.'; 
-                            }
-                            
-                            //backtrack
-                            // board[i][j] = '.';
+                            //back track
+                            board[i][j] = '.';
                         }
                     }
-                    
-                    //exhausted all numbers, toh ab return false kardo
+                    // empty found but no number was possible
+                    // so return false; -> as not able to solve this sudoku
                     return false;
                 }
             }
         }
-        
+
         return true;
     }
+
     void solveSudoku(vector<vector<char>>& board) {
+
+        solve(board);
         
-        int n = board.size();
-        
-        helper(board, n);
-        
-        return ;
         
     }
 };
