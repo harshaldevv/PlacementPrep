@@ -150,6 +150,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Math
 |  |
 | ------- |
+| [0060-permutation-sequence](https://github.com/harshaldevv/PlacementPrep/tree/master/0060-permutation-sequence) |
 | [0866-rectangle-overlap](https://github.com/harshaldevv/PlacementPrep/tree/master/0866-rectangle-overlap) |
 ## Geometry
 |  |
@@ -160,4 +161,8 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | ------- |
 | [0036-valid-sudoku](https://github.com/harshaldevv/PlacementPrep/tree/master/0036-valid-sudoku) |
 | [0037-sudoku-solver](https://github.com/harshaldevv/PlacementPrep/tree/master/0037-sudoku-solver) |
+## Recursion
+|  |
+| ------- |
+| [0060-permutation-sequence](https://github.com/harshaldevv/PlacementPrep/tree/master/0060-permutation-sequence) |
 <!---LeetCode Topics End-->
