@@ -1,23 +1,32 @@
 class Solution {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
-        
-        // hci research
-        
-        unordered_map<string, vector<string>> anagrams; // store anagrams in a map
-        
-        for (string s : strs) {
-            string sorted = s; 
-            sort(sorted.begin(), sorted.end()); // sort the string to get its signature
-            
-            anagrams[sorted].push_back(s); // add the string to its anagram group
+
+        int n = strs.size();
+
+        if(n <=1){
+            return {strs};
         }
-        
-        vector<vector<string>> result;
-        for (auto it = anagrams.begin(); it != anagrams.end(); ++it) {
-            result.push_back(it->second); // add each anagram group to the result
+
+        unordered_map<string, vector<string>> mp;
+        for(auto &x: strs){
+            auto currword = x;
+            sort(x.begin(), x.end());
+
+            mp[x].push_back(currword);
         }
+
+        vector<vector<string>> ans;
         
-        return result;
+        for(auto &x: mp){
+            vector<string> temp;
+            for(auto &w : x.second){
+                temp.push_back(w);
+            }
+            ans.push_back(temp);
+        }
+
+        return ans;
+        
     }
 };
