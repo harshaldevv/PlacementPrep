@@ -110,6 +110,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0114-flatten-binary-tree-to-linked-list](https://github.com/harshaldevv/PlacementPrep/tree/master/0114-flatten-binary-tree-to-linked-list) |
 | [0257-binary-tree-paths](https://github.com/harshaldevv/PlacementPrep/tree/master/0257-binary-tree-paths) |
 | [0543-diameter-of-binary-tree](https://github.com/harshaldevv/PlacementPrep/tree/master/0543-diameter-of-binary-tree) |
+| [0785-is-graph-bipartite](https://github.com/harshaldevv/PlacementPrep/tree/master/0785-is-graph-bipartite) |
 ## Binary Tree
 |  |
 | ------- |
@@ -167,4 +168,16 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0060-permutation-sequence](https://github.com/harshaldevv/PlacementPrep/tree/master/0060-permutation-sequence) |
+## Breadth-First Search
+|  |
+| ------- |
+| [0785-is-graph-bipartite](https://github.com/harshaldevv/PlacementPrep/tree/master/0785-is-graph-bipartite) |
+## Union-Find
+|  |
+| ------- |
+| [0785-is-graph-bipartite](https://github.com/harshaldevv/PlacementPrep/tree/master/0785-is-graph-bipartite) |
+## Graph Theory
+|  |
+| ------- |
+| [0785-is-graph-bipartite](https://github.com/harshaldevv/PlacementPrep/tree/master/0785-is-graph-bipartite) |
 <!---LeetCode Topics End-->
