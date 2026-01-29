@@ -1,41 +1,46 @@
 class Solution {
-    int LCS(string X, string Y){
-        int n = X.size();
-        int m = Y.size();
+public:
+    int LCS(string &s1, string &s2){
+        int n1 = s1.size();
+        int n2 = s2.size();
+
         
-        int t[n+1][m+1];
-        
-        for(int i = 0 ; i < n+1 ; i++){
-            t[i][0] = 0;
-        }
-        
-        for(int j = 0 ; j < m+1 ; j++){
-            t[0][j] = 0;  
-        }
-        
-        
-        for(int i = 1 ; i < n+1 ; i ++){
-            for(int j = 1 ; j <m+1 ; j++){
-                if(X[i-1] == Y[j-1]){
-                    t[i][j] = 1 + t[i-1][j-1];
+        vector<int> curr(n2+1, 0);
+        vector<int> prev(n2+1, 0);
+
+        // basecase sorted already
+
+        for(int i = 1 ; i <= n1 ; i++){
+            for(int j = 1 ; j<= n2 ; j++){
+                if(s1[i-1] == s2[j-1]){
+                    curr[j] = 1 + prev[j-1];
                 }
                 else{
-                    t[i][j] = max(t[i][j-1], t[i-1][j]);
+                    curr[j] = max( prev[j], curr[j-1] );
                 }
             }
+
+            prev = curr;
         }
-        
-        return t[n][m];
-        
-        
+
+        return prev[n2];
     }
-public:
+    int LPS(string s){
+        string s1 = s;
+        string s2 = s;
+
+        int n = s.size();
+
+        reverse(s2.begin(), s2.end());
+
+        return LCS(s1, s2);
+
+
+
+    }
     int minInsertions(string s) {
-        
-        string rev = s;
-        reverse(rev.begin(), rev.end());
-        
-        return s.size() - LCS(s, rev);
+
+        return s.size() - LPS(s);
         
     }
 };
