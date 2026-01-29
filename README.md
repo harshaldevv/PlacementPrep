@@ -85,6 +85,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0115-distinct-subsequences](https://github.com/harshaldevv/PlacementPrep/tree/master/0115-distinct-subsequences) |
 | [0131-palindrome-partitioning](https://github.com/harshaldevv/PlacementPrep/tree/master/0131-palindrome-partitioning) |
 | [0257-binary-tree-paths](https://github.com/harshaldevv/PlacementPrep/tree/master/0257-binary-tree-paths) |
+| [1312-minimum-insertion-steps-to-make-a-string-palindrome](https://github.com/harshaldevv/PlacementPrep/tree/master/1312-minimum-insertion-steps-to-make-a-string-palindrome) |
 | [2536-determine-if-two-events-have-conflict](https://github.com/harshaldevv/PlacementPrep/tree/master/2536-determine-if-two-events-have-conflict) |
 ## Backtracking
 |  |
@@ -144,6 +145,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0198-house-robber](https://github.com/harshaldevv/PlacementPrep/tree/master/0198-house-robber) |
 | [0518-coin-change-ii](https://github.com/harshaldevv/PlacementPrep/tree/master/0518-coin-change-ii) |
 | [0714-best-time-to-buy-and-sell-stock-with-transaction-fee](https://github.com/harshaldevv/PlacementPrep/tree/master/0714-best-time-to-buy-and-sell-stock-with-transaction-fee) |
+| [1312-minimum-insertion-steps-to-make-a-string-palindrome](https://github.com/harshaldevv/PlacementPrep/tree/master/1312-minimum-insertion-steps-to-make-a-string-palindrome) |
 ## Greedy
 |  |
 | ------- |
