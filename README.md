@@ -162,6 +162,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0060-permutation-sequence](https://github.com/harshaldevv/PlacementPrep/tree/master/0060-permutation-sequence) |
+| [0762-prime-number-of-set-bits-in-binary-representation](https://github.com/harshaldevv/PlacementPrep/tree/master/0762-prime-number-of-set-bits-in-binary-representation) |
 | [0866-rectangle-overlap](https://github.com/harshaldevv/PlacementPrep/tree/master/0866-rectangle-overlap) |
 ## Geometry
 |  |
@@ -188,4 +189,8 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 |  |
 | ------- |
 | [0785-is-graph-bipartite](https://github.com/harshaldevv/PlacementPrep/tree/master/0785-is-graph-bipartite) |
+## Bit Manipulation
+|  |
+| ------- |
+| [0762-prime-number-of-set-bits-in-binary-representation](https://github.com/harshaldevv/PlacementPrep/tree/master/0762-prime-number-of-set-bits-in-binary-representation) |
 <!---LeetCode Topics End-->
