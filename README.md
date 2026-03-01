@@ -31,6 +31,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0036-valid-sudoku](https://github.com/harshaldevv/PlacementPrep/tree/master/0036-valid-sudoku) |
 | [0037-sudoku-solver](https://github.com/harshaldevv/PlacementPrep/tree/master/0037-sudoku-solver) |
 | [0169-majority-element](https://github.com/harshaldevv/PlacementPrep/tree/master/0169-majority-element) |
+| [0242-valid-anagram](https://github.com/harshaldevv/PlacementPrep/tree/master/0242-valid-anagram) |
 | [0347-top-k-frequent-elements](https://github.com/harshaldevv/PlacementPrep/tree/master/0347-top-k-frequent-elements) |
 | [0594-longest-harmonious-subsequence](https://github.com/harshaldevv/PlacementPrep/tree/master/0594-longest-harmonious-subsequence) |
 | [1048-longest-string-chain](https://github.com/harshaldevv/PlacementPrep/tree/master/1048-longest-string-chain) |
@@ -45,6 +46,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0016-3sum-closest](https://github.com/harshaldevv/PlacementPrep/tree/master/0016-3sum-closest) |
 | [0056-merge-intervals](https://github.com/harshaldevv/PlacementPrep/tree/master/0056-merge-intervals) |
 | [0169-majority-element](https://github.com/harshaldevv/PlacementPrep/tree/master/0169-majority-element) |
+| [0242-valid-anagram](https://github.com/harshaldevv/PlacementPrep/tree/master/0242-valid-anagram) |
 | [0347-top-k-frequent-elements](https://github.com/harshaldevv/PlacementPrep/tree/master/0347-top-k-frequent-elements) |
 | [0455-assign-cookies](https://github.com/harshaldevv/PlacementPrep/tree/master/0455-assign-cookies) |
 | [0594-longest-harmonious-subsequence](https://github.com/harshaldevv/PlacementPrep/tree/master/0594-longest-harmonious-subsequence) |
@@ -88,6 +90,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | ------- |
 | [0115-distinct-subsequences](https://github.com/harshaldevv/PlacementPrep/tree/master/0115-distinct-subsequences) |
 | [0131-palindrome-partitioning](https://github.com/harshaldevv/PlacementPrep/tree/master/0131-palindrome-partitioning) |
+| [0242-valid-anagram](https://github.com/harshaldevv/PlacementPrep/tree/master/0242-valid-anagram) |
 | [0257-binary-tree-paths](https://github.com/harshaldevv/PlacementPrep/tree/master/0257-binary-tree-paths) |
 | [1048-longest-string-chain](https://github.com/harshaldevv/PlacementPrep/tree/master/1048-longest-string-chain) |
 | [1312-minimum-insertion-steps-to-make-a-string-palindrome](https://github.com/harshaldevv/PlacementPrep/tree/master/1312-minimum-insertion-steps-to-make-a-string-palindrome) |
